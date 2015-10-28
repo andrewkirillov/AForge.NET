@@ -374,7 +374,7 @@ static libffmpeg::AVFrame* alloc_picture( enum libffmpeg::PixelFormat pix_fmt, i
 }
 
 // Create new video stream and configure it
-void add_video_stream( WriterPrivateData^ data,  int width, int height, int frameRate, int bitRate,
+void add_video_stream( WriterPrivateData^ data,  int width, int height, double frameRate, int bitRate,
 					  enum libffmpeg::CodecID codecId, enum libffmpeg::PixelFormat pixelFormat )
 {
 	libffmpeg::AVCodecContext* codecContex;
