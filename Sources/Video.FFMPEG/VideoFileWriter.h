@@ -90,9 +90,9 @@ namespace AForge { namespace Video { namespace FFMPEG
 		///
 		/// <exception cref="System::IO::IOException">Thrown if no video file was open.</exception>
 		///
-		property int FrameRate
+		property double FrameRate
 		{
-			int get( )
+			double get()
 			{
 				CheckIfVideoFileIsOpen( );
 				return m_frameRate;
@@ -202,7 +202,7 @@ namespace AForge { namespace Video { namespace FFMPEG
 		/// codec.</note></para>
 		/// </remarks>
 		///
-		void Open( String^ fileName, int width, int height, int frameRate );
+		void Open(String^ fileName, int width, int height, double frameRate);
 
         /// <summary>
         /// Create video file with the specified name and attributes.
@@ -226,7 +226,7 @@ namespace AForge { namespace Video { namespace FFMPEG
         /// <exception cref="VideoException">A error occurred while creating new video file. See exception message.</exception>
         /// <exception cref="System::IO::IOException">Cannot open video file with the specified name.</exception>
         /// 
-		void Open( String^ fileName, int width, int height, int frameRate, VideoCodec codec );
+		void Open(String^ fileName, int width, int height, double frameRate, VideoCodec codec);
 
         /// <summary>
         /// Create video file with the specified name and attributes.
@@ -255,7 +255,7 @@ namespace AForge { namespace Video { namespace FFMPEG
         /// <exception cref="VideoException">A error occurred while creating new video file. See exception message.</exception>
         /// <exception cref="System::IO::IOException">Cannot open video file with the specified name.</exception>
         /// 
-		void Open( String^ fileName, int width, int height, int frameRate, VideoCodec codec, int bitRate );
+		void Open(String^ fileName, int width, int height, double frameRate, VideoCodec codec, int bitRate);
 
         /// <summary>
         /// Write new video frame into currently opened video file.
@@ -304,7 +304,7 @@ namespace AForge { namespace Video { namespace FFMPEG
 
 		int m_width;
 		int m_height;
-		int	m_frameRate;
+		double	m_frameRate;
 		int m_bitRate;
 		VideoCodec m_codec;
 

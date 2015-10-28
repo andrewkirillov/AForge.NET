@@ -31,7 +31,7 @@ namespace AForge { namespace Video { namespace FFMPEG
 
 static void write_video_frame( WriterPrivateData^ data );
 static void open_video( WriterPrivateData^ data );
-static void add_video_stream( WriterPrivateData^ data, int width, int height, int frameRate, int bitRate,
+static void add_video_stream(WriterPrivateData^ data, int width, int height, double frameRate, int bitRate,
 							  enum libffmpeg::CodecID codec_id, enum libffmpeg::PixelFormat pixelFormat );
 
 // A structure to encapsulate all FFMPEG related private variable
@@ -71,18 +71,18 @@ void VideoFileWriter::Open( String^ fileName, int width, int height )
 	Open( fileName, width, height, 25 );
 }
 
-void VideoFileWriter::Open( String^ fileName, int width, int height, int frameRate )
+void VideoFileWriter::Open(String^ fileName, int width, int height, double frameRate)
 {
 	Open( fileName, width, height, frameRate, VideoCodec::Default );
 }
 
-void VideoFileWriter::Open( String^ fileName, int width, int height, int frameRate, VideoCodec codec )
+void VideoFileWriter::Open( String^ fileName, int width, int height, double frameRate, VideoCodec codec )
 {
 	Open( fileName, width, height, frameRate, codec, 400000 );
 }
 
 // Creates a video file with the specified name and properties
-void VideoFileWriter::Open( String^ fileName, int width, int height, int frameRate, VideoCodec codec, int bitRate )
+void VideoFileWriter::Open(String^ fileName, int width, int height, double frameRate, VideoCodec codec, int bitRate)
 {
     CheckIfDisposed( );
 
