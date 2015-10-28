@@ -2,7 +2,7 @@
 // AForge.NET framework
 // http://www.aforgenet.com/framework/
 //
-// Copyright © Andrew Kirillov, 2005-2009
+// Copyright Â© Andrew Kirillov, 2005-2009
 // andrew.kirillov@aforgenet.com
 //
 
@@ -237,6 +237,7 @@ namespace AForge.Imaging
         /// <param name="image">Unmanaged source image to process.</param>
         /// <param name="template">Unmanaged template image to search for.</param>
         /// <param name="searchZone">Rectangle in source image to search template for.</param>
+        /// <param name="parallelTasks">Number of used tasks</param>
         /// 
         /// <returns>Returns array of found template matches. The array is sorted by similarity
         /// of found matches in descending order.</returns>
@@ -244,7 +245,7 @@ namespace AForge.Imaging
         /// <exception cref="UnsupportedImageFormatException">The source image has incorrect pixel format.</exception>
         /// <exception cref="InvalidImagePropertiesException">Template image is bigger than search zone.</exception>
         ///
-        public TemplateMatch[] ProcessImage( UnmanagedImage image, UnmanagedImage template, Rectangle searchZone )
+        public TemplateMatch[] ProcessImage( UnmanagedImage image, UnmanagedImage template, Rectangle searchZone, int parallelTasks=1 )
         {
             // check image format
             if (
@@ -303,7 +304,13 @@ namespace AForge.Imaging
                 int templateOffset = template.Stride - templateWidth * pixelSize;
 
                 // for each row of the source image
-                for ( int y = 0; y < mapHeight; y++ )
+                //for ( int y = 0; y < mapHeight; y++ )
+                //use multiple tasks.
+                var opt=new System.Threading.Tasks.ParallelOptions
+                { 
+                    MaxDegreeOfParallelism=parallelTasks
+                };
+                System.Threading.Tasks.Parallel.For(0,mapHeight, opt, y=>
                 {
                     // for each pixel of the source image
                     for ( int x = 0; x < mapWidth; x++ )
@@ -340,7 +347,7 @@ namespace AForge.Imaging
                         if ( sim >= threshold )
                             map[y + 2, x + 2] = sim;
                     }
-                }
+                });
             }
 
             // collect interesting points - only those points, which are local maximums
