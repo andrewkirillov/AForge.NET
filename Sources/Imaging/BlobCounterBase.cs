@@ -672,7 +672,6 @@ namespace AForge.Imaging
                 ( image.PixelFormat != PixelFormat.Format8bppIndexed ) &&
                 ( image.PixelFormat != PixelFormat.Format32bppRgb ) &&
                 ( image.PixelFormat != PixelFormat.Format32bppArgb ) &&
-                ( image.PixelFormat != PixelFormat.Format32bppRgb ) &&
                 ( image.PixelFormat != PixelFormat.Format32bppPArgb )
                 )
                 throw new UnsupportedImageFormatException( "Unsupported pixel format of the provided image." );
