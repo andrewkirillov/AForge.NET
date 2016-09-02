@@ -63,9 +63,15 @@ namespace AForge.Video
         private int frameInterval = 100;
         // received frames count
         private int framesReceived;
+        // window handle
+        private IntPtr Hwnd = IntPtr.Zero;
+        // true if a window is being captured, otherwise false
+        bool captureWnd = false;
+        //
 
         private Thread thread = null;
         private ManualResetEvent stopEvent = null;
+        private AutoResetEvent grabEvent = null;
 
         /// <summary>
         /// New frame event.
@@ -219,6 +225,28 @@ namespace AForge.Video
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ScreenCaptureStream"/> class.
+        /// </summary>
+        /// 
+        /// <param name="Hwnd">Handle of the window to be captured.</param>
+        /// <param name="region">Screen's rectangle to capture (the rectangle may cover multiple displays).</param>
+        /// <param name="frameInterval">Time interval between making screen shots, ms.</param>
+        /// 
+        public ScreenCaptureStream(
+        IntPtr Hwnd, 
+        Rectangle region, 
+        int frameInterval = 100) : this(region, frameInterval)
+        {
+            this.Hwnd = Hwnd;
+
+            // set to true to tell WorkerThread we want to capture a window
+            this.captureWnd = true;
+
+            //
+            this.reqNextFrame = reqNextFrame;
+        }
+
+        /// <summary>
         /// Start video source.
         /// </summary>
         /// 
@@ -236,6 +264,7 @@ namespace AForge.Video
 
                 // create events
                 stopEvent = new ManualResetEvent( false );
+                grabEvent = new AutoResetEvent( true );
 
                 // create and start new thread
                 thread = new Thread( new ThreadStart( WorkerThread ) );
@@ -312,6 +341,18 @@ namespace AForge.Video
             // release events
             stopEvent.Close( );
             stopEvent = null;
+
+            grabEvent.Close( );
+            grabEvent = null;
+        }
+
+        /// <summary>
+        /// Notifies WorkerThread to grab a new frame.
+        /// </summary>
+        /// 
+        public void GrabNextFrame()
+        {
+            grabEvent.Set();
         }
 
         // Worker thread
@@ -322,9 +363,16 @@ namespace AForge.Video
             int x = region.Location.X;
             int y = region.Location.Y;
             Size size = region.Size;
+            IntPtr hwnd = Hwnd;
+            bool capturewnd = captureWnd;
 
             Bitmap bitmap = new Bitmap( width, height, PixelFormat.Format32bppArgb );
             Graphics graphics = Graphics.FromImage( bitmap );
+
+            Graphics fromHwnd = null;
+
+            if (capturewnd)
+                fromHwnd = Graphics.FromHwnd(hwnd);
 
             // download start time and duration
             DateTime start;
@@ -337,8 +385,25 @@ namespace AForge.Video
 
                 try
                 {
-                    // capture the screen
-                    graphics.CopyFromScreen( x, y, 0, 0, size, CopyPixelOperation.SourceCopy );
+                    if (capturewnd)
+                    {
+                        if (reqNextFrame)
+                            grabEvent.WaitOne();
+
+                        // capture the window
+                        IntPtr wndHdc = fromHwnd.GetHdc();
+                        IntPtr bmpHdc = graphics.GetHdc();
+
+                        BitBlt(bmpHdc, 0, 0, width, height, wndHdc, x, y, (int)CopyPixelOperation.SourceCopy);
+
+                        graphics.ReleaseHdc(bmpHdc);
+                        fromHwnd.ReleaseHdc(wndHdc);
+                    }
+                    else
+                    {
+                        // capture the screen
+                        graphics.CopyFromScreen(x, y, 0, 0, size, CopyPixelOperation.SourceCopy);
+                    }
 
                     // increment frames counter
                     framesReceived++;
@@ -384,6 +449,8 @@ namespace AForge.Video
             }
 
             // release resources
+            if (capturewnd)
+                fromHwnd.Dispose( );
             graphics.Dispose( );
             bitmap.Dispose( );
 
@@ -392,5 +459,8 @@ namespace AForge.Video
                 PlayingFinished( this, ReasonToFinishPlaying.StoppedByUser );
             }
         }
+
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        static extern bool BitBlt(IntPtr hObject, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hObjectSource, int nXSrc, int nYSrc, int dwRop);
     }
 }
