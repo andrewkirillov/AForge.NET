@@ -68,6 +68,7 @@ namespace AForge.Video
         // true if a window is being captured, otherwise false
         bool captureWnd = false;
         //
+        bool reqNextFrame;
 
         private Thread thread = null;
         private ManualResetEvent stopEvent = null;
@@ -230,11 +231,13 @@ namespace AForge.Video
         /// 
         /// <param name="Hwnd">Handle of the window to be captured.</param>
         /// <param name="region">Screen's rectangle to capture (the rectangle may cover multiple displays).</param>
+        /// <param name="reqNextFrame">If true, the thread will wait until it is signaled (by calling GrabNextFrame) to grab the next frame.</param>
         /// <param name="frameInterval">Time interval between making screen shots, ms.</param>
         /// 
         public ScreenCaptureStream(
         IntPtr Hwnd, 
         Rectangle region, 
+        bool reqNextFrame,
         int frameInterval = 100) : this(region, frameInterval)
         {
             this.Hwnd = Hwnd;
