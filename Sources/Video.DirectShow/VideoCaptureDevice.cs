@@ -2,8 +2,8 @@
 // AForge.NET framework
 // http://www.aforgenet.com/framework/
 //
-// Copyright © AForge.NET, 2009-2013
-// contacts@aforgenet.com
+// Copyright © AForge.NET, 2009-2017
+// aforge.net@gmail.com
 //
 
 namespace AForge.Video.DirectShow
@@ -1097,7 +1097,8 @@ namespace AForge.Video.DirectShow
                     {
                         VideoControlFlags caps;
                         videoControl.GetCaps( pinStillImage, out caps );
-                        isSapshotSupported = ( ( caps & VideoControlFlags.ExternalTriggerEnable ) != 0 );
+                        isSapshotSupported = ( ( ( caps & VideoControlFlags.ExternalTriggerEnable ) != 0 ) ||
+                                               ( ( caps & VideoControlFlags.Trigger ) != 0 ) );
                     }
                 }
 
