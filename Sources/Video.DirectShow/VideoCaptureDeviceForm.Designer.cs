@@ -118,7 +118,7 @@
             this.snapshotsLabel.Name = "snapshotsLabel";
             this.snapshotsLabel.Size = new System.Drawing.Size( 101, 13 );
             this.snapshotsLabel.TabIndex = 15;
-            this.snapshotsLabel.Text = "Snapshot resoluton:";
+            this.snapshotsLabel.Text = "Snapshot resolution:";
             // 
             // snapshotResolutionsCombo
             // 
@@ -145,7 +145,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size( 83, 13 );
             this.label2.TabIndex = 12;
-            this.label2.Text = "Video resoluton:";
+            this.label2.Text = "Video resolution:";
             // 
             // label1
             // 
