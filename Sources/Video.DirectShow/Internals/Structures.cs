@@ -11,14 +11,15 @@ namespace AForge.Video.DirectShow.Internals
     using System;
     using System.Runtime.InteropServices;
     using System.Drawing;
+	using System.Collections.Generic;
 
-    // PIN_DIRECTION
+	// PIN_DIRECTION
 
-    /// <summary>
-    /// This enumeration indicates a pin's direction.
-    /// </summary>
-    /// 
-    [ComVisible( false )]
+	/// <summary>
+	/// This enumeration indicates a pin's direction.
+	/// </summary>
+	/// 
+	[ComVisible( false )]
     internal enum PinDirection
     {
         /// <summary>
