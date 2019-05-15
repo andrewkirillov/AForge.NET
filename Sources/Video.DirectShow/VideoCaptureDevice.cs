@@ -1202,6 +1202,18 @@ namespace AForge.Video.DirectShow
                                     reasonToStop = ReasonToFinishPlaying.DeviceLost;
                                     break;
                                 }
+								
+								if (code == DsEvCode.ErrorAbort)
+	                            {
+		                            string error = "Unknown";
+		                            if (DsEvError.Map.ContainsKey((uint) p1))
+		                            {
+			                            error = DsEvError.Map[(uint) p1];
+
+		                            }
+		                            throw new ApplicationException("DirectShow MediaEvent error abort: "+error.ToString());
+
+	                            }
                             }
                         }
 
