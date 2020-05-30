@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <OutputPath>..\..\Release\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>AForge.Imaging</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core (netstandard).csproj" />
+    <ProjectReference Include="..\Imaging.Formats\Imaging.Formats (netstandard).csproj" />
+    <ProjectReference Include="..\Math\Math (netstandard).csproj" />
+  </ItemGroup>
+
+</Project>
