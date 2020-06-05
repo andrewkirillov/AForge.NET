@@ -4,11 +4,8 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <OutputPath>..\..\Release\</OutputPath>
     <AssemblyName>AForge.Video.FVW</AssemblyName>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Imaging\Imaging (netstandard).csproj" />
