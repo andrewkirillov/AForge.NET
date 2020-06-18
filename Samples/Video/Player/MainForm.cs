@@ -128,7 +128,7 @@ namespace Player
             CloseCurrentVideoSource( );
 
             // start new video source
-            videoSourcePlayer.VideoSource = source;
+            videoSourcePlayer.VideoSource = new AsyncVideoSource( source );
             videoSourcePlayer.Start( );
 
             // reset stop watch
