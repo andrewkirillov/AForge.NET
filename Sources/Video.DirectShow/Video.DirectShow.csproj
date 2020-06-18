@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="CameraControlProperty.cs" />
     <Compile Include="FileVideoSource.cs" />
+    <Compile Include="Internals\CustomMarshalers.cs" />
     <Compile Include="Internals\IAMCameraControl.cs" />
     <Compile Include="Internals\IAMCrossbar.cs" />
     <Compile Include="Internals\IAMStreamConfig.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Internals\ICaptureGraphBuilder2.cs" />
     <Compile Include="Internals\ICreateDevEnum.cs" />
     <Compile Include="Internals\IEnumFilters.cs" />
+    <Compile Include="Internals\IEnumMediaTypes.cs" />
     <Compile Include="Internals\IEnumPins.cs" />
     <Compile Include="Internals\IFileSourceFilter.cs" />
     <Compile Include="Internals\IFilterGraph.cs" />

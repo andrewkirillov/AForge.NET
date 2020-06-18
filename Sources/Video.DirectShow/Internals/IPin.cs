@@ -125,12 +125,12 @@ namespace AForge.Video.DirectShow.Internals
         /// Provides an enumerator for this pin's preferred media types.
         /// </summary>
         /// 
-        /// <param name="enumerator">Address of a variable that receives a pointer to the <b>IEnumMediaTypes</b> interface.</param>
+        /// <param name="enumMediaTypes">Receives <see cref="IEnumMediaTypes"/>.</param>
         /// 
         /// <returns>Return's <b>HRESULT</b> error code.</returns>
         /// 
         [PreserveSig]
-        int EnumMediaTypes( IntPtr enumerator );
+        int EnumMediaTypes( [Out] out IEnumMediaTypes enumMediaTypes );
 
         /// <summary>
         /// Provides an array of the pins to which this pin internally connects.

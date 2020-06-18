@@ -256,6 +256,15 @@ namespace AForge.Video.DirectShow.Internals
         /// 
         public static readonly Guid Asf =
             new Guid( 0x3DB80F90, 0x9412, 0x11D1, 0xAD, 0xED, 0x00, 0x00, 0xF8, 0x75, 0x4B, 0x99 );
+
+        /// <summary>
+        /// Motion JPEG.
+        /// </summary>
+        /// 
+        /// <remarks>Equals to MEDIASUBTYPE_MJPG.</remarks>
+        /// 
+        public static readonly Guid MJpeg =
+            new Guid( 0x47504A4D, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71 );
     }
 
     /// <summary>
