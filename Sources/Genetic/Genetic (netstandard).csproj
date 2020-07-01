@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <OutputPath>..\..\Release\</OutputPath>
+    <AssemblyName>AForge.Genetic</AssemblyName>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core (netstandard).csproj" />
+    <ProjectReference Include="..\Math\Math (netstandard).csproj" />
+  </ItemGroup>
+
+</Project>

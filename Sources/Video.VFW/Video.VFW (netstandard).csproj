@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <OutputPath>..\..\Release\</OutputPath>
+    <AssemblyName>AForge.Video.FVW</AssemblyName>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Imaging\Imaging (netstandard).csproj" />
+    <ProjectReference Include="..\Video\Video (netstandard).csproj" />
+  </ItemGroup>
+
+</Project>
