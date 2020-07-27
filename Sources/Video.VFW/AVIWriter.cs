@@ -402,12 +402,15 @@ namespace AForge.Video.VFW
                 int srcStride = imageData.Stride;
                 int dstStride = stride;
 
-                int src = imageData.Scan0.ToInt32( ) + srcStride * ( height - 1 );
-                int dst = buffer.ToInt32( );
+                int src = srcStride * ( height - 1 );
+                int dst = 0;
 
                 for ( int y = 0; y < height; y++ )
                 {
-                    Win32.memcpy( dst, src, dstStride );
+                    Win32.CopyMemory(
+							  IntPtr.Add( imageData.Scan0, dst ),
+							  IntPtr.Add( buffer, src ),
+							  ( uint )dstStride );
                     dst += dstStride;
                     src -= srcStride;
                 }

@@ -23,18 +23,14 @@ namespace AForge.Video.VFW
         /// Copy a block of memory.
         /// </summary>
         /// 
-        /// <param name="dst">Destination pointer.</param>
+        /// <param name="dest">Destination pointer.</param>
         /// <param name="src">Source pointer.</param>
         /// <param name="count">Memory block's length to copy.</param>
         /// 
         /// <returns>Return's the value of <b>dst</b> - pointer to destination.</returns>
         /// 
-        [DllImport( "ntdll.dll", CallingConvention = CallingConvention.Cdecl )]
-        public static extern int memcpy(
-            int dst,
-            int src,
-            int count );
-
+        [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
+        public static extern void CopyMemory(IntPtr dest, IntPtr src, uint count);
 
         // --- Video for Windows Functions
 

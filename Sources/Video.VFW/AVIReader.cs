@@ -12,7 +12,7 @@ namespace AForge.Video.VFW
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Runtime.InteropServices;
-    using AForge;
+    using AForge.Video;
 
     /// <summary>
     /// AVI files reading using Video for Windows.
@@ -348,12 +348,16 @@ namespace AForge.Video.VFW
                 if ( bitmapInfoHeader.height > 0 )
                 {
                     // it`s a bottom-top image
-                    int dst = imageData.Scan0.ToInt32( ) + dstStride * ( height - 1 );
-                    int src = DIB.ToInt32( ) + Marshal.SizeOf( typeof( Win32.BITMAPINFOHEADER ) );
+                    int dst = dstStride * ( height - 1 );
+                    int src = Marshal.SizeOf( typeof( Win32.BITMAPINFOHEADER ) );
 
                     for ( int y = 0; y < height; y++ )
                     {
-                        Win32.memcpy( dst, src, srcStride );
+                        Win32.CopyMemory(
+									IntPtr.Add( imageData.Scan0, dst ),
+									IntPtr.Add( DIB, src ),
+									( uint )srcStride );
+
                         dst -= dstStride;
                         src += srcStride;
                     }
@@ -361,11 +365,13 @@ namespace AForge.Video.VFW
                 else
                 {
                     // it`s a top bootom image
-                    int dst = imageData.Scan0.ToInt32( );
-                    int src = DIB.ToInt32( ) + Marshal.SizeOf( typeof( Win32.BITMAPINFOHEADER ) );
+                    int src = Marshal.SizeOf( typeof( Win32.BITMAPINFOHEADER ) );
 
                     // copy the whole image
-                    Win32.memcpy( dst, src, srcStride * height );
+                    Win32.CopyMemory(
+							  imageData.Scan0,
+							  IntPtr.Add( DIB, src ),
+							  ( uint )( srcStride * height ) );
                 }
 
                 // unlock bitmap data
