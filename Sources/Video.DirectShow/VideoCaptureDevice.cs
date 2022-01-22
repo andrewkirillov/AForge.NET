@@ -66,13 +66,18 @@ namespace AForge.Video.DirectShow
         private VideoCapabilities videoResolution = null;
         private VideoCapabilities snapshotResolution = null;
 
+        // video ans snapshot formats to set
+        private FrameDataFormat videoDataFormat = FrameDataFormat.Unknown;
+        private FrameDataFormat snapshotDataFormat = FrameDataFormat.Unknown;
+
+        private FrameDataFormat selectedVideoDataFormat = FrameDataFormat.Unknown;
+        private FrameDataFormat selectedSnapshotDataFormat = FrameDataFormat.Unknown;
+
         // provide snapshots or not
         private bool provideSnapshots = false;
 
         // JPEG encoding preference
         private bool preferJpegEncoding = true;
-        // check if JPEG encoding is enabled
-        private bool jpegEncodingEnabled = false;
 
         private Thread thread = null;
         private ManualResetEvent stopEvent = null;
@@ -264,6 +269,19 @@ namespace AForge.Video.DirectShow
         public event NewFrameEventHandler NewFrame;
 
         /// <summary>
+        /// New raw frame event.
+        /// </summary>
+        /// 
+        /// <remarks><para>Notifies clients about new available raw frame data from video source.</para>
+        /// 
+        /// <para><note>Since video source may have multiple clients, each client is responsible for
+        /// making a copy (cloning) of the passed raw frame data, because the video source disposes its
+        /// own original copy after notifying of clients.</note></para>
+        /// </remarks>
+        /// 
+        public event NewRawFrameEventHandler NewRawFrame;
+
+        /// <summary>
         /// Snapshot frame event.
         /// </summary>
         /// 
@@ -280,6 +298,24 @@ namespace AForge.Video.DirectShow
         /// <seealso cref="ProvideSnapshots"/>
         /// 
         public event NewFrameEventHandler SnapshotFrame;
+
+        /// <summary>
+        /// Snapshot raw frame event.
+        /// </summary>
+        /// 
+        /// <remarks><para>Notifies clients about new available snapshot raw frame data - the one which comes when
+        /// camera's snapshot/shutter button is pressed.</para>
+        /// 
+        /// <para>See documentation to <see cref="ProvideSnapshots"/> for additional information.</para>
+        /// 
+        /// <para><note>Since video source may have multiple clients, each client is responsible for
+        /// making a copy (cloning) of the passed raw snapshot frame data, because the video source disposes its
+        /// own original copy after notifying of clients.</note></para>
+        /// </remarks>
+        /// 
+        /// <seealso cref="ProvideSnapshots"/>
+        /// 
+        public event NewRawFrameEventHandler SnapshotRawFrame;
 
         /// <summary>
         /// Video source error event.
@@ -455,6 +491,39 @@ namespace AForge.Video.DirectShow
         {
             get { return snapshotResolution; }
             set { snapshotResolution = value; }
+        }
+
+        /// <summary>
+        /// Video data format to set.
+        /// </summary>
+        /// 
+        /// <remarks><para>The property allows to set one of the video data formats supported by the camera.</para>
+        /// <para><note>The property must be set before camera is started to make any effect.</note></para>
+        /// 
+        /// <para>Default value of the property is set to <see langword="ImageDataFormat.Unknown"/>, which means RGB24 or 
+        /// Mjpeg is used.</para>
+        /// </remarks>
+        /// 
+        public FrameDataFormat VideoDataFormat
+        {
+            get { return videoDataFormat; }
+            set { videoDataFormat = value; }
+        }
+
+        /// <summary>
+        /// Snapshot data format to set.
+        /// </summary>
+        /// 
+        /// <remarks><para>The property allows to set one of the snapshot data formats supported by the camera.</para>
+        /// <para><note>The property must be set before camera is started to make any effect.</note></para>
+        /// 
+        /// <para>Default value of the property is set to <see langword="ImageDataFormat.Unknown"/>, which means RGB24 used.</para>
+        /// </remarks>
+        /// 
+        public FrameDataFormat SnapshotDataFormat
+        {
+            get { return snapshotDataFormat; }
+            set { snapshotDataFormat = value; }
         }
 
         /// <summary>
@@ -1115,20 +1184,45 @@ namespace AForge.Video.DirectShow
                 graph.AddFilter( videoGrabberBase, "grabber_video" );
                 graph.AddFilter( snapshotGrabberBase, "grabber_snapshot" );
 
-                // check if we need and can do JPEG encoding
-                if ( preferJpegEncoding )
-                {
-                    jpegEncodingEnabled = IsJpegEncodingAvailable( sourceBase );
-                }
-
                 // set media types
                 AMMediaType videoMediaType = new AMMediaType( );
                 videoMediaType.MajorType = MediaType.Video;
-                videoMediaType.SubType   = ( jpegEncodingEnabled ) ? MediaSubType.MJpeg : MediaSubType.RGB24;
+
+                Guid videoSubType = MediaSubType.FromImageDataFormat(videoDataFormat);
+                if ( videoSubType != Guid.Empty )
+                {
+                    selectedVideoDataFormat = videoDataFormat;
+                    videoMediaType.SubType = videoSubType;
+                }
+                else
+                {
+                    // check if we need and can do JPEG encoding
+                    if ( IsJpegEncodingAvailable( sourceBase  ) )
+                    {
+                        selectedVideoDataFormat = FrameDataFormat.MJPG;
+                        videoMediaType.SubType = MediaSubType.MJpeg;
+                    }
+                    else
+                    {
+                        selectedVideoDataFormat = FrameDataFormat.RGB24;
+                        videoMediaType.SubType = MediaSubType.RGB24;
+                    }
+                }
 
                 AMMediaType snapshotMediaType = new AMMediaType( );
                 snapshotMediaType.MajorType = MediaType.Video;
-                snapshotMediaType.SubType   = MediaSubType.RGB24;
+
+                Guid snapshotSubType = MediaSubType.FromImageDataFormat(videoDataFormat);
+                if ( snapshotSubType != Guid.Empty )
+                {
+                    selectedVideoDataFormat = videoDataFormat;
+                    snapshotMediaType.SubType = snapshotSubType;
+                }
+                else
+                {
+                    selectedVideoDataFormat = FrameDataFormat.RGB24;
+                    snapshotMediaType.SubType = MediaSubType.RGB24;
+                }
 
                 videoSampleGrabber.SetMediaType( videoMediaType );
                 snapshotSampleGrabber.SetMediaType( snapshotMediaType );
@@ -1372,7 +1466,8 @@ namespace AForge.Video.DirectShow
                 PlayingFinished( this, reasonToStop );
             }
 
-            jpegEncodingEnabled = false;
+            selectedSnapshotDataFormat = FrameDataFormat.Unknown;
+            selectedVideoDataFormat = FrameDataFormat.Unknown;
         }
 
         // Check if the filter can provide JPEG encoded images
@@ -1698,11 +1793,23 @@ namespace AForge.Video.DirectShow
         /// 
         private void OnNewFrame( Bitmap image )
         {
-            framesReceived++;
-            bytesReceived += image.Width * image.Height * ( Bitmap.GetPixelFormatSize( image.PixelFormat ) >> 3 );
-
             if ( ( !stopEvent.WaitOne( 0, false ) ) && ( NewFrame != null ) )
                 NewFrame( this, new NewFrameEventArgs( image ) );
+        }
+
+        /// <summary>
+        /// Notifies clients about new raw frame data.
+        /// </summary>
+        /// 
+        /// <param name="data">New raw frame's data.</param>
+        /// <param name="format">New raw frame's data format.</param>
+        /// <param name="width">New raw frame's width.</param>
+        /// <param name="height">New raw frame's height.</param>
+        /// 
+        private void OnNewRawFrame( byte[] data, FrameDataFormat format, int width, int height )
+        {
+            if ( (!stopEvent.WaitOne( 0, false ) ) && ( NewRawFrame != null ) )
+                NewRawFrame( this, new NewRawFrameEventArgs( data, format, width, height ) );
         }
 
         /// <summary>
@@ -1721,6 +1828,28 @@ namespace AForge.Video.DirectShow
             {
                 if ( ( !stopEvent.WaitOne( 0, false ) ) && ( SnapshotFrame != null ) )
                     SnapshotFrame( this, new NewFrameEventArgs( image ) );
+            }
+        }
+
+        /// <summary>
+        /// Notifies clients about new snapshot raw frame.
+        /// </summary>
+        /// 
+        /// <param name="data">New raw snapshot's data.</param>
+        /// <param name="format">New raw snapshot's data format.</param>
+        /// <param name="width">New raw snapshot's width.</param>
+        /// <param name="height">New raw snapshot's height.</param>
+        /// 
+        private void OnSnapshotRawFrame( byte[] data, FrameDataFormat format, int width, int height )
+        {
+            TimeSpan timeSinceStarted = DateTime.Now - startTime;
+
+            // TODO: need to find better way to ignore the first snapshot, which is sent
+            // automatically (or better disable it)
+            if ( timeSinceStarted.TotalSeconds >= 4 )
+            {
+                if ( (!stopEvent.WaitOne( 0, false ) ) && ( SnapshotRawFrame != null ) )
+                    SnapshotRawFrame(this, new NewRawFrameEventArgs( data, format, width, height ));
             }
         }
 
@@ -1762,53 +1891,77 @@ namespace AForge.Video.DirectShow
             // Callback method that receives a pointer to the sample buffer
             public int BufferCB( double sampleTime, IntPtr buffer, int bufferLen )
             {
-                if ( parent.NewFrame != null )
+                if (!snapshotMode)
                 {
-                    System.Drawing.Bitmap image = null;
+                    parent.framesReceived++;
+                    parent.bytesReceived += bufferLen;
+                }
 
-                    if ( !parent.jpegEncodingEnabled )
+                if ( (snapshotMode && parent.SnapshotFrame != null) || (!snapshotMode && parent.NewFrame != null) )
+                {
+                    Bitmap image = null;
+                    FrameDataFormat dataFormat = snapshotMode ? parent.selectedSnapshotDataFormat : parent.selectedVideoDataFormat;
+
+                    if ( dataFormat == FrameDataFormat.MJPG )
                     {
-                        // create new image
-                        image = new Bitmap( width, height, PixelFormat.Format24bppRgb );
-
-                        // lock bitmap data
-                        BitmapData imageData = image.LockBits(
-                            new Rectangle( 0, 0, width, height ),
-                            ImageLockMode.ReadWrite,
-                            PixelFormat.Format24bppRgb );
-
-                        // copy image data
-                        int srcStride = imageData.Stride;
-                        int dstStride = imageData.Stride;
-
                         unsafe
                         {
-                            byte* dst = (byte*) imageData.Scan0.ToPointer( ) + dstStride * ( height - 1 );
-                            byte* src = (byte*) buffer.ToPointer( );
-
-                            for ( int y = 0; y < height; y++ )
-                            {
-                                Win32.memcpy( dst, src, srcStride );
-                                dst -= dstStride;
-                                src += srcStride;
-                            }
+                            image = (Bitmap)Image.FromStream(new UnmanagedMemoryStream((byte*)buffer.ToPointer(), bufferLen));
                         }
-
-                        // unlock bitmap data
-                        image.UnlockBits( imageData );
                     }
                     else
                     {
-                        unsafe
+                        PixelFormat pixelFormat;
+                        if ( dataFormat == FrameDataFormat.Unknown )
+                            pixelFormat = PixelFormat.Format24bppRgb;
+                        else
+                            pixelFormat = FrameDataFormatUtils.ToPixelFormat( dataFormat );
+
+                        if ( pixelFormat != PixelFormat.Undefined )
                         {
-                            image = (Bitmap)Bitmap.FromStream( new UnmanagedMemoryStream( (byte*)buffer.ToPointer( ), bufferLen ) );
+                            BitmapData imageData = null;
+
+                            try
+                            {
+                                // create new image
+                                image = new Bitmap(width, height, pixelFormat);
+
+                                // lock bitmap data
+                                imageData = image.LockBits(
+                                    new Rectangle(0, 0, width, height),
+                                    ImageLockMode.ReadWrite,
+                                    pixelFormat);
+
+                                // copy image data
+                                int srcStride = imageData.Stride;
+                                int dstStride = imageData.Stride;
+
+                                unsafe
+                                {
+                                    byte* dst = (byte*)imageData.Scan0.ToPointer() + dstStride * (height - 1);
+                                    byte* src = (byte*)buffer.ToPointer();
+
+                                    for (int y = 0; y < height; y++)
+                                    {
+                                        Win32.memcpy(dst, src, srcStride);
+                                        dst -= dstStride;
+                                        src += srcStride;
+                                    }
+                                }
+                            }
+                            finally
+                            {
+                                // unlock bitmap data
+                                if ( imageData != null )
+                                    image.UnlockBits(imageData);
+                            }
                         }
                     }
 
                     if ( image != null )
                     {
                         // notify parent
-                        if (snapshotMode)
+                        if ( snapshotMode )
                         {
                             parent.OnSnapshotFrame( image );
                         }
@@ -1818,7 +1971,26 @@ namespace AForge.Video.DirectShow
                         }
 
                         // release the image
-                        image.Dispose( );
+                        image.Dispose();
+                    }
+                }
+
+
+                if ( ( snapshotMode && parent.SnapshotRawFrame != null ) || ( !snapshotMode && parent.NewRawFrame != null ) )
+                {
+                    // copy data
+                    byte[] data = new byte[bufferLen];
+
+                    Marshal.Copy( buffer, data, 0, bufferLen );
+
+                    // notify parent
+                    if ( snapshotMode )
+                    {
+                        parent.OnSnapshotRawFrame( data, parent.snapshotDataFormat, Width, Height );
+                    }
+                    else
+                    {
+                        parent.OnNewRawFrame( data, parent.videoDataFormat, Width, Height );
                     }
                 }
 
