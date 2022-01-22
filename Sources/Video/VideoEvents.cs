@@ -20,6 +20,15 @@ namespace AForge.Video
     public delegate void NewFrameEventHandler( object sender, NewFrameEventArgs eventArgs );
 
     /// <summary>
+    /// Delegate for new raw frame event handler.
+    /// </summary>
+    /// 
+    /// <param name="sender">Sender object.</param>
+    /// <param name="eventArgs">Event arguments.</param>
+    /// 
+    public delegate void NewRawFrameEventHandler(object sender, NewRawFrameEventArgs eventArgs);
+
+    /// <summary>
     /// Delegate for video source error event handler.
     /// </summary>
     /// 
@@ -91,6 +100,71 @@ namespace AForge.Video
         public System.Drawing.Bitmap Frame
         {
             get { return frame; }
+        }
+    }
+
+    /// <summary>
+    /// Arguments for new raw frame event from video source.
+    /// </summary>
+    /// 
+    public class NewRawFrameEventArgs : EventArgs
+    {
+        private byte[] rawFrame;
+        private FrameDataFormat format;
+        private int width;
+        private int height;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NewRawFrameEventArgs"/> class.
+        /// </summary>
+        /// 
+        /// <param name="rawFrame">New raw frame data.</param>
+        /// <param name="format">Frame data format.</param>
+        /// <param name="width">Frame width.</param>
+        /// <param name="height">Frame height.</param>
+        /// 
+        public NewRawFrameEventArgs(byte[] rawFrame, FrameDataFormat format = FrameDataFormat.Unknown, int width = -1, int height = -1)
+        {
+            this.rawFrame = rawFrame;
+            this.format = format;
+            this.width = width;
+            this.height = height;
+        }
+
+        /// <summary>
+        /// Raw data from video source.
+        /// </summary>
+        /// 
+        public byte[] RawFrame
+        {
+            get { return rawFrame; }
+        }
+
+        /// <summary>
+        /// Data format from video source.
+        /// </summary>
+        /// 
+        public FrameDataFormat Format
+        {
+            get { return format; }
+        }
+
+        /// <summary>
+        /// Width from video source.
+        /// </summary>
+        /// 
+        public int Width
+        {
+            get { return width; }
+        }
+
+        /// <summary>
+        /// Height from video source.
+        /// </summary>
+        /// 
+        public int Heigt
+        {
+            get { return height; }
         }
     }
 

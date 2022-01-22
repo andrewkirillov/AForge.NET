@@ -69,6 +69,7 @@
     <Compile Include="IVideoSource.cs" />
     <Compile Include="JPEGStream.cs" />
     <Compile Include="MJPEGStream.cs" />
+    <Compile Include="FrameDataFormat.cs" />
     <Compile Include="ScreenCaptureStream.cs" />
     <Compile Include="VideoEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

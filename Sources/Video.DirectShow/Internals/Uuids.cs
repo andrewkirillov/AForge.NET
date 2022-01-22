@@ -150,13 +150,31 @@ namespace AForge.Video.DirectShow.Internals
     static internal class MediaSubType
     {
         /// <summary>
-        /// YUY2 (packed 4:2:2).
+        /// YUYV (packed 4:2:2).
         /// </summary>
         /// 
         /// <remarks>Equals to MEDIASUBTYPE_YUYV.</remarks>
         /// 
         public static readonly Guid YUYV =
             new Guid( 0x56595559, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71 );
+
+        /// <summary>
+        /// UYVY (packed 4:2:2).
+        /// </summary>
+        /// 
+        /// <remarks>Equals to MEDIASUBTYPE_UYVY.</remarks>
+        /// 
+        public static readonly Guid UYVY =
+            new Guid(0x59565955, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71);
+
+        /// <summary>
+        /// YUY2 (packed 4:2:2).
+        /// </summary>
+        /// 
+        /// <remarks>Equals to MEDIASUBTYPE_YUY2.</remarks>
+        /// 
+        public static readonly Guid YUY2 =
+            new Guid(0x32595559, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xAA, 0x00, 0x38, 0x9B, 0x71);
 
         /// <summary>
         /// IYUV.
@@ -265,6 +283,41 @@ namespace AForge.Video.DirectShow.Internals
         /// 
         public static readonly Guid MJpeg =
             new Guid( 0x47504A4D, 0x0000, 0x0010, 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71 );
+
+        public static Guid FromImageDataFormat(FrameDataFormat dataFormat)
+        {
+            switch (dataFormat)
+            {
+                case FrameDataFormat.RGB1:
+                    return RGB1;
+                case FrameDataFormat.RGB4:
+                    return RGB4;
+                case FrameDataFormat.RGB8:
+                    return RGB8;
+                case FrameDataFormat.RGB555:
+                    return RGB555;
+                case FrameDataFormat.RGB565:
+                    return RGB565;
+                case FrameDataFormat.RGB24:
+                    return RGB24;
+                case FrameDataFormat.RGB32:
+                    return RGB32;
+                case FrameDataFormat.YUYV:
+                    return YUYV;
+                case FrameDataFormat.UYVY:
+                    return UYVY;
+                case FrameDataFormat.YUY2:
+                    return YUY2;
+                case FrameDataFormat.IYUV:
+                    return IYUV;
+                case FrameDataFormat.DVSD:
+                    return DVSD;
+                case FrameDataFormat.MJPG:
+                    return MJpeg;
+                default:
+                    return Guid.Empty;
+            }
+        }
     }
 
     /// <summary>
