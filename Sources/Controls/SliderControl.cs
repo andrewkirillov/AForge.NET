@@ -6,13 +6,13 @@
 // andrew.kirillov@aforgenet.com
 //
 
-using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace AForge.Controls
 {
+    using System;
     /// <summary>
     /// Slider control.
     /// </summary>

@@ -1764,7 +1764,7 @@ namespace AForge.Video.DirectShow
             {
                 if ( parent.NewFrame != null )
                 {
-                    System.Drawing.Bitmap image = null;
+                    Bitmap image = null;
 
                     if ( !parent.jpegEncodingEnabled )
                     {

@@ -37,7 +37,7 @@ namespace AForge.Imaging
     /// </code>
     /// </remarks>
     /// 
-    /// <seealso cref="AForge.Math.Histogram"/>
+    /// <seealso cref="Histogram"/>
     /// 
     public class ImageStatistics
     {

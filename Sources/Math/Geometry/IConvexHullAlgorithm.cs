@@ -8,7 +8,6 @@
 
 namespace AForge.Math.Geometry
 {
-    using System;
     using System.Collections.Generic;
 
     using AForge;
@@ -41,6 +40,6 @@ namespace AForge.Math.Geometry
         /// 
         /// <returns>Returns set of points, which form a convex hull for the given <paramref name="points"/>.</returns>
         /// 
-        List<IntPoint> FindHull( List<IntPoint> points );
+        List<IntPoint> FindHull(List<IntPoint> points);
     }
 }

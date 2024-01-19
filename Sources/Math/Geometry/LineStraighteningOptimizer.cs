@@ -54,14 +54,14 @@ namespace AForge.Math.Geometry
         public float MaxDistanceToRemove
         {
             get { return maxDistanceToRemove; }
-            set { maxDistanceToRemove = Math.Max( 0, value ); }
+            set { maxDistanceToRemove = Math.Max(0, value); }
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LineStraighteningOptimizer"/> class.
         /// </summary>
         /// 
-        public LineStraighteningOptimizer( ) { }
+        public LineStraighteningOptimizer() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LineStraighteningOptimizer"/> class.
@@ -70,7 +70,7 @@ namespace AForge.Math.Geometry
         /// <param name="maxDistanceToRemove">Maximum allowed distance between removed points
         /// and optimized shape (see <see cref="MaxDistanceToRemove"/>).</param>
         /// 
-        public LineStraighteningOptimizer( float maxDistanceToRemove )
+        public LineStraighteningOptimizer(float maxDistanceToRemove)
         {
             this.maxDistanceToRemove = maxDistanceToRemove;
         }
@@ -83,85 +83,85 @@ namespace AForge.Math.Geometry
         /// 
         /// <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
         /// 
-        public List<IntPoint> OptimizeShape( List<IntPoint> shape )
+        public List<IntPoint> OptimizeShape(List<IntPoint> shape)
         {
             // optimized shape
-            List<IntPoint> optimizedShape = new List<IntPoint>( );
+            List<IntPoint> optimizedShape = new List<IntPoint>();
             // list of recently removed points
-            List<IntPoint> recentlyRemovedPoints = new List<IntPoint>( );
+            List<IntPoint> recentlyRemovedPoints = new List<IntPoint>();
 
-            if ( shape.Count <= 3 )
+            if (shape.Count <= 3)
             {
                 // do nothing if shape has 3 points or less
-                optimizedShape.AddRange( shape );
+                optimizedShape.AddRange(shape);
             }
             else
             {
                 float distance = 0;
 
                 // add first 2 points to the new shape
-                optimizedShape.Add( shape[0] );
-                optimizedShape.Add( shape[1] );
+                optimizedShape.Add(shape[0]);
+                optimizedShape.Add(shape[1]);
                 int pointsInOptimizedHull = 2;
 
-                for ( int i = 2, n = shape.Count; i < n; i++ )
+                for (int i = 2, n = shape.Count; i < n; i++)
                 {
                     // add new point
-                    optimizedShape.Add( shape[i] );
+                    optimizedShape.Add(shape[i]);
                     pointsInOptimizedHull++;
 
                     // add new candidate for removing to the list
-                    recentlyRemovedPoints.Add( optimizedShape[pointsInOptimizedHull - 2] );
+                    recentlyRemovedPoints.Add(optimizedShape[pointsInOptimizedHull - 2]);
 
                     // calculate maximum distance between new candidate line and recently removed point
-                    PointsCloud.GetFurthestPointFromLine( recentlyRemovedPoints,
+                    PointsCloud.GetFurthestPointFromLine(recentlyRemovedPoints,
                         optimizedShape[pointsInOptimizedHull - 3], optimizedShape[pointsInOptimizedHull - 1],
-                        out distance );
+                        out distance);
 
-                    if ( ( distance <= maxDistanceToRemove ) &&
-                         ( ( pointsInOptimizedHull > 3 ) || ( i < n - 1 ) ) )
+                    if ((distance <= maxDistanceToRemove) &&
+                         ((pointsInOptimizedHull > 3) || (i < n - 1)))
                     {
-                        optimizedShape.RemoveAt( pointsInOptimizedHull - 2 );
+                        optimizedShape.RemoveAt(pointsInOptimizedHull - 2);
                         pointsInOptimizedHull--;
                     }
                     else
                     {
                         // don't need to remove the last candidate point
-                        recentlyRemovedPoints.Clear( );
+                        recentlyRemovedPoints.Clear();
                     }
                 }
 
-                if ( pointsInOptimizedHull > 3 )
+                if (pointsInOptimizedHull > 3)
                 {
                     // check the last point
-                    recentlyRemovedPoints.Add( optimizedShape[pointsInOptimizedHull - 1] );
+                    recentlyRemovedPoints.Add(optimizedShape[pointsInOptimizedHull - 1]);
 
-                    PointsCloud.GetFurthestPointFromLine( recentlyRemovedPoints,
+                    PointsCloud.GetFurthestPointFromLine(recentlyRemovedPoints,
                         optimizedShape[pointsInOptimizedHull - 2], optimizedShape[0],
-                        out distance );
+                        out distance);
 
-                    if ( distance <= maxDistanceToRemove )
+                    if (distance <= maxDistanceToRemove)
                     {
-                        optimizedShape.RemoveAt( pointsInOptimizedHull - 1 );
+                        optimizedShape.RemoveAt(pointsInOptimizedHull - 1);
                         pointsInOptimizedHull--;
                     }
                     else
                     {
-                        recentlyRemovedPoints.Clear( );
+                        recentlyRemovedPoints.Clear();
                     }
 
-                    if ( pointsInOptimizedHull > 3 )
+                    if (pointsInOptimizedHull > 3)
                     {
                         // check the first point
-                        recentlyRemovedPoints.Add( optimizedShape[0] );
+                        recentlyRemovedPoints.Add(optimizedShape[0]);
 
-                        PointsCloud.GetFurthestPointFromLine( recentlyRemovedPoints,
+                        PointsCloud.GetFurthestPointFromLine(recentlyRemovedPoints,
                             optimizedShape[pointsInOptimizedHull - 1], optimizedShape[1],
-                            out distance );
+                            out distance);
 
-                        if ( distance <= maxDistanceToRemove )
+                        if (distance <= maxDistanceToRemove)
                         {
-                            optimizedShape.RemoveAt( 0 );
+                            optimizedShape.RemoveAt(0);
                         }
                     }
                 }

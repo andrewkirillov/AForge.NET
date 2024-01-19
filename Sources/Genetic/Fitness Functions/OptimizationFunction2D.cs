@@ -8,7 +8,6 @@
 
 namespace AForge.Genetic
 {
-    using System;
     using AForge;
 
     /// <summary>Base class for two dimenstional function optimization.</summary>

@@ -8,11 +8,10 @@
 
 namespace AForge.Imaging.ColorReduction
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using AForge.Imaging;
-    
+
     /// <summary>
     /// Median cut color quantization algorithm.
     /// </summary>

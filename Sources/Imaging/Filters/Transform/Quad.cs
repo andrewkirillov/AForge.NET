@@ -6,9 +6,7 @@
 // andrew.kirillov@aforgenet.com
 //
 
-using System;
 using System.Collections.Generic;
-using AForge;
 
 namespace AForge.Imaging.Filters
 {

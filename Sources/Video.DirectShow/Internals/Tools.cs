@@ -7,7 +7,6 @@
 
 namespace AForge.Video.DirectShow.Internals
 {
-    using System;
     using System.Runtime.InteropServices;
 
     /// <summary>

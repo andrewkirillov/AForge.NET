@@ -6,8 +6,6 @@
 // contacts@aforgenet.com
 //
 
-using System;
-
 namespace AForge.Video.Ximea.Internal
 {
     internal enum ParameterType

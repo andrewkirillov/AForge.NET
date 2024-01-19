@@ -8,8 +8,7 @@
 
 namespace AForge.Video.Ximea
 {
-    using System;
-    
+
     /// <summary>
     /// Enumeration of camera's trigger modes.
     /// </summary>

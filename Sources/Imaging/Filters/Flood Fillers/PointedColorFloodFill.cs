@@ -95,7 +95,7 @@ namespace AForge.Imaging.Filters
         /// which are similar to the color of the pointed pixel within the specified
         /// tolerance.</para>
         /// 
-        /// <para>The tolerance value is specified as <see cref="System.Drawing.Color"/>,
+        /// <para>The tolerance value is specified as <see cref="Color"/>,
         /// where each component (R, G and B) represents tolerance for the corresponding
         /// component of color. This allows to set different tolerances for red, green
         /// and blue components.</para>

@@ -7,11 +7,9 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using AForge;
 
     /// <summary>
     /// Linear correction of YCbCr channels.
@@ -211,7 +209,7 @@ namespace AForge.Imaging.Filters
                     rgb.Blue    = ptr[RGB.B];
 
                     // convert to YCbCr
-                    AForge.Imaging.YCbCr.FromRGB( rgb, ycbcr );
+                    YCbCr.FromRGB( rgb, ycbcr );
 
                     // correct Y
                     if ( ycbcr.Y >= inY.Max )
@@ -238,7 +236,7 @@ namespace AForge.Imaging.Filters
                         ycbcr.Cr = kcr * ycbcr.Cr + bcr;
 
                     // convert back to RGB
-                    AForge.Imaging.YCbCr.ToRGB( ycbcr, rgb );
+                    YCbCr.ToRGB( ycbcr, rgb );
 
                     ptr[RGB.R] = rgb.Red;
                     ptr[RGB.G] = rgb.Green;

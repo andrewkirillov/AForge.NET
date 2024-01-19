@@ -8,8 +8,6 @@
 
 namespace AForge.Video.Ximea
 {
-    using System;
-
     /// <summary>
     /// Enumeration of image formats supported by XIMEA cameras.
     /// </summary>

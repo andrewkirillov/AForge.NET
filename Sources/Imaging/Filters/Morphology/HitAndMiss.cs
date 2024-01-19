@@ -63,9 +63,9 @@ namespace AForge.Imaging.Filters
         /// <remarks><para>Bellow is a list of modes meaning depending on pixel's correspondence
         /// to specified structuring element:
         /// <list type="bullet">
-        /// <item><see cref="Modes.HitAndMiss"/> - on match pixel is set to white, otherwise to black;</item>
-        /// <item><see cref="Modes.Thinning"/> - on match pixel is set to black, otherwise not changed.</item>
-        /// <item><see cref="Modes.Thickening"/> - on match pixel is set to white, otherwise not changed.</item>
+        /// <item><see cref="HitAndMiss"/> - on match pixel is set to white, otherwise to black;</item>
+        /// <item><see cref="Thinning"/> - on match pixel is set to black, otherwise not changed.</item>
+        /// <item><see cref="Thickening"/> - on match pixel is set to white, otherwise not changed.</item>
         /// </list>
         /// </para></remarks>
         /// 

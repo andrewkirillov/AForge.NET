@@ -8,7 +8,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -235,7 +234,7 @@ namespace AForge.Imaging.Filters
             }
             else
             {
-                int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+                int pixelSize = Image.GetPixelFormatSize( image.PixelFormat ) / 8;
                 int offset = image.Stride - width * pixelSize;
 
                 for ( int y = 0, p = 0; y < height; y++ )

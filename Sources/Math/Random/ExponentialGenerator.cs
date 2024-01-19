@@ -61,9 +61,9 @@ namespace AForge.Math.Random
         ///
         public float Variance
         {
-            get { return 1f / ( rate * rate ); }
+            get { return 1f / (rate * rate); }
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ExponentialGenerator"/> class.
         /// </summary>
@@ -72,8 +72,8 @@ namespace AForge.Math.Random
         /// 
         /// <exception cref="ArgumentException">Rate value should be greater than zero.</exception>
         /// 
-        public ExponentialGenerator( float rate ) :
-            this( rate, 0 )
+        public ExponentialGenerator(float rate) :
+            this(rate, 0)
         {
         }
 
@@ -86,13 +86,13 @@ namespace AForge.Math.Random
         /// 
         /// <exception cref="ArgumentException">Rate value should be greater than zero.</exception>
         /// 
-        public ExponentialGenerator( float rate, int seed )
+        public ExponentialGenerator(float rate, int seed)
         {
             // check rate value
-            if ( rate <= 0 )
-                throw new ArgumentException( "Rate value should be greater than zero." );
+            if (rate <= 0)
+                throw new ArgumentException("Rate value should be greater than zero.");
 
-            this.rand = new UniformOneGenerator( seed );
+            this.rand = new UniformOneGenerator(seed);
             this.rate = rate;
         }
 
@@ -102,9 +102,9 @@ namespace AForge.Math.Random
         /// 
         /// <returns>Returns next random number.</returns>
         /// 
-        public float Next( )
+        public float Next()
         {
-            return - (float) Math.Log( rand.Next( ) ) / rate;
+            return -(float)Math.Log(rand.Next()) / rate;
         }
 
         /// <summary>
@@ -116,9 +116,9 @@ namespace AForge.Math.Random
         /// <remarks>Resets random numbers generator initializing it with
         /// specified seed value.</remarks>
         /// 
-        public void SetSeed( int seed )
+        public void SetSeed(int seed)
         {
-            rand = new UniformOneGenerator( seed );
+            rand = new UniformOneGenerator(seed);
         }
     }
 }

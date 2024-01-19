@@ -8,8 +8,6 @@
 
 namespace AForge.Vision
 {
-    using System;
-    using System.Drawing;
     using System.Drawing.Imaging;
     using AForge.Imaging;
     using AForge.Imaging.Filters;

@@ -14,8 +14,6 @@ namespace AForge.Robotics.TeRK
     using System.Drawing;
     using System.IO;
     using System.Threading;
-    using AForge;
-    using AForge.Video;
 
     public partial class Qwerk
     {
@@ -190,7 +188,7 @@ namespace AForge.Robotics.TeRK
             }
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Qwerk.Video"/> class.
+            /// Initializes a new instance of the <see cref="Video"/> class.
             /// </summary>
             /// 
             /// <param name="qwerk">Reference to <see cref="Qwerk"/> object, which is connected to Qwerk board.</param>

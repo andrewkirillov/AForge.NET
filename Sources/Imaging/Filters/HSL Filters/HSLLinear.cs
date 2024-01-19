@@ -7,11 +7,9 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using AForge;
 
     /// <summary>
     /// Luminance and saturation linear correction.
@@ -177,7 +175,7 @@ namespace AForge.Imaging.Filters
                     rgb.Blue  = ptr[RGB.B];
 
                     // convert to HSL
-                    AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                    HSL.FromRGB( rgb, hsl );
 
                     // do luminance correction
                     if ( hsl.Luminance >= inLuminance.Max )
@@ -196,7 +194,7 @@ namespace AForge.Imaging.Filters
                         hsl.Saturation = ks * hsl.Saturation + bs;
 
                     // convert back to RGB
-                    AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                    HSL.ToRGB( hsl, rgb );
 
                     ptr[RGB.R] = rgb.Red;
                     ptr[RGB.G] = rgb.Green;

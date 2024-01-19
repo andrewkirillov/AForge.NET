@@ -9,16 +9,14 @@
 namespace AForge.Video.VFW
 {
     using System;
-	using System.Drawing;
-	using System.Drawing.Imaging;
-	using System.IO;
-	using System.Threading;
+    using System.Drawing;
+    using System.Threading;
 
     using AForge.Video;
 
-	/// <summary>
-	/// AVI file video source.
-	/// </summary>
+    /// <summary>
+    /// AVI file video source.
+    /// </summary>
     /// 
     /// <remarks><para>The video source reads AVI files using Video for Windows.</para>
     /// 
@@ -44,7 +42,7 @@ namespace AForge.Video.VFW
     /// </code>
     /// </remarks>
     /// 
-	public class AVIFileVideoSource : IVideoSource
+    public class AVIFileVideoSource : IVideoSource
 	{
         // video file name
 		private string source;

@@ -64,7 +64,7 @@ namespace AForge.Imaging
         /// <summary>
         /// <see cref="System.Drawing.Color">Color</see> value of the class.
         /// </summary>
-        public System.Drawing.Color Color
+        public Color Color
         {
             get { return Color.FromArgb( Alpha, Red, Green, Blue ); }
             set
@@ -126,7 +126,7 @@ namespace AForge.Imaging
         /// 
         /// <param name="color">Initialize from specified <see cref="System.Drawing.Color">color.</see></param>
         /// 
-        public RGB( System.Drawing.Color color )
+        public RGB(Color color )
         {
             this.Red   = color.R;
             this.Green = color.G;

@@ -6,17 +6,16 @@
 // contacts@aforgenet.com
 //
 
-using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Windows.Forms;
 
 using AForge.Imaging;
 
 namespace AForge.Controls
 {
+    using System;
+
     /// <summary>
     /// Hue picker control.
     /// </summary>
@@ -35,7 +34,7 @@ namespace AForge.Controls
     /// </para>
     /// </remarks>
     /// 
-    public class HuePicker : System.Windows.Forms.Control
+    public class HuePicker : Control
     {
         private HuePickerType type = HuePickerType.Value;
 
@@ -67,10 +66,10 @@ namespace AForge.Controls
         /// </summary>
         /// 
         /// <remarks>
-        /// <para>The <see cref="HuePickerType.Value"/> type provides single bullet to drag, which allows
+        /// <para>The <see cref="Value"/> type provides single bullet to drag, which allows
         /// selecting single hue value. The value is accessible through <see cref="Value"/> property.</para>
         /// 
-        /// <para>The <see cref="HuePickerType.Range"/> type provides two bullets to drag, which correspond
+        /// <para>The <see cref="Range"/> type provides two bullets to drag, which correspond
         /// to minimum and maximum values of the hue range. These values are accessible through
         /// <see cref="Min"/> and <see cref="Max"/> properties.</para>
         /// </remarks>
@@ -196,9 +195,9 @@ namespace AForge.Controls
             // 
             // HSLPicker
             // 
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler( this.HSLPicker_MouseUp );
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler( this.HSLPicker_MouseMove );
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler( this.HSLPicker_MouseDown );
+            this.MouseUp += new MouseEventHandler( this.HSLPicker_MouseUp );
+            this.MouseMove += new MouseEventHandler( this.HSLPicker_MouseMove );
+            this.MouseDown += new MouseEventHandler( this.HSLPicker_MouseDown );
 
         }
 
@@ -231,7 +230,7 @@ namespace AForge.Controls
                 {
                     hsl.Hue = i;
                     // convert from HSL to RGB
-                    AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                    HSL.ToRGB( hsl, rgb );
                     // create brush
                     brush = new SolidBrush( rgb.Color );
                     // draw one hue value
@@ -251,7 +250,7 @@ namespace AForge.Controls
                     {
                         hsl.Hue = i;
                         // convert from HSL to RGB
-                        AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                        HSL.ToRGB( hsl, rgb );
                         // create brush
                         brush = new SolidBrush( rgb.Color );
                     }
@@ -313,7 +312,7 @@ namespace AForge.Controls
         }
 
         // On mouse down
-        private void HSLPicker_MouseDown( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void HSLPicker_MouseDown( object sender, MouseEventArgs e )
         {
             // check coordinates of MIN pointer
             if ( ( e.X >= ptMin.X - 4 ) && ( e.Y >= ptMin.Y - 4 ) &&
@@ -336,7 +335,7 @@ namespace AForge.Controls
         }
 
         // On mouse up
-        private void HSLPicker_MouseUp( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void HSLPicker_MouseUp( object sender, MouseEventArgs e )
         {
             if ( trackMode != 0 )
             {
@@ -351,7 +350,7 @@ namespace AForge.Controls
         }
 
         // On mouse move
-        private void HSLPicker_MouseMove( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void HSLPicker_MouseMove( object sender, MouseEventArgs e )
         {
             Cursor cursor = Cursors.Default;
 
@@ -365,7 +364,7 @@ namespace AForge.Controls
                 if ( trackMode == 1 )
                 {
                     // MIN pointer tracking
-                    min = (int) ( Math.Atan2( -dy, dx ) * 180 / Math.PI );
+                    min = (int) (Math.Atan2( -dy, dx ) * 180 / Math.PI );
                     if ( min < 0 )
                     {
                         min = 360 + min;
@@ -374,7 +373,7 @@ namespace AForge.Controls
                 else
                 {
                     // MAX pointer tracking
-                    max = (int) ( Math.Atan2( -dy, dx ) * 180 / Math.PI );
+                    max = (int) (Math.Atan2( -dy, dx ) * 180 / Math.PI );
                     if ( max < 0 )
                     {
                         max = 360 + max;

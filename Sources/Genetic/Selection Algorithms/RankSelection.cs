@@ -8,19 +8,17 @@
 
 namespace AForge.Genetic
 {
-	using System;
-	using System.Collections;
     using System.Collections.Generic;
     using AForge;
 
-	/// <summary>
-	/// Rank selection method.
-	/// </summary>
-	/// 
-	/// <remarks><para>The algorithm selects chromosomes to the new generation depending on
-	/// their fitness values - the better fitness value chromosome has, the more chances
-	/// it has to become member of the new generation. Each chromosome can be selected
-	/// several times to the new generation.</para>
+    /// <summary>
+    /// Rank selection method.
+    /// </summary>
+    /// 
+    /// <remarks><para>The algorithm selects chromosomes to the new generation depending on
+    /// their fitness values - the better fitness value chromosome has, the more chances
+    /// it has to become member of the new generation. Each chromosome can be selected
+    /// several times to the new generation.</para>
     /// 
     /// <para>This algorithm is similar to <see cref="RouletteWheelSelection">Roulette Wheel
     /// Selection</see> algorithm, but the difference is in "wheel" and its sectors' size
@@ -28,8 +26,8 @@ namespace AForge.Genetic
     /// where <b>size</b> is the current size of population. The worst chromosome has its sector's
     /// size equal to 1, the next chromosome has its sector's size equal to 2, etc.</para>
     /// </remarks>
-	/// 
-	public class RankSelection : ISelectionMethod
+    /// 
+    public class RankSelection : ISelectionMethod
 	{
 		// random number generator
         private static ThreadSafeRandom rand = new ThreadSafeRandom( );

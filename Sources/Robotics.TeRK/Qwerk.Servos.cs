@@ -11,7 +11,6 @@ using TeRKIceLib = TeRK;
 namespace AForge.Robotics.TeRK
 {
     using System;
-    using AForge;
 
     public partial class Qwerk
     {
@@ -20,7 +19,7 @@ namespace AForge.Robotics.TeRK
         /// </summary>
         /// 
         /// <remarks><para>The class allows to manipulate Qwerk's servos. The total number
-        /// of available servos equals to <see cref="Servos.Count"/>.</para>
+        /// of available servos equals to <see cref="Count"/>.</para>
         /// 
         /// <para>Each servo has logical and physical positions, which may or may not be equal.
         /// Both positions may vary in the [0, 255] range. Physical and logical positions are
@@ -64,7 +63,7 @@ namespace AForge.Robotics.TeRK
             private const int DefaultSpeed = 1000;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Qwerk.Servos"/> class.
+            /// Initializes a new instance of the <see cref="Servos"/> class.
             /// </summary>
             /// 
             /// <param name="qwerk">Reference to <see cref="Qwerk"/> object, which is connected to Qwerk board.</param>
@@ -112,7 +111,7 @@ namespace AForge.Robotics.TeRK
             /// Stop specified servo.
             /// </summary>
             /// 
-            /// <param name="servo">Servo to stop, [0, <see cref="Servos.Count"/>).</param>
+            /// <param name="servo">Servo to stop, [0, <see cref="Count"/>).</param>
             /// 
             /// <returns>Returns current position of the specified servo.</returns>
             /// 
@@ -210,7 +209,7 @@ namespace AForge.Robotics.TeRK
             /// Set position of a single servo.
             /// </summary>
             /// 
-            /// <param name="servo">Servo to set position for, [0, <see cref="Servos.Count"/>).</param>
+            /// <param name="servo">Servo to set position for, [0, <see cref="Count"/>).</param>
             /// <param name="position">Position to set for the specified servo, [0, 255].</param>
             /// 
             /// <returns>Returns current position of the specified servo.</returns>
@@ -298,7 +297,7 @@ namespace AForge.Robotics.TeRK
             /// Get current position of a single servo.
             /// </summary>
             /// 
-            /// <param name="servo">Servo to get position for, [0, <see cref="Servos.Count"/>).</param>
+            /// <param name="servo">Servo to get position for, [0, <see cref="Count"/>).</param>
             /// 
             /// <returns>Returns current position of the specified servo.</returns>
             /// 
@@ -334,11 +333,11 @@ namespace AForge.Robotics.TeRK
             /// Set bounds for the specified servo.
             /// </summary>
             /// 
-            /// <param name="servo">Servo to set bounds for, [0, <see cref="Servos.Count"/>).</param>
+            /// <param name="servo">Servo to set bounds for, [0, <see cref="Count"/>).</param>
             /// <param name="bound">Bounds to set for the specified servo.</param>
             /// 
             /// <remarks><para>The method sets servo's physical bounds in which it may move.
-            /// See documentation to <see cref="Qwerk.Servos"/> for clarification.</para></remarks>
+            /// See documentation to <see cref="Servos"/> for clarification.</para></remarks>
             /// 
             /// <exception cref="ArgumentOutOfRangeException">Invalid servo is specified.</exception>
             /// <exception cref="NotConnectedException">No connection to Qwerk or its service.</exception>
@@ -368,7 +367,7 @@ namespace AForge.Robotics.TeRK
             /// <param name="bounds">Array of servos' bounds. Each bound may be in [0, 255] range.</param>
             ///
             /// <remarks><para>The method sets servos' physical bounds in which they may move.
-            /// See documentation to <see cref="Qwerk.Servos"/> for clarification.</para></remarks>
+            /// See documentation to <see cref="Servos"/> for clarification.</para></remarks>
             /// 
             /// <exception cref="ArgumentException">Incorrect length of <paramref name="mask"/>,
             /// or <paramref name="bounds"/> array.</exception>
@@ -414,7 +413,7 @@ namespace AForge.Robotics.TeRK
             /// Get bounds for the specified servo.
             /// </summary>
             /// 
-            /// <param name="servo">Servo to get bounds for, [0, <see cref="Servos.Count"/>).</param>
+            /// <param name="servo">Servo to get bounds for, [0, <see cref="Count"/>).</param>
             /// 
             /// <returns>Returns configured bounds of the specified servo.</returns>
             /// 

@@ -268,7 +268,7 @@ namespace AForge.Imaging
                             for ( int j = -r; j <= r; j++ )
                             {
                                 // differenceThreshold
-                                if ( System.Math.Abs( nucleusValue - ptr[j] ) <= differenceThreshold )
+                                if (Math.Abs( nucleusValue - ptr[j] ) <= differenceThreshold )
                                 {
                                     usan++;
 

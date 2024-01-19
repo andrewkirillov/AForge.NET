@@ -191,7 +191,7 @@ namespace AForge.Imaging.Filters
             // pixel's value and gradients
             int gx, gy;
             //
-            double orientation, toAngle = 180.0 / System.Math.PI;
+            double orientation, toAngle = 180.0 / Math.PI;
             float leftPixel = 0, rightPixel = 0;
 
             // STEP 1 - blur image
@@ -243,12 +243,12 @@ namespace AForge.Imaging.Filters
                         // handle angles of the 2nd and 4th quads
                         if ( div < 0 )
                         {
-                            orientation = 180 - System.Math.Atan( -div ) * toAngle;
+                            orientation = 180 - Math.Atan( -div ) * toAngle;
                         }
                         // handle angles of the 1st and 3rd quads
                         else
                         {
-                            orientation = System.Math.Atan( div ) * toAngle;
+                            orientation = Math.Atan( div ) * toAngle;
                         }
 
                         // get closest angle from 0, 45, 90, 135 set

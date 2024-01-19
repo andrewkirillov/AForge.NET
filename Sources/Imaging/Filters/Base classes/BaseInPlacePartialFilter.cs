@@ -108,7 +108,7 @@ namespace AForge.Imaging.Filters
 
             // create new image of required format
             Bitmap dstImage = ( dstPixelFormat == PixelFormat.Format8bppIndexed ) ?
-                AForge.Imaging.Image.CreateGrayscaleImage( width, height ) :
+                Imaging.Image.CreateGrayscaleImage( width, height ) :
                 new Bitmap( width, height, dstPixelFormat );
 
             // lock destination bitmap data
@@ -117,7 +117,7 @@ namespace AForge.Imaging.Filters
                 ImageLockMode.ReadWrite, dstPixelFormat );
 
             // copy image
-            AForge.SystemTools.CopyUnmanagedMemory( dstData.Scan0, imageData.Scan0, imageData.Stride * height );
+            SystemTools.CopyUnmanagedMemory( dstData.Scan0, imageData.Scan0, imageData.Stride * height );
 
             try
             {
@@ -210,7 +210,7 @@ namespace AForge.Imaging.Filters
                 // copy image
                 for ( int y = 0, height = sourceImage.Height; y < height; y++ )
                 {
-                    AForge.SystemTools.CopyUnmanagedMemory( dst, src, lineSize );
+                    SystemTools.CopyUnmanagedMemory( dst, src, lineSize );
                     dst += dstStride;
                     src += srcStride;
                 }

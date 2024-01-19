@@ -9,7 +9,6 @@
 namespace AForge.Fuzzy
 {
     using System;
-    using AForge;
 
     /// <summary>
     /// Minimum Norm, used to calculate the linguistic value of a AND operation. 

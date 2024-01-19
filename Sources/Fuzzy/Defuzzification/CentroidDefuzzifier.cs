@@ -9,7 +9,6 @@
 namespace AForge.Fuzzy
 {
     using System;
-    using System.Collections.Generic;
 
     /// <summary>
     /// This class implements the centroid defuzzification method.

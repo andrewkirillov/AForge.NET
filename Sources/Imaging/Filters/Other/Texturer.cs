@@ -51,7 +51,7 @@ namespace AForge.Imaging.Filters
     public class Texturer : BaseInPlacePartialFilter
     {
         // texture generator
-        private AForge.Imaging.Textures.ITextureGenerator textureGenerator;
+        private Textures.ITextureGenerator textureGenerator;
         // generated texture
         private float[,] texture = null;
 
@@ -138,7 +138,7 @@ namespace AForge.Imaging.Filters
         /// <para><note>The property has priority over the <see cref="Texture"/> property.</note></para>
         /// </remarks>
         /// 
-        public AForge.Imaging.Textures.ITextureGenerator TextureGenerator
+        public Textures.ITextureGenerator TextureGenerator
         {
             get { return textureGenerator; }
             set { textureGenerator = value; }
@@ -183,7 +183,7 @@ namespace AForge.Imaging.Filters
         /// 
         /// <param name="generator">Texture generator.</param>
         /// 
-        public Texturer( AForge.Imaging.Textures.ITextureGenerator generator ) : this( )
+        public Texturer(Textures.ITextureGenerator generator ) : this( )
         {
             this.textureGenerator = generator;
         }
@@ -196,7 +196,7 @@ namespace AForge.Imaging.Filters
         /// <param name="filterLevel">Filter level value (see <see cref="FilterLevel"/> property).</param>
         /// <param name="preserveLevel">Preserve level value (see <see cref="PreserveLevel"/> property).</param>
         /// 
-        public Texturer( AForge.Imaging.Textures.ITextureGenerator generator, double filterLevel, double preserveLevel )
+        public Texturer(Textures.ITextureGenerator generator, double filterLevel, double preserveLevel )
             : this( )
         {
             this.textureGenerator = generator;

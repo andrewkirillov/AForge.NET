@@ -11,17 +11,17 @@ namespace AForge
     using System;
 
     /// <summary>
-    /// Thread safe version of the <see cref="System.Random"/> class.
+    /// Thread safe version of the <see cref="Random"/> class.
     /// </summary>
     /// 
-    /// <remarks><para>The class inherits the <see cref="System.Random"/> and overrides
+    /// <remarks><para>The class inherits the <see cref="Random"/> and overrides
     /// its random numbers generation methods providing thread safety by guarding call
-    /// to the base class with a lock. See documentation to <see cref="System.Random"/> for
+    /// to the base class with a lock. See documentation to <see cref="Random"/> for
     /// additional information about the base class.</para></remarks>
     /// 
     public sealed class ThreadSafeRandom : Random
     {
-        private object sync = new object( );
+        private object sync = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreadSafeRandom"/> class.
@@ -29,8 +29,8 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.Next()"/> for more information.</remarks>
         /// 
-        public ThreadSafeRandom( )
-            : base( )
+        public ThreadSafeRandom()
+            : base()
         {
         }
 
@@ -44,8 +44,8 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.Next()"/> for more information.</remarks>
         /// 
-        public ThreadSafeRandom( int seed )
-            : base( seed )
+        public ThreadSafeRandom(int seed)
+            : base(seed)
         {
         }
 
@@ -58,9 +58,9 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.Next()"/> for more information.</remarks>
         /// 
-        public override int Next( )
+        public override int Next()
         {
-            lock ( sync ) return base.Next( );
+            lock (sync) return base.Next();
         }
 
         /// <summary>
@@ -75,9 +75,9 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.Next(int)"/> for more information.</remarks>
         /// 
-        public override int Next( int maxValue )
+        public override int Next(int maxValue)
         {
-            lock ( sync ) return base.Next( maxValue );
+            lock (sync) return base.Next(maxValue);
         }
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.Next(int,int)"/> for more information.</remarks>
         ///
-        public override int Next( int minValue, int maxValue )
+        public override int Next(int minValue, int maxValue)
         {
-            lock ( sync ) return base.Next( minValue, maxValue );
+            lock (sync) return base.Next(minValue, maxValue);
         }
 
         /// <summary>
@@ -107,9 +107,9 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.NextBytes(byte[])"/> for more information.</remarks>
         ///
-        public override void NextBytes( byte[] buffer )
+        public override void NextBytes(byte[] buffer)
         {
-            lock ( sync ) base.NextBytes( buffer );
+            lock (sync) base.NextBytes(buffer);
         }
 
         /// <summary>
@@ -120,9 +120,9 @@ namespace AForge
         /// 
         /// <remarks>See <see cref="Random.NextDouble()"/> for more information.</remarks>
         ///
-        public override double NextDouble( )
+        public override double NextDouble()
         {
-            lock ( sync ) return base.NextDouble( );
+            lock (sync) return base.NextDouble();
         }
     }
 }

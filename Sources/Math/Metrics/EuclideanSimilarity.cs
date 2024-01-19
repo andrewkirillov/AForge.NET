@@ -44,12 +44,12 @@ namespace AForge.Math.Metrics
         /// <exception cref="ArgumentException">Thrown if the two vectors are of different dimensions (if specified
         /// array have different length).</exception>
         /// 
-        public double GetSimilarityScore( double[] p, double[] q )
+        public double GetSimilarityScore(double[] p, double[] q)
         {
             double distance = 0;
 
-            EuclideanDistance dist = new EuclideanDistance( );
-            distance = 1.0 / ( 1.0 + dist.GetDistance( p, q ) );
+            EuclideanDistance dist = new EuclideanDistance();
+            distance = 1.0 / (1.0 + dist.GetDistance(p, q));
 
             return distance;
         }

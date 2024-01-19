@@ -40,8 +40,8 @@ namespace AForge.Imaging.Formats
         /// decoded.</para>
         /// 
         /// <para>Implementations of this method may throw
-        /// <see cref="System.FormatException"/> exception to report about unrecognized image
-        /// format, <see cref="System.ArgumentException"/> exception to report about incorrectly
+        /// <see cref="FormatException"/> exception to report about unrecognized image
+        /// format, <see cref="ArgumentException"/> exception to report about incorrectly
         /// formatted image or <see cref="NotSupportedException"/> exception to report if
         /// certain formats are not supported.</para>
         /// </remarks>
@@ -60,8 +60,8 @@ namespace AForge.Imaging.Formats
         /// checking for correct image format and reading its atributes.</para>
         /// 
         /// <para>Implementations of this method may throw
-        /// <see cref="System.FormatException"/> exception to report about unrecognized image
-        /// format, <see cref="System.ArgumentException"/> exception to report about incorrectly
+        /// <see cref="FormatException"/> exception to report about unrecognized image
+        /// format, <see cref="ArgumentException"/> exception to report about incorrectly
         /// formatted image or <see cref="NotSupportedException"/> exception to report if
         /// certain formats are not supported.</para>
         /// </remarks>
@@ -78,9 +78,9 @@ namespace AForge.Imaging.Formats
         /// <returns>Returns decoded frame.</returns>
         /// 
         /// <remarks>Implementations of this method may throw
-        /// <see cref="System.NullReferenceException"/> exception in the case if no image
-        /// stream was opened previously, <see cref="System.ArgumentOutOfRangeException"/> in the
-        /// case if stream does not contain frame with specified index or  <see cref="System.ArgumentException"/>
+        /// <see cref="NullReferenceException"/> exception in the case if no image
+        /// stream was opened previously, <see cref="ArgumentOutOfRangeException"/> in the
+        /// case if stream does not contain frame with specified index or  <see cref="ArgumentException"/>
         /// exception to report about incorrectly formatted image.
         /// </remarks>
         /// 

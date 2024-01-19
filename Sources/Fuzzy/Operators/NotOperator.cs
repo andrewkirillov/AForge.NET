@@ -8,9 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-    using AForge;
-
     /// <summary>
     /// NOT operator, used to calculate the complement of a fuzzy set. 
     /// </summary>

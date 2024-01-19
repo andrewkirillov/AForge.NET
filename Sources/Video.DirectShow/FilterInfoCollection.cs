@@ -44,9 +44,9 @@ namespace AForge.Video.DirectShow
         /// specified filter category.</remarks>
         /// 
         public FilterInfoCollection( Guid category )
-		{
-			CollectFilters( category );
-		}
+        {
+            CollectFilters( category );
+        }
 
         /// <summary>
         /// Get filter information object.
@@ -65,13 +65,13 @@ namespace AForge.Video.DirectShow
         }
         
         // Collect filters of specified category
-		private void CollectFilters( Guid category )
-		{
-			object			comObj = null;
-			ICreateDevEnum	enumDev = null;
-			IEnumMoniker	enumMon = null;
-			IMoniker[]		devMon = new IMoniker[1];
-			int				hr;
+        private void CollectFilters( Guid category )
+        {
+            object			comObj = null;
+            ICreateDevEnum	enumDev = null;
+            IEnumMoniker	enumMon = null;
+            IMoniker[]		devMon = new IMoniker[1];
+            int				hr;
 
             try
             {
@@ -113,26 +113,26 @@ namespace AForge.Video.DirectShow
             catch
             {
             }
-			finally
-			{
-				// release all COM objects
-				enumDev = null;
-				if ( comObj != null )
-				{
-					Marshal.ReleaseComObject( comObj );
-					comObj = null;
-				}
-				if ( enumMon != null )
-				{
-					Marshal.ReleaseComObject( enumMon );
-					enumMon = null;
-				}
-				if ( devMon[0] != null )
-				{
-					Marshal.ReleaseComObject( devMon[0] );
-					devMon[0] = null;
-				}
-			}
-		}
+            finally
+            {
+                // release all COM objects
+                enumDev = null;
+                if ( comObj != null )
+                {
+                    Marshal.ReleaseComObject( comObj );
+                    comObj = null;
+                }
+                if ( enumMon != null )
+                {
+                    Marshal.ReleaseComObject( enumMon );
+                    enumMon = null;
+                }
+                if ( devMon[0] != null )
+                {
+                    Marshal.ReleaseComObject( devMon[0] );
+                    devMon[0] = null;
+                }
+            }
+        }
     }
 }

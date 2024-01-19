@@ -89,7 +89,7 @@ namespace AForge.Math.Geometry
     /// 
     public class SimpleShapeChecker
     {
-        private FlatAnglesOptimizer shapeOptimizer = new FlatAnglesOptimizer( 160 );
+        private FlatAnglesOptimizer shapeOptimizer = new FlatAnglesOptimizer(160);
 
         private float minAcceptableDistortion = 0.5f;
         private float relativeDistortionLimit = 0.03f;
@@ -111,7 +111,7 @@ namespace AForge.Math.Geometry
         public float MinAcceptableDistortion
         {
             get { return minAcceptableDistortion; }
-            set { minAcceptableDistortion = Math.Max( 0, value ); }
+            set { minAcceptableDistortion = Math.Max(0, value); }
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace AForge.Math.Geometry
         public float RelativeDistortionLimit
         {
             get { return relativeDistortionLimit; }
-            set { relativeDistortionLimit = Math.Max( 0, Math.Min( 1, value ) ); }
+            set { relativeDistortionLimit = Math.Max(0, Math.Min(1, value)); }
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace AForge.Math.Geometry
         public float AngleError
         {
             get { return angleError; }
-            set { angleError = Math.Max( 0, Math.Min( 20, value ) ); }
+            set { angleError = Math.Max(0, Math.Min(20, value)); }
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace AForge.Math.Geometry
         public float LengthError
         {
             get { return lengthError; }
-            set { lengthError = Math.Max( 0, Math.Min( 1, value ) ); }
+            set { lengthError = Math.Max(0, Math.Min(1, value)); }
         }
 
         /// <summary>
@@ -186,9 +186,9 @@ namespace AForge.Math.Geometry
         /// 
         /// <returns>Returns type of the detected shape.</returns>
         /// 
-        public ShapeType CheckShapeType( List<IntPoint> edgePoints )
+        public ShapeType CheckShapeType(List<IntPoint> edgePoints)
         {
-            if ( IsCircle( edgePoints ) )
+            if (IsCircle(edgePoints))
             {
                 return ShapeType.Circle;
             }
@@ -196,9 +196,9 @@ namespace AForge.Math.Geometry
             // check for convex polygon
             List<IntPoint> corners;
 
-            if ( IsConvexPolygon( edgePoints, out corners ) )
+            if (IsConvexPolygon(edgePoints, out corners))
             {
-                return ( corners.Count == 4 ) ? ShapeType.Quadrilateral : ShapeType.Triangle;
+                return (corners.Count == 4) ? ShapeType.Quadrilateral : ShapeType.Triangle;
             }
 
             return ShapeType.Unknown;
@@ -217,12 +217,12 @@ namespace AForge.Math.Geometry
         /// The method returns <see langword="false"/> always, of number of points in the specified
         /// shape is less than 8.</note></para></remarks>
         /// 
-        public bool IsCircle( List<IntPoint> edgePoints )
+        public bool IsCircle(List<IntPoint> edgePoints)
         {
             Point center;
             float radius;
 
-            return IsCircle( edgePoints, out center, out radius );
+            return IsCircle(edgePoints, out center, out radius);
         }
 
         /// <summary>
@@ -240,39 +240,39 @@ namespace AForge.Math.Geometry
         /// The method returns <see langword="false"/> always, of number of points in the specified
         /// shape is less than 8.</note></para></remarks>
         /// 
-        public bool IsCircle( List<IntPoint> edgePoints, out Point center, out float radius )
+        public bool IsCircle(List<IntPoint> edgePoints, out Point center, out float radius)
         {
             // make sure we have at least 8 points for curcle shape
-            if ( edgePoints.Count < 8 )
+            if (edgePoints.Count < 8)
             {
-                center = new Point( 0, 0 );
+                center = new Point(0, 0);
                 radius = 0;
                 return false;
             }
 
             // get bounding rectangle of the points list
             IntPoint minXY, maxXY;
-            PointsCloud.GetBoundingRectangle( edgePoints, out minXY, out maxXY );
+            PointsCloud.GetBoundingRectangle(edgePoints, out minXY, out maxXY);
             // get cloud's size
             IntPoint cloudSize = maxXY - minXY;
             // calculate center point
-            center = minXY + (Point) cloudSize / 2;
+            center = minXY + (Point)cloudSize / 2;
 
-            radius = ( (float) cloudSize.X + cloudSize.Y ) / 4;
+            radius = ((float)cloudSize.X + cloudSize.Y) / 4;
 
             // calculate mean distance between provided edge points and estimated circle’s edge
             float meanDistance = 0;
 
-            for ( int i = 0, n = edgePoints.Count; i < n; i++ )
+            for (int i = 0, n = edgePoints.Count; i < n; i++)
             {
-                meanDistance += (float) Math.Abs( center.DistanceTo( edgePoints[i] ) - radius );
+                meanDistance += (float)Math.Abs(center.DistanceTo(edgePoints[i]) - radius);
             }
             meanDistance /= edgePoints.Count;
 
-            float maxDitance = Math.Max( minAcceptableDistortion,
-                ( (float) cloudSize.X + cloudSize.Y ) / 2 * relativeDistortionLimit );
+            float maxDitance = Math.Max(minAcceptableDistortion,
+                ((float)cloudSize.X + cloudSize.Y) / 2 * relativeDistortionLimit);
 
-            return ( meanDistance <= maxDitance );
+            return (meanDistance <= maxDitance);
         }
 
         /// <summary>
@@ -284,10 +284,10 @@ namespace AForge.Math.Geometry
         /// <returns>Returns <see langword="true"/> if the specified set of points form a
         /// quadrilateral shape or <see langword="false"/> otherwise.</returns>
         /// 
-        public bool IsQuadrilateral( List<IntPoint> edgePoints )
+        public bool IsQuadrilateral(List<IntPoint> edgePoints)
         {
             List<IntPoint> corners;
-            return IsQuadrilateral( edgePoints, out corners );
+            return IsQuadrilateral(edgePoints, out corners);
         }
 
         /// <summary>
@@ -300,14 +300,14 @@ namespace AForge.Math.Geometry
         /// <returns>Returns <see langword="true"/> if the specified set of points form a
         /// quadrilateral shape or <see langword="false"/> otherwise.</returns>
         /// 
-        public bool IsQuadrilateral( List<IntPoint> edgePoints, out List<IntPoint> corners )
+        public bool IsQuadrilateral(List<IntPoint> edgePoints, out List<IntPoint> corners)
         {
-            corners = GetShapeCorners( edgePoints );
+            corners = GetShapeCorners(edgePoints);
 
-            if ( corners.Count != 4 )
+            if (corners.Count != 4)
                 return false;
 
-            return CheckIfPointsFitShape( edgePoints, corners );
+            return CheckIfPointsFitShape(edgePoints, corners);
         }
 
         /// <summary>
@@ -319,10 +319,10 @@ namespace AForge.Math.Geometry
         /// <returns>Returns <see langword="true"/> if the specified set of points form a
         /// triangle shape or <see langword="false"/> otherwise.</returns>
         /// 
-        public bool IsTriangle( List<IntPoint> edgePoints )
+        public bool IsTriangle(List<IntPoint> edgePoints)
         {
             List<IntPoint> corners;
-            return IsTriangle( edgePoints, out corners );
+            return IsTriangle(edgePoints, out corners);
         }
 
         /// <summary>
@@ -335,14 +335,14 @@ namespace AForge.Math.Geometry
         /// <returns>Returns <see langword="true"/> if the specified set of points form a
         /// triangle shape or <see langword="false"/> otherwise.</returns>
         /// 
-        public bool IsTriangle( List<IntPoint> edgePoints, out List<IntPoint> corners )
+        public bool IsTriangle(List<IntPoint> edgePoints, out List<IntPoint> corners)
         {
-            corners = GetShapeCorners( edgePoints );
+            corners = GetShapeCorners(edgePoints);
 
-            if ( corners.Count != 3 )
+            if (corners.Count != 3)
                 return false;
 
-            return CheckIfPointsFitShape( edgePoints, corners );
+            return CheckIfPointsFitShape(edgePoints, corners);
         }
 
         /// <summary>
@@ -359,10 +359,10 @@ namespace AForge.Math.Geometry
         /// for now. Check number of detected corners to resolve type of the detected polygon.
         /// </note></para></remarks>
         /// 
-        public bool IsConvexPolygon( List<IntPoint> edgePoints, out List<IntPoint> corners )
+        public bool IsConvexPolygon(List<IntPoint> edgePoints, out List<IntPoint> corners)
         {
-            corners = GetShapeCorners( edgePoints );
-            return CheckIfPointsFitShape( edgePoints, corners );
+            corners = GetShapeCorners(edgePoints);
+            return CheckIfPointsFitShape(edgePoints, corners);
         }
 
         /// <summary>
@@ -382,81 +382,81 @@ namespace AForge.Math.Geometry
         /// which set acceptable errors for polygon sub type checking.</para>
         /// </remarks>
         /// 
-        public PolygonSubType CheckPolygonSubType( List<IntPoint> corners )
+        public PolygonSubType CheckPolygonSubType(List<IntPoint> corners)
         {
             PolygonSubType subType = PolygonSubType.Unknown;
 
             // get bounding rectangle of the points list
             IntPoint minXY, maxXY;
-            PointsCloud.GetBoundingRectangle( corners, out minXY, out maxXY );
+            PointsCloud.GetBoundingRectangle(corners, out minXY, out maxXY);
             // get cloud's size
             IntPoint cloudSize = maxXY - minXY;
 
-            float maxLengthDiff = lengthError * ( cloudSize.X + cloudSize.Y ) / 2;
+            float maxLengthDiff = lengthError * (cloudSize.X + cloudSize.Y) / 2;
 
-            if ( corners.Count == 3 )
+            if (corners.Count == 3)
             {
                 // get angles of the triangle
-                float angle1 = GeometryTools.GetAngleBetweenVectors( corners[0], corners[1], corners[2] );
-                float angle2 = GeometryTools.GetAngleBetweenVectors( corners[1], corners[2], corners[0] );
-                float angle3 = GeometryTools.GetAngleBetweenVectors( corners[2], corners[0], corners[1] );
+                float angle1 = GeometryTools.GetAngleBetweenVectors(corners[0], corners[1], corners[2]);
+                float angle2 = GeometryTools.GetAngleBetweenVectors(corners[1], corners[2], corners[0]);
+                float angle3 = GeometryTools.GetAngleBetweenVectors(corners[2], corners[0], corners[1]);
 
                 // check for equilateral triangle
-                if ( ( Math.Abs( angle1 - 60 ) <= angleError ) &&
-                     ( Math.Abs( angle2 - 60 ) <= angleError ) &&
-                     ( Math.Abs( angle3 - 60 ) <= angleError ) )
+                if ((Math.Abs(angle1 - 60) <= angleError) &&
+                     (Math.Abs(angle2 - 60) <= angleError) &&
+                     (Math.Abs(angle3 - 60) <= angleError))
                 {
                     subType = PolygonSubType.EquilateralTriangle;
                 }
                 else
                 {
                     // check for isosceles triangle
-                    if ( ( Math.Abs( angle1 - angle2 ) <= angleError ) ||
-                         ( Math.Abs( angle2 - angle3 ) <= angleError ) ||
-                         ( Math.Abs( angle3 - angle1 ) <= angleError ) )
+                    if ((Math.Abs(angle1 - angle2) <= angleError) ||
+                         (Math.Abs(angle2 - angle3) <= angleError) ||
+                         (Math.Abs(angle3 - angle1) <= angleError))
                     {
                         subType = PolygonSubType.IsoscelesTriangle;
                     }
 
                     // check for rectangled triangle
-                    if ( ( Math.Abs( angle1 - 90 ) <= angleError ) ||
-                         ( Math.Abs( angle2 - 90 ) <= angleError ) ||
-                         ( Math.Abs( angle3 - 90 ) <= angleError ) )
+                    if ((Math.Abs(angle1 - 90) <= angleError) ||
+                         (Math.Abs(angle2 - 90) <= angleError) ||
+                         (Math.Abs(angle3 - 90) <= angleError))
                     {
-                        subType = ( subType == PolygonSubType.IsoscelesTriangle ) ?
+                        subType = (subType == PolygonSubType.IsoscelesTriangle) ?
                             PolygonSubType.RectangledIsoscelesTriangle : PolygonSubType.RectangledTriangle;
                     }
                 }
             }
-            else if ( corners.Count == 4 )
+            else if (corners.Count == 4)
             {
                 // get angles between 2 pairs of opposite sides
-                float angleBetween1stPair = GeometryTools.GetAngleBetweenLines( corners[0], corners[1], corners[2], corners[3] );
-                float angleBetween2ndPair = GeometryTools.GetAngleBetweenLines( corners[1], corners[2], corners[3], corners[0] );
+                float angleBetween1stPair = GeometryTools.GetAngleBetweenLines(corners[0], corners[1], corners[2], corners[3]);
+                float angleBetween2ndPair = GeometryTools.GetAngleBetweenLines(corners[1], corners[2], corners[3], corners[0]);
 
                 // check 1st pair for parallelism
-                if ( angleBetween1stPair <= angleError )
+                if (angleBetween1stPair <= angleError)
                 {
                     subType = PolygonSubType.Trapezoid;
 
                     // check 2nd pair for parallelism
-                    if ( angleBetween2ndPair <= angleError )
+                    if (angleBetween2ndPair <= angleError)
                     {
                         subType = PolygonSubType.Parallelogram;
 
                         // check angle between adjacent sides
-                        if ( Math.Abs( GeometryTools.GetAngleBetweenVectors( corners[1], corners[0], corners[2] ) - 90 ) <= angleError )
+                        if (Math.Abs(GeometryTools.GetAngleBetweenVectors(corners[1], corners[0], corners[2]) - 90) <= angleError)
                         {
                             subType = PolygonSubType.Rectangle;
                         }
 
                         // get length of 2 adjacent sides
-                        float side1Length = (float) corners[0].DistanceTo( corners[1] );
-                        float side2Length = (float) corners[0].DistanceTo( corners[3] );
+                        float side1Length = (float)corners[0].DistanceTo(corners[1]);
+                        float side2Length = (float)corners[0].DistanceTo(corners[3]);
 
-                        if ( Math.Abs( side1Length - side2Length ) <= maxLengthDiff )
+                        if (Math.Abs(side1Length - side2Length) <= maxLengthDiff)
                         {
-                            subType = ( subType == PolygonSubType.Parallelogram ) ?
+                            subType = (subType == PolygonSubType.Parallelogram) ?
                                 PolygonSubType.Rhombus : PolygonSubType.Square;
                         }
                     }
@@ -464,7 +464,7 @@ namespace AForge.Math.Geometry
                 else
                 {
                     // check 2nd pair for parallelism - last chence to detect trapezoid
-                    if ( angleBetween2ndPair <= angleError )
+                    if (angleBetween2ndPair <= angleError)
                     {
                         subType = PolygonSubType.Trapezoid;
                     }
@@ -488,7 +488,7 @@ namespace AForge.Math.Geometry
         /// <remarks><para>The method checks if the set of specified points form the same shape
         /// as the set of provided corners.</para></remarks>
         /// 
-        public bool CheckIfPointsFitShape( List<IntPoint> edgePoints, List<IntPoint> corners )
+        public bool CheckIfPointsFitShape(List<IntPoint> edgePoints, List<IntPoint> corners)
         {
             int cornersCount = corners.Count;
 
@@ -498,40 +498,40 @@ namespace AForge.Math.Geometry
             float[] div = new float[cornersCount]; // precalculated divisor
             bool[] isVert = new bool[cornersCount];
 
-            for ( int i = 0; i < cornersCount; i++ )
+            for (int i = 0; i < cornersCount; i++)
             {
                 IntPoint currentPoint = corners[i];
-                IntPoint nextPoint = ( i + 1 == cornersCount ) ? corners[0] : corners[i + 1];
+                IntPoint nextPoint = (i + 1 == cornersCount) ? corners[0] : corners[i + 1];
 
-                if ( !( isVert[i] = nextPoint.X == currentPoint.X ) )
+                if (!(isVert[i] = nextPoint.X == currentPoint.X))
                 {
-                    k[i] = (float) ( nextPoint.Y - currentPoint.Y ) / ( nextPoint.X - currentPoint.X );
+                    k[i] = (float)(nextPoint.Y - currentPoint.Y) / (nextPoint.X - currentPoint.X);
                     b[i] = currentPoint.Y - k[i] * currentPoint.X;
-                    div[i] = (float) Math.Sqrt( k[i] * k[i] + 1 );
+                    div[i] = (float)Math.Sqrt(k[i] * k[i] + 1);
                 }
             }
 
             // calculate distances between edge points and polygon sides
             float meanDistance = 0;
 
-            for ( int i = 0, n = edgePoints.Count; i < n; i++ )
+            for (int i = 0, n = edgePoints.Count; i < n; i++)
             {
                 float minDistance = float.MaxValue;
 
-                for ( int j = 0; j < cornersCount; j++ )
+                for (int j = 0; j < cornersCount; j++)
                 {
                     float distance = 0;
 
-                    if ( !isVert[j] )
+                    if (!isVert[j])
                     {
-                        distance = (float) Math.Abs( ( k[j] * edgePoints[i].X + b[j] - edgePoints[i].Y ) / div[j] );
+                        distance = (float)Math.Abs((k[j] * edgePoints[i].X + b[j] - edgePoints[i].Y) / div[j]);
                     }
                     else
                     {
-                        distance = Math.Abs( edgePoints[i].X - corners[j].X );
+                        distance = Math.Abs(edgePoints[i].X - corners[j].X);
                     }
 
-                    if ( distance < minDistance )
+                    if (distance < minDistance)
                         minDistance = distance;
                 }
 
@@ -541,19 +541,19 @@ namespace AForge.Math.Geometry
 
             // get bounding rectangle of the corners list
             IntPoint minXY, maxXY;
-            PointsCloud.GetBoundingRectangle( corners, out minXY, out maxXY );
+            PointsCloud.GetBoundingRectangle(corners, out minXY, out maxXY);
             IntPoint rectSize = maxXY - minXY;
 
-            float maxDitance = Math.Max( minAcceptableDistortion,
-                ( (float) rectSize.X + rectSize.Y ) / 2 * relativeDistortionLimit );
+            float maxDitance = Math.Max(minAcceptableDistortion,
+                ((float)rectSize.X + rectSize.Y) / 2 * relativeDistortionLimit);
 
-            return ( meanDistance <= maxDitance );
+            return (meanDistance <= maxDitance);
         }
 
         // Get optimized quadrilateral area
-        private List<IntPoint> GetShapeCorners( List<IntPoint> edgePoints )
+        private List<IntPoint> GetShapeCorners(List<IntPoint> edgePoints)
         {
-            return shapeOptimizer.OptimizeShape( PointsCloud.FindQuadrilateralCorners( edgePoints ) );
+            return shapeOptimizer.OptimizeShape(PointsCloud.FindQuadrilateralCorners(edgePoints));
         }
     }
 }

@@ -8,9 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-    using AForge;
-
     /// <summary>
     /// Membership function used in fuzzy singletons: fuzzy sets that have just one point with membership value 1. 
     /// </summary>

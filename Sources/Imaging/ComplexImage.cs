@@ -11,7 +11,6 @@ namespace AForge.Imaging
     using System;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using AForge;
     using AForge.Math;
 
     /// <summary>
@@ -233,7 +232,7 @@ namespace AForge.Imaging
         public Bitmap ToBitmap( )
         {
             // create new image
-            Bitmap dstImage = AForge.Imaging.Image.CreateGrayscaleImage( width, height );
+            Bitmap dstImage = Image.CreateGrayscaleImage( width, height );
 
             // lock destination bitmap data
             BitmapData dstData = dstImage.LockBits(
@@ -252,7 +251,7 @@ namespace AForge.Imaging
                 {
                     for ( int x = 0; x < width; x++, dst++ )
                     {
-                        *dst = (byte) System.Math.Max( 0, System.Math.Min( 255, data[y, x].Magnitude * scale * 255 ) );
+                        *dst = (byte)Math.Max( 0, Math.Min( 255, data[y, x].Magnitude * scale * 255 ) );
                     }
                     dst += offset;
                 }

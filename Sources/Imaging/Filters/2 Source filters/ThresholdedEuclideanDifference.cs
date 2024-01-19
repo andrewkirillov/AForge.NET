@@ -8,7 +8,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -132,7 +131,7 @@ namespace AForge.Imaging.Filters
             // get source image size
             int width  = sourceData.Width;
             int height = sourceData.Height;
-            int pixelSize = Bitmap.GetPixelFormatSize( sourceData.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( sourceData.PixelFormat ) / 8;
 
             byte* src = (byte*) sourceData.ImageData.ToPointer( );
             byte* ovr = (byte*) overlay.ImageData.ToPointer( );

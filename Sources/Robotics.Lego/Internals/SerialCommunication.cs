@@ -8,7 +8,6 @@
 namespace AForge.Robotics.Lego.Internals
 {
     using System;
-    using System.IO;
     using System.IO.Ports;
 
     /// <summary>

@@ -177,68 +177,68 @@ namespace AForge.Imaging.Filters
                         // x - 1, y - 1
                         gx = src[-srcStride] - src[-pixelSize2 - srcStride];
                         gy = src[-pixelSize] - src[-pixelSize - 2 * srcStride];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[-pixelSize - srcStride];
                         weightTotal += weight;
 
                         // x, y - 1
                         gx = src[pixelSize - srcStride] - src[-pixelSize - srcStride];
                         gy = *src - src[-2 * srcStride];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[-srcStride];
                         weightTotal += weight;
 
                         // x + 1, y - 1
                         gx = src[pixelSize2 - srcStride] - src[-srcStride];
                         gy = src[pixelSize] - src[pixelSize - 2 * srcStride];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[pixelSize - srcStride];
                         weightTotal += weight;
 
                         // x - 1, y
                         gx = *src - src[-pixelSize2];
                         gy = src[-pixelSize + srcStride] - src[-pixelSize - srcStride];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[-pixelSize];
                         weightTotal += weight;
 
                         // x, y
                         gx = src[pixelSize] - src[-pixelSize];
                         gy = src[srcStride] - src[-srcStride];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * ( *src );
                         weightTotal += weight;
 
                         // x + 1, y
                         gx = src[pixelSize2] - *src;
                         gy = src[pixelSize + srcStride] - src[pixelSize - srcStride];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[pixelSize];
                         weightTotal += weight;
 
                         // x - 1, y + 1
                         gx = src[srcStride] - src[-pixelSize2 + srcStride];
                         gy = src[-pixelSize + 2 * srcStride] - src[-pixelSize];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[-pixelSize + srcStride];
                         weightTotal += weight;
 
                         // x, y + 1
                         gx = src[pixelSize + srcStride] - src[-pixelSize + srcStride];
                         gy = src[2 * srcStride] - *src;
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[srcStride];
                         weightTotal += weight;
 
                         // x + 1, y + 1
                         gx = src[pixelSize2 + srcStride] - src[srcStride];
                         gy = src[pixelSize + 2 * srcStride] - src[pixelSize];
-                        weight = System.Math.Exp( ( gx * gx + gy * gy ) / f );
+                        weight = Math.Exp( ( gx * gx + gy * gy ) / f );
                         total += weight * src[pixelSize + srcStride];
                         weightTotal += weight;
 
                         // save destination value
-                        *dst = ( weightTotal == 0.0 ) ? *src : (byte) System.Math.Min( total / weightTotal, 255.0 );
+                        *dst = ( weightTotal == 0.0 ) ? *src : (byte)Math.Min( total / weightTotal, 255.0 );
                     }
                 }
                 src += srcOffset + pixelSize2;

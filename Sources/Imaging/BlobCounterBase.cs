@@ -680,7 +680,7 @@ namespace AForge.Imaging
             int width  = image.Width;
             int height = image.Height;
             int srcStride = image.Stride;
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             Blob[] objects = new Blob[objectsCount];
 
@@ -844,7 +844,7 @@ namespace AForge.Imaging
             int width  = image.Width;
             int height = image.Height;
             int srcStride = image.Stride;
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             int objectWidth  = blob.Rectangle.Width;
             int objectHeight = blob.Rectangle.Height;
@@ -1252,7 +1252,7 @@ namespace AForge.Imaging
             else
             {
                 // color images
-                int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+                int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
                 int offset = image.Stride - imageWidth * pixelSize;
                 byte r, g, b; // RGB value
 
@@ -1330,7 +1330,7 @@ namespace AForge.Imaging
         }
 
         // Rectangles' and blobs' sorter
-        private class BlobsSorter : System.Collections.Generic.IComparer<Blob>
+        private class BlobsSorter : IComparer<Blob>
         {
             private ObjectsOrder order;
 

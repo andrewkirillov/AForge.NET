@@ -8,8 +8,6 @@
 namespace AForge.Imaging.Filters
 {
     using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
 
     /// <summary>
     /// Grayscale image using Y algorithm.

@@ -209,7 +209,7 @@ namespace AForge.Imaging.Filters
         /// 
         /// <returns>New image size - size of the destination image.</returns>
         /// 
-        protected override System.Drawing.Size CalculateNewImageSize( UnmanagedImage sourceData )
+        protected override Size CalculateNewImageSize( UnmanagedImage sourceData )
         {
             return ( useOriginalImageSize ) ? new Size( sourceData.Width, sourceData.Height ) : newSize;
         }
@@ -223,7 +223,7 @@ namespace AForge.Imaging.Filters
         /// 
         protected override unsafe void ProcessFilter( UnmanagedImage sourceData, UnmanagedImage destinationData )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( destinationData.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( destinationData.PixelFormat ) / 8;
 
             // get source image size
             int width  = sourceData.Width;

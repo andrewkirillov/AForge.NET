@@ -8,8 +8,6 @@
 
 namespace AForge.Math.Metrics
 {
-    using System;
-
     /// <summary>
     /// Interface for distance metric algorithms.
     /// </summary>
@@ -36,6 +34,6 @@ namespace AForge.Math.Metrics
         /// 
         /// <returns>Returns distance measurement determined by the given algorithm.</returns>
         /// 
-        double GetDistance( double[] p, double[] q );
+        double GetDistance(double[] p, double[] q);
     }
 }

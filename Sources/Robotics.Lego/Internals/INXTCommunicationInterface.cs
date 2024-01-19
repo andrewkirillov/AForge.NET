@@ -7,8 +7,6 @@
 
 namespace AForge.Robotics.Lego.Internals
 {
-    using System;
-
     /// <summary>
     /// Interface, which wraps communication functions with Lego Mindstorms NXT brick.
     /// </summary>

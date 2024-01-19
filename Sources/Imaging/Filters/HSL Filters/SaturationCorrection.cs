@@ -11,7 +11,6 @@ namespace AForge.Imaging.Filters
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using AForge;
 
     /// <summary>
     /// Saturation adjusting in HSL color space.
@@ -100,7 +99,7 @@ namespace AForge.Imaging.Filters
         ///
         protected override unsafe void ProcessFilter( UnmanagedImage image, Rectangle rect )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             int startX  = rect.Left;
             int startY  = rect.Top;
@@ -130,7 +129,7 @@ namespace AForge.Imaging.Filters
                     rgb.Blue  = ptr[RGB.B];
 
                     // convert to HSL
-                    AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                    HSL.FromRGB( rgb, hsl );
 
                     if ( adjustValue > 0 )
                     {
@@ -142,7 +141,7 @@ namespace AForge.Imaging.Filters
                     }
 
                     // convert back to RGB
-                    AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                    HSL.ToRGB( hsl, rgb );
 
                     ptr[RGB.R] = rgb.Red;
                     ptr[RGB.G] = rgb.Green;

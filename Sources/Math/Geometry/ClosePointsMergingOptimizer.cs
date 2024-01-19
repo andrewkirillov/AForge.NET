@@ -53,14 +53,14 @@ namespace AForge.Math.Geometry
         public float MaxDistanceToMerge
         {
             get { return maxDistanceToMerge; }
-            set { maxDistanceToMerge = Math.Max( 0, value ); }
+            set { maxDistanceToMerge = Math.Max(0, value); }
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ClosePointsMergingOptimizer"/> class.
         /// </summary>
         /// 
-        public ClosePointsMergingOptimizer( ) { }
+        public ClosePointsMergingOptimizer() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ClosePointsMergingOptimizer"/> class.
@@ -69,7 +69,7 @@ namespace AForge.Math.Geometry
         /// <param name="maxDistanceToMerge">Maximum allowed distance between points, which are
         /// merged during optimization (see <see cref="MaxDistanceToMerge"/>).</param>
         ///
-        public ClosePointsMergingOptimizer( float maxDistanceToMerge )
+        public ClosePointsMergingOptimizer(float maxDistanceToMerge)
         {
             this.maxDistanceToMerge = maxDistanceToMerge;
         }
@@ -82,51 +82,51 @@ namespace AForge.Math.Geometry
         /// 
         /// <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
         /// 
-        public List<IntPoint> OptimizeShape( List<IntPoint> shape )
+        public List<IntPoint> OptimizeShape(List<IntPoint> shape)
         {
             // optimized shape
-            List<IntPoint> optimizedShape = new List<IntPoint>( );
+            List<IntPoint> optimizedShape = new List<IntPoint>();
 
-            if ( shape.Count <= 3 )
+            if (shape.Count <= 3)
             {
                 // do nothing if shape has 3 points or less
-                optimizedShape.AddRange( shape );
+                optimizedShape.AddRange(shape);
             }
             else
             {
                 float distance = 0;
 
                 // add first point to the new shape
-                optimizedShape.Add( shape[0] );
+                optimizedShape.Add(shape[0]);
                 int pointsInOptimizedHull = 1;
 
-                for ( int i = 1, n = shape.Count; i < n; i++ )
+                for (int i = 1, n = shape.Count; i < n; i++)
                 {
-                    distance = optimizedShape[pointsInOptimizedHull - 1].DistanceTo( shape[i] );
+                    distance = optimizedShape[pointsInOptimizedHull - 1].DistanceTo(shape[i]);
 
-                    if ( ( distance <= maxDistanceToMerge ) &&
-                         ( pointsInOptimizedHull + ( n - i ) > 3 ) )
+                    if ((distance <= maxDistanceToMerge) &&
+                         (pointsInOptimizedHull + (n - i) > 3))
                     {
                         // merge
-                        optimizedShape[pointsInOptimizedHull - 1] = ( optimizedShape[pointsInOptimizedHull - 1] + shape[i] ) / 2;
+                        optimizedShape[pointsInOptimizedHull - 1] = (optimizedShape[pointsInOptimizedHull - 1] + shape[i]) / 2;
                     }
                     else
                     {
-                        optimizedShape.Add( shape[i] );
+                        optimizedShape.Add(shape[i]);
                         pointsInOptimizedHull++;
                     }
                 }
 
-                if ( pointsInOptimizedHull > 3 )
+                if (pointsInOptimizedHull > 3)
                 {
                     // check the last and first points
-                    distance = optimizedShape[pointsInOptimizedHull - 1].DistanceTo( optimizedShape[0] );
+                    distance = optimizedShape[pointsInOptimizedHull - 1].DistanceTo(optimizedShape[0]);
 
-                    if ( distance <= maxDistanceToMerge )
+                    if (distance <= maxDistanceToMerge)
                     {
                         // merge
-                        optimizedShape[0] = ( optimizedShape[pointsInOptimizedHull - 1] + optimizedShape[0] ) / 2;
-                        optimizedShape.RemoveAt( pointsInOptimizedHull - 1 );
+                        optimizedShape[0] = (optimizedShape[pointsInOptimizedHull - 1] + optimizedShape[0]) / 2;
+                        optimizedShape.RemoveAt(pointsInOptimizedHull - 1);
                     }
                 }
             }

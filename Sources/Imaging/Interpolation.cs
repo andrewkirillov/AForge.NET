@@ -8,8 +8,6 @@
 
 namespace AForge.Imaging
 {
-    using System;
-
     /// <summary>
     /// Interpolation routines.
     /// </summary>

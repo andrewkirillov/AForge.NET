@@ -79,13 +79,13 @@ namespace AForge.Math.Geometry
         // unit normal to the model
         private Vector3 modelNormal;
 
-        private Matrix3x3 alternateRotation = new Matrix3x3( );
-        private Vector3   alternateTranslation = new Vector3( );
-        private float     alternatePoseError = 0;
+        private Matrix3x3 alternateRotation = new Matrix3x3();
+        private Vector3 alternateTranslation = new Vector3();
+        private float alternatePoseError = 0;
 
-        private Matrix3x3 bestRotation = new Matrix3x3( );
-        private Vector3   bestTranslation = new Vector3( );
-        private float     bestPoseError = 0;
+        private Matrix3x3 bestRotation = new Matrix3x3();
+        private Vector3 bestTranslation = new Vector3();
+        private float bestPoseError = 0;
 
         /// <summary>
         /// Best estimated pose recently found.
@@ -180,7 +180,7 @@ namespace AForge.Math.Geometry
         /// </summary>
         public Vector3[] Model
         {
-            get { return (Vector3[]) modelPoints.Clone( ); }
+            get { return (Vector3[])modelPoints.Clone(); }
         }
 
         /// <summary>
@@ -201,31 +201,31 @@ namespace AForge.Math.Geometry
         /// 
         /// <exception cref="ArgumentException">The model must have 4 points.</exception>
         /// 
-        public CoplanarPosit( Vector3[] model, float focalLength )
+        public CoplanarPosit(Vector3[] model, float focalLength)
         {
-            if ( model.Length != 4 )
+            if (model.Length != 4)
             {
-                throw new ArgumentException( "The model must have 4 points." );
+                throw new ArgumentException("The model must have 4 points.");
             }
 
             this.focalLength = focalLength;
-            modelPoints = (Vector3[]) model.Clone( );
+            modelPoints = (Vector3[])model.Clone();
 
             // compute model vectors
             modelVectors = Matrix3x3.CreateFromRows(
                 model[1] - model[0],
                 model[2] - model[0],
-                model[3] - model[0] );
+                model[3] - model[0]);
 
             // compute pseudo inverse of the model matrix
             Matrix3x3 u, v;
             Vector3 e;
 
-            modelVectors.SVD( out u, out e, out v );
-            modelPseudoInverse = v * Matrix3x3.CreateDiagonal( e.Inverse( ) ) * u.Transpose( );
+            modelVectors.SVD(out u, out e, out v);
+            modelPseudoInverse = v * Matrix3x3.CreateDiagonal(e.Inverse()) * u.Transpose();
 
             // computer unit vector normal to the model
-            modelNormal = v.GetColumn( e.MinIndex );
+            modelNormal = v.GetColumn(e.MinIndex);
         }
 
         /// <summary>
@@ -249,88 +249,88 @@ namespace AForge.Math.Geometry
         /// <see cref="AlternateEstimationError"/> properties.</para>
         /// </remarks>
         /// 
-        public void EstimatePose( Point[] points, out Matrix3x3 rotation, out Vector3 translation )
+        public void EstimatePose(Point[] points, out Matrix3x3 rotation, out Vector3 translation)
         {
-            if ( points.Length != 4 )
+            if (points.Length != 4)
             {
-                throw new ArgumentException( "4 points must be be given for pose estimation." );
+                throw new ArgumentException("4 points must be be given for pose estimation.");
             }
 
             Matrix3x3 rotation1, rotation2;
             Vector3 translation1, translation2;
 
             // find initial rotation
-            POS( points, new Vector3( 1 ), out rotation1, out rotation2, out translation1, out translation2 );
+            POS(points, new Vector3(1), out rotation1, out rotation2, out translation1, out translation2);
 
             // iterate further and fine tune the solution
-            float error1 = Iterate( points, ref rotation1, ref translation1 );
-            float error2 = Iterate( points, ref rotation2, ref translation2 );
+            float error1 = Iterate(points, ref rotation1, ref translation1);
+            float error2 = Iterate(points, ref rotation2, ref translation2);
 
             // take the best found pose
-            if ( error1 < error2 )
+            if (error1 < error2)
             {
-                bestRotation    = rotation1;
+                bestRotation = rotation1;
                 bestTranslation = translation1;
-                bestPoseError   = error1;
+                bestPoseError = error1;
 
-                alternateRotation    = rotation2;
+                alternateRotation = rotation2;
                 alternateTranslation = translation2;
-                alternatePoseError   = error2;
+                alternatePoseError = error2;
             }
             else
             {
-                bestRotation    = rotation2;
+                bestRotation = rotation2;
                 bestTranslation = translation2;
-                bestPoseError   = error2;
+                bestPoseError = error2;
 
-                alternateRotation    = rotation1;
+                alternateRotation = rotation1;
                 alternateTranslation = translation1;
-                alternatePoseError   = error1;
+                alternatePoseError = error1;
             }
 
-            rotation    = bestRotation;
+            rotation = bestRotation;
             translation = bestTranslation;
         }
 
         private const float ErrorLimit = 2;
 
         // Iterate POS algorithm starting from the specified rotation and translation and fine tune it
-        private float Iterate( Point[] points, ref Matrix3x3 rotation, ref Vector3 translation )
+        private float Iterate(Point[] points, ref Matrix3x3 rotation, ref Vector3 translation)
         {
             float prevError = float.MaxValue;
             float error = 0;
 
             // run maximum 100 iterations (seems to be overkill, since typicaly it requires around 1-2 iterations)
-            for ( int count = 0; count < 100; count++ )
+            for (int count = 0; count < 100; count++)
             {
                 Matrix3x3 rotation1, rotation2;
                 Vector3 translation1, translation2;
 
                 // calculates new epsilon values
-                Vector3 eps = ( modelVectors * rotation.GetRow( 2 ) ) / translation.Z + 1;
+                Vector3 eps = (modelVectors * rotation.GetRow(2)) / translation.Z + 1;
                 // and new pose
-                POS( points, eps, out rotation1, out rotation2, out translation1, out translation2 );
+                POS(points, eps, out rotation1, out rotation2, out translation1, out translation2);
 
                 // calculate error for both new poses
-                float error1 = GetError( points, rotation1, translation1 );
-                float error2 = GetError( points, rotation2, translation2 );
+                float error1 = GetError(points, rotation1, translation1);
+                float error2 = GetError(points, rotation2, translation2);
 
                 // select the pose which gives smaller error
-                if ( error1 < error2 )
+                if (error1 < error2)
                 {
-                    rotation    = rotation1;
+                    rotation = rotation1;
                     translation = translation1;
-                    error       = error1;
+                    error = error1;
                 }
                 else
                 {
-                    rotation    = rotation2;
+                    rotation = rotation2;
                     translation = translation2;
-                    error       = error2;
+                    error = error2;
                 }
 
                 // stop if error is small enough or started to grow
-                if ( ( error <= ErrorLimit ) || ( error > prevError ) )
+                if ((error <= ErrorLimit) || (error > prevError))
                     break;
 
                 prevError = error;
@@ -340,11 +340,11 @@ namespace AForge.Math.Geometry
         }
 
         // Perform single iteration of POS (pos estimations) algorithm to find possible rotations and translation vectors
-        private void POS( Point[] imagePoints, Vector3 eps, out Matrix3x3 rotation1, out Matrix3x3 rotation2, out Vector3 translation1, out Vector3 translation2 )
+        private void POS(Point[] imagePoints, Vector3 eps, out Matrix3x3 rotation1, out Matrix3x3 rotation2, out Vector3 translation1, out Vector3 translation2)
         {
             // create vectors keeping all X and Y coordinates for the 1st, 2nd and 3rd points
-            Vector3 XI = new Vector3( imagePoints[1].X, imagePoints[2].X, imagePoints[3].X );
-            Vector3 YI = new Vector3( imagePoints[1].Y, imagePoints[2].Y, imagePoints[3].Y );
+            Vector3 XI = new Vector3(imagePoints[1].X, imagePoints[2].X, imagePoints[3].X);
+            Vector3 YI = new Vector3(imagePoints[1].Y, imagePoints[2].Y, imagePoints[3].Y);
 
             // calculate scale orthographic projection (SOP)
             Vector3 imageXs = XI * eps - imagePoints[0].X;
@@ -354,70 +354,70 @@ namespace AForge.Math.Geometry
             Vector3 I0Vector = modelPseudoInverse * imageXs;
             Vector3 J0Vector = modelPseudoInverse * imageYs;
 
-            Vector3 iVector = new Vector3( );
-            Vector3 jVector = new Vector3( );
-            Vector3 kVector = new Vector3( );
+            Vector3 iVector = new Vector3();
+            Vector3 jVector = new Vector3();
+            Vector3 kVector = new Vector3();
 
             // find roots of complex number C^2
             float j2i2dif = J0Vector.Square - I0Vector.Square;
-            float ij = Vector3.Dot( I0Vector, J0Vector );
+            float ij = Vector3.Dot(I0Vector, J0Vector);
 
             float r = 0, theta = 0;
 
-            if ( j2i2dif == 0 )
+            if (j2i2dif == 0)
             {
-                theta = (float) ( ( -System.Math.PI / 2 ) * System.Math.Sign( ij ) );
-                r = (float) System.Math.Sqrt( System.Math.Abs( 2 * ij ) );
+                theta = (float)((-Math.PI / 2) * Math.Sign(ij));
+                r = (float)Math.Sqrt(Math.Abs(2 * ij));
             }
             else
             {
-                r = (float) System.Math.Sqrt( System.Math.Sqrt( j2i2dif * j2i2dif + 4 * ij * ij ) );
-                theta = (float) System.Math.Atan( -2 * ij / j2i2dif );
+                r = (float)Math.Sqrt(Math.Sqrt(j2i2dif * j2i2dif + 4 * ij * ij));
+                theta = (float)Math.Atan(-2 * ij / j2i2dif);
 
-                if ( j2i2dif < 0 )
-                    theta += (float) System.Math.PI;
+                if (j2i2dif < 0)
+                    theta += (float)Math.PI;
 
                 theta /= 2;
             }
 
-            float lambda = (float) ( r * System.Math.Cos( theta ) );
-            float mu =     (float) ( r * System.Math.Sin( theta ) );
+            float lambda = (float)(r * Math.Cos(theta));
+            float mu = (float)(r * Math.Sin(theta));
 
             // first possible rotation
-            iVector = I0Vector + ( modelNormal * lambda );
-            jVector = J0Vector + ( modelNormal * mu );
+            iVector = I0Vector + (modelNormal * lambda);
+            jVector = J0Vector + (modelNormal * mu);
 
-            float iNorm = iVector.Normalize( );
-            float jNorm = jVector.Normalize( );
-            kVector = Vector3.Cross( iVector, jVector );
+            float iNorm = iVector.Normalize();
+            float jNorm = jVector.Normalize();
+            kVector = Vector3.Cross(iVector, jVector);
 
-            rotation1 = Matrix3x3.CreateFromRows( iVector, jVector, kVector );
+            rotation1 = Matrix3x3.CreateFromRows(iVector, jVector, kVector);
 
             // calculate translation vector
-            float scale = ( iNorm + jNorm ) / 2;
+            float scale = (iNorm + jNorm) / 2;
 
             Vector3 temp = rotation1 * modelPoints[0];
-            translation1 = new Vector3( imagePoints[0].X / scale - temp.X, imagePoints[0].Y / scale - temp.Y, focalLength / scale );
+            translation1 = new Vector3(imagePoints[0].X / scale - temp.X, imagePoints[0].Y / scale - temp.Y, focalLength / scale);
 
             // second possible rotation
-            iVector = I0Vector - ( modelNormal * lambda );
-            jVector = J0Vector - ( modelNormal * mu );
+            iVector = I0Vector - (modelNormal * lambda);
+            jVector = J0Vector - (modelNormal * mu);
 
-            iNorm = iVector.Normalize( );
-            jNorm = jVector.Normalize( );
-            kVector = Vector3.Cross( iVector, jVector );
+            iNorm = iVector.Normalize();
+            jNorm = jVector.Normalize();
+            kVector = Vector3.Cross(iVector, jVector);
 
-            rotation2 = Matrix3x3.CreateFromRows( iVector, jVector, kVector );
+            rotation2 = Matrix3x3.CreateFromRows(iVector, jVector, kVector);
 
-            scale = ( iNorm + jNorm ) / 2;
+            scale = (iNorm + jNorm) / 2;
 
             temp = rotation2 * modelPoints[0];
-            translation2 = new Vector3( imagePoints[0].X / scale - temp.X, imagePoints[0].Y / scale - temp.Y, focalLength / scale );
+            translation2 = new Vector3(imagePoints[0].X / scale - temp.X, imagePoints[0].Y / scale - temp.Y, focalLength / scale);
         }
 
         // Calculate average error between real angles of the specified quadrilateral and angles of the
         // quadrilateral which is the projection of currently estimated pose
-        private float GetError( Point[] imagePoints, Matrix3x3 rotation, Vector3 translation )
+        private float GetError(Point[] imagePoints, Matrix3x3 rotation, Vector3 translation)
         {
             Vector3 v1 = rotation * modelPoints[0] + translation;
             v1.X = v1.X * focalLength / v1.Z;
@@ -443,21 +443,21 @@ namespace AForge.Math.Geometry
                 new Point( v4.X, v4.Y ),
             };
 
-            float ia1 = GeometryTools.GetAngleBetweenVectors( imagePoints[0], imagePoints[1], imagePoints[3] );
-            float ia2 = GeometryTools.GetAngleBetweenVectors( imagePoints[1], imagePoints[2], imagePoints[0] );
-            float ia3 = GeometryTools.GetAngleBetweenVectors( imagePoints[2], imagePoints[3], imagePoints[1] );
-            float ia4 = GeometryTools.GetAngleBetweenVectors( imagePoints[3], imagePoints[0], imagePoints[2] );
+            float ia1 = GeometryTools.GetAngleBetweenVectors(imagePoints[0], imagePoints[1], imagePoints[3]);
+            float ia2 = GeometryTools.GetAngleBetweenVectors(imagePoints[1], imagePoints[2], imagePoints[0]);
+            float ia3 = GeometryTools.GetAngleBetweenVectors(imagePoints[2], imagePoints[3], imagePoints[1]);
+            float ia4 = GeometryTools.GetAngleBetweenVectors(imagePoints[3], imagePoints[0], imagePoints[2]);
 
-            float ma1 = GeometryTools.GetAngleBetweenVectors( modeledPoints[0], modeledPoints[1], modeledPoints[3] );
-            float ma2 = GeometryTools.GetAngleBetweenVectors( modeledPoints[1], modeledPoints[2], modeledPoints[0] );
-            float ma3 = GeometryTools.GetAngleBetweenVectors( modeledPoints[2], modeledPoints[3], modeledPoints[1] );
-            float ma4 = GeometryTools.GetAngleBetweenVectors( modeledPoints[3], modeledPoints[0], modeledPoints[2] );
+            float ma1 = GeometryTools.GetAngleBetweenVectors(modeledPoints[0], modeledPoints[1], modeledPoints[3]);
+            float ma2 = GeometryTools.GetAngleBetweenVectors(modeledPoints[1], modeledPoints[2], modeledPoints[0]);
+            float ma3 = GeometryTools.GetAngleBetweenVectors(modeledPoints[2], modeledPoints[3], modeledPoints[1]);
+            float ma4 = GeometryTools.GetAngleBetweenVectors(modeledPoints[3], modeledPoints[0], modeledPoints[2]);
 
             return (
-                System.Math.Abs( ia1 - ma1 ) +
-                System.Math.Abs( ia2 - ma2 ) +
-                System.Math.Abs( ia3 - ma3 ) +
-                System.Math.Abs( ia4 - ma4 )
+                Math.Abs(ia1 - ma1) +
+                Math.Abs(ia2 - ma2) +
+                Math.Abs(ia3 - ma3) +
+                Math.Abs(ia4 - ma4)
                 ) / 4;
         }
 

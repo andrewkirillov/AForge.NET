@@ -9,15 +9,14 @@
 namespace AForge.Video
 {
     using System;
-	using System.Drawing;
-	using System.IO;
+    using System.Drawing;
+    using System.IO;
     using System.Text;
     using System.Threading;
-	using System.Net;
-    using System.Security;
+    using System.Net;
 
-	/// <summary>
-	/// JPEG video source.
+    /// <summary>
+    /// JPEG video source.
     /// </summary>
     /// 
     /// <remarks><para>The video source constantly downloads JPEG files from the specified URL.</para>
@@ -58,7 +57,7 @@ namespace AForge.Video
     /// </code>
     /// </remarks>
     /// 
-	public class JPEGStream : IVideoSource
+    public class JPEGStream : IVideoSource
 	{
         // URL for JPEG files
 		private string source;

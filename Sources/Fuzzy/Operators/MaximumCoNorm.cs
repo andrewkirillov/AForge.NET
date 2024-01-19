@@ -9,7 +9,6 @@
 namespace AForge.Fuzzy
 {
     using System;
-    using AForge;
 
     /// <summary>
     /// Maximum CoNorm, used to calculate the linguistic value of a OR operation. 

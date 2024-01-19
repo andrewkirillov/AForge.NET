@@ -7,13 +7,11 @@
 
 namespace AForge.Imaging.Filters
 {
-	using System;
-
-	/// <summary>
-	/// Ordered dithering using Bayer matrix.
-	/// </summary>
-	/// 
-	/// <remarks><para>The filter represents <see cref="OrderedDithering"/> filter initialized
+    /// <summary>
+    /// Ordered dithering using Bayer matrix.
+    /// </summary>
+    /// 
+    /// <remarks><para>The filter represents <see cref="OrderedDithering"/> filter initialized
     /// with the next threshold matrix:</para>
     /// <code>
     /// byte[,] matrix = new byte[4, 4]
@@ -40,8 +38,8 @@ namespace AForge.Imaging.Filters
     /// <para><b>Result image:</b></para>
     /// <img src="img/imaging/bayer_dithering.jpg" width="480" height="361" />
     /// </remarks>
-	/// 
-	public sealed class BayerDithering : OrderedDithering
+    /// 
+    public sealed class BayerDithering : OrderedDithering
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BayerDithering"/> class.

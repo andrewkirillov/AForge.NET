@@ -8,8 +8,6 @@
 
 namespace AForge.Video.Ximea
 {
-    using System;
-
     /// <summary>
     /// XIMEA camera's GPI port modes.
     /// </summary>

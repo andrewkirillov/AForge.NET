@@ -316,7 +316,7 @@ namespace AForge.Imaging.Filters
                 throw new ArgumentException( "Base filter must not change image size." );
             }
 
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             int startY  = rect.Top;
             int stopY   = startY + rect.Height;

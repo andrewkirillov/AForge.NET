@@ -331,7 +331,7 @@ namespace AForge.Imaging
             int height = houghMap.GetLength( 0 );
 
             // create new image
-            Bitmap image = AForge.Imaging.Image.CreateGrayscaleImage( width, height );
+            Bitmap image = Image.CreateGrayscaleImage( width, height );
 
             // lock destination bitmap data
             BitmapData imageData = image.LockBits(
@@ -350,7 +350,7 @@ namespace AForge.Imaging
                 {
                     for ( int x = 0; x < width; x++, dst++ )
                     {
-                        *dst = (byte) System.Math.Min( 255, (int) ( scale * houghMap[y, x] ) );
+                        *dst = (byte)Math.Min( 255, (int) ( scale * houghMap[y, x] ) );
                     }
                     dst += offset;
                 }

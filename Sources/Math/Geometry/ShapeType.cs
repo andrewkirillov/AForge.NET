@@ -8,8 +8,6 @@
 
 namespace AForge.Math.Geometry
 {
-    using System;
-
     /// <summary>
     /// Enumeration of some basic shape types.
     /// </summary>

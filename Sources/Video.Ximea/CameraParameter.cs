@@ -8,8 +8,7 @@
 
 namespace AForge.Video.Ximea
 {
-    using System;
-    
+
     /// <summary>
     /// Set of available configuration options for XIMEA cameras.
     /// </summary>

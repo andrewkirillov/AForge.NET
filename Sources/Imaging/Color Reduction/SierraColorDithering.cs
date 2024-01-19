@@ -8,10 +8,6 @@
 
 namespace AForge.Imaging.ColorReduction
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-
     /// <summary>
     /// Color dithering using Sierra error diffusion.
     /// </summary>

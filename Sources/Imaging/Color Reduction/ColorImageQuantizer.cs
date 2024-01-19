@@ -144,7 +144,7 @@ namespace AForge.Imaging.ColorReduction
             int width = image.Width;
             int height = image.Height;
 
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             unsafe
             {
@@ -300,7 +300,7 @@ namespace AForge.Imaging.ColorReduction
             int width  = image.Width;
             int height = image.Height;
             int stride = image.Stride;
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             int offset = stride - width * pixelSize;
 

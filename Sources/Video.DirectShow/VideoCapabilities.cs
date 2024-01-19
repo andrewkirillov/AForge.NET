@@ -12,8 +12,6 @@ namespace AForge.Video.DirectShow
     using System.Collections.Generic;
     using System.Drawing;
     using System.Runtime.InteropServices;
-
-    using AForge.Video;
     using AForge.Video.DirectShow.Internals;
 
     /// <summary>

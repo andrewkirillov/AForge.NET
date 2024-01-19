@@ -8,8 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-
     /// <summary>
     /// Interface with the common methods of a Fuzzy CoNorm.
     /// </summary>

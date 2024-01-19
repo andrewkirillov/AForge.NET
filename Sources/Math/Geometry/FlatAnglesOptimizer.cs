@@ -48,14 +48,14 @@ namespace AForge.Math.Geometry
         public float MaxAngleToKeep
         {
             get { return maxAngleToKeep; }
-            set { maxAngleToKeep = Math.Min( 180, Math.Max( 140, value ) ); }
+            set { maxAngleToKeep = Math.Min(180, Math.Max(140, value)); }
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FlatAnglesOptimizer"/> class.
         /// </summary>
         /// 
-        public FlatAnglesOptimizer( ) { }
+        public FlatAnglesOptimizer() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FlatAnglesOptimizer"/> class.
@@ -63,7 +63,7 @@ namespace AForge.Math.Geometry
         /// 
         /// <param name="maxAngleToKeep">Maximum acceptable angle between two edges of a shape (see <see cref="MaxAngleToKeep"/>).</param>
         /// 
-        public FlatAnglesOptimizer( float maxAngleToKeep )
+        public FlatAnglesOptimizer(float maxAngleToKeep)
         {
             this.maxAngleToKeep = maxAngleToKeep;
         }
@@ -76,65 +76,65 @@ namespace AForge.Math.Geometry
         /// 
         /// <returns>Returns final optimized shape, which may have reduced amount of points.</returns>
         /// 
-        public List<IntPoint> OptimizeShape( List<IntPoint> shape )
+        public List<IntPoint> OptimizeShape(List<IntPoint> shape)
         {
             // optimized shape
-            List<IntPoint> optimizedShape = new List<IntPoint>( );
+            List<IntPoint> optimizedShape = new List<IntPoint>();
 
-            if ( shape.Count <= 3 )
+            if (shape.Count <= 3)
             {
                 // do nothing if shape has 3 points or less
-                optimizedShape.AddRange( shape );
+                optimizedShape.AddRange(shape);
             }
             else
             {
                 float angle = 0;
 
                 // add first 2 points to the new shape
-                optimizedShape.Add( shape[0] );
-                optimizedShape.Add( shape[1] );
+                optimizedShape.Add(shape[0]);
+                optimizedShape.Add(shape[1]);
                 int pointsInOptimizedHull = 2;
 
-                for ( int i = 2, n = shape.Count; i < n; i++ )
+                for (int i = 2, n = shape.Count; i < n; i++)
                 {
                     // add new point
-                    optimizedShape.Add( shape[i] );
+                    optimizedShape.Add(shape[i]);
                     pointsInOptimizedHull++;
 
                     // get angle between 2 vectors, which start from the next to last point
-                    angle = GeometryTools.GetAngleBetweenVectors( optimizedShape[pointsInOptimizedHull - 2],
-                        optimizedShape[pointsInOptimizedHull - 3], optimizedShape[pointsInOptimizedHull - 1] );
+                    angle = GeometryTools.GetAngleBetweenVectors(optimizedShape[pointsInOptimizedHull - 2],
+                        optimizedShape[pointsInOptimizedHull - 3], optimizedShape[pointsInOptimizedHull - 1]);
 
-                    if ( ( angle > maxAngleToKeep ) &&
-                         ( ( pointsInOptimizedHull > 3 ) || ( i < n - 1 ) ) )
+                    if ((angle > maxAngleToKeep) &&
+                         ((pointsInOptimizedHull > 3) || (i < n - 1)))
                     {
                         // remove the next to last point
-                        optimizedShape.RemoveAt( pointsInOptimizedHull - 2 );
+                        optimizedShape.RemoveAt(pointsInOptimizedHull - 2);
                         pointsInOptimizedHull--;
                     }
                 }
 
-                if ( pointsInOptimizedHull > 3 )
+                if (pointsInOptimizedHull > 3)
                 {
                     // check the last point
-                    angle = GeometryTools.GetAngleBetweenVectors( optimizedShape[pointsInOptimizedHull - 1],
-                        optimizedShape[pointsInOptimizedHull - 2], optimizedShape[0] );
+                    angle = GeometryTools.GetAngleBetweenVectors(optimizedShape[pointsInOptimizedHull - 1],
+                        optimizedShape[pointsInOptimizedHull - 2], optimizedShape[0]);
 
-                    if ( angle > maxAngleToKeep )
+                    if (angle > maxAngleToKeep)
                     {
-                        optimizedShape.RemoveAt( pointsInOptimizedHull - 1 );
+                        optimizedShape.RemoveAt(pointsInOptimizedHull - 1);
                         pointsInOptimizedHull--;
                     }
 
-                    if ( pointsInOptimizedHull > 3 )
+                    if (pointsInOptimizedHull > 3)
                     {
                         // check the first point
-                        angle = GeometryTools.GetAngleBetweenVectors( optimizedShape[0],
-                            optimizedShape[pointsInOptimizedHull - 1], optimizedShape[1] );
+                        angle = GeometryTools.GetAngleBetweenVectors(optimizedShape[0],
+                            optimizedShape[pointsInOptimizedHull - 1], optimizedShape[1]);
 
-                        if ( angle > maxAngleToKeep )
+                        if (angle > maxAngleToKeep)
                         {
-                            optimizedShape.RemoveAt( 0 );
+                            optimizedShape.RemoveAt(0);
                         }
                     }
                 }

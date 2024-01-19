@@ -330,7 +330,7 @@ namespace AForge.Robotics.Lego
         /// 
         /// <remarks>Motor mode is a bit field, so several modes can be combined.</remarks>
         /// 
-        [FlagsAttribute]
+        [Flags]
         public enum MotorMode
         {
             /// <summary>
@@ -1348,7 +1348,7 @@ namespace AForge.Robotics.Lego
         /// <a href="http://www.hitechnic.com/colorsensor"></a></note></para>
         /// </remarks>
         /// 
-        public bool ReadHiTechnicColorSensor( NXTBrick.Sensor sensor, ref int colorNumber, ref int redValue, ref int greenValue, ref int blueValue )
+        public bool ReadHiTechnicColorSensor(Sensor sensor, ref int colorNumber, ref int redValue, ref int greenValue, ref int blueValue )
         {
             byte[] command = { 0x02, 0x42 };
             byte[] readBuffer = new byte[4];
@@ -1410,7 +1410,7 @@ namespace AForge.Robotics.Lego
         /// using the <see cref="GetVersion"/> method.</note></para>
         /// </remarks>
         /// 
-        public bool ReadHiTechnicCompassSensor( NXTBrick.Sensor sensor, ref int angle )
+        public bool ReadHiTechnicCompassSensor(Sensor sensor, ref int angle )
         {
             byte[] command = { 0x02, 0x42 };
             byte[] readBuffer = new byte[2];
@@ -1473,7 +1473,7 @@ namespace AForge.Robotics.Lego
         /// sensors to operate correctly. You can check the firmware version using the <see cref="GetVersion"/> method.</note></para>
         /// </remarks>
         /// 
-        public bool ReadHiTechnicAccelerationTiltSensor( NXTBrick.Sensor sensor, ref int xAceeleration, ref int yAceeleration, ref int zAceeleration )
+        public bool ReadHiTechnicAccelerationTiltSensor(Sensor sensor, ref int xAceeleration, ref int yAceeleration, ref int zAceeleration )
         {
             byte[] command = { 0x02, 0x42 };
             byte[] readBuffer = new byte[6];

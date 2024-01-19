@@ -8,7 +8,6 @@
 
 namespace AForge.Imaging
 {
-    using System;
     using System.Drawing;
     using System.Drawing.Imaging;
 
@@ -344,7 +343,7 @@ namespace AForge.Imaging
                 else
                 {
                     // color images
-                    int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+                    int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
                     int offset = stride - imageWidth * pixelSize;
 
                     int strideM1 = stride - pixelSize;

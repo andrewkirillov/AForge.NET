@@ -11,7 +11,6 @@ using TeRKIceLib = TeRK;
 namespace AForge.Robotics.TeRK
 {
     using System;
-    using AForge;
 
     /// <summary>
     /// Manipulation of Qwerk robotics board.
@@ -184,7 +183,7 @@ namespace AForge.Robotics.TeRK
             }
         }
 
-        private Qwerk.Leds leds;
+        private Leds leds;
 
         /// <summary>
         /// Get Qwerk's LEDs service.
@@ -193,9 +192,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's LEDs service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.Leds(Qwerk)"/>.</remarks>
+        /// <see cref="Leds(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.Leds GetLedsService( )
+        public Leds GetLedsService( )
         {
             if ( leds == null )
             {
@@ -204,7 +203,7 @@ namespace AForge.Robotics.TeRK
             return leds;
         }
 
-        private Qwerk.DigitalOut digitalOuts;
+        private DigitalOut digitalOuts;
 
         /// <summary>
         /// Get Qwerk's digital outputs service.
@@ -213,9 +212,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's digital outputs service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.DigitalOut(Qwerk)"/>.</remarks>
+        /// <see cref="DigitalOut(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.DigitalOut GetDigitalOutService( )
+        public DigitalOut GetDigitalOutService( )
         {
             if ( digitalOuts == null )
             {
@@ -224,7 +223,7 @@ namespace AForge.Robotics.TeRK
             return digitalOuts;
         }
 
-        private Qwerk.DigitalIn digitalIns;
+        private DigitalIn digitalIns;
 
         /// <summary>
         /// Get Qwerk's digital inputs service.
@@ -233,9 +232,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's digital inputs service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.DigitalIn(Qwerk)"/>.</remarks>
+        /// <see cref="DigitalIn(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.DigitalIn GetDigitalInService( )
+        public DigitalIn GetDigitalInService( )
         {
             if ( digitalIns == null )
             {
@@ -244,7 +243,7 @@ namespace AForge.Robotics.TeRK
             return digitalIns;
         }
 
-        private Qwerk.AnalogIn analogIns;
+        private AnalogIn analogIns;
 
         /// <summary>
         /// Get Qwerk's analog inputs service.
@@ -253,9 +252,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's analog inputs service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.AnalogIn(Qwerk)"/>.</remarks>
+        /// <see cref="AnalogIn(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.AnalogIn GetAnalogInService( )
+        public AnalogIn GetAnalogInService( )
         {
             if ( analogIns == null )
             {
@@ -264,7 +263,7 @@ namespace AForge.Robotics.TeRK
             return analogIns;
         }
 
-        private Qwerk.Video video;
+        private Video video;
 
         /// <summary>
         /// Get Qwerk's video service.
@@ -273,9 +272,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's video service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.Video(Qwerk)"/>.</remarks>
+        /// <see cref="Video(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.Video GetVideoService( )
+        public Video GetVideoService( )
         {
             if ( video == null )
             {
@@ -284,7 +283,7 @@ namespace AForge.Robotics.TeRK
             return video;
         }
 
-        private Qwerk.Motors motors;
+        private Motors motors;
 
         /// <summary>
         /// Get Qwerk's motors service.
@@ -293,9 +292,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's motors service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.Motors(Qwerk)"/>.</remarks>
+        /// <see cref="Motors(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.Motors GetMotorsService( )
+        public Motors GetMotorsService( )
         {
             if ( motors == null )
             {
@@ -304,7 +303,7 @@ namespace AForge.Robotics.TeRK
             return motors;
         }
 
-        private Qwerk.Servos servos;
+        private Servos servos;
 
         /// <summary>
         /// Get Qwerk's servos service.
@@ -313,9 +312,9 @@ namespace AForge.Robotics.TeRK
         /// <returns>Returns Qwerk's servos service.</returns>
         /// 
         /// <remarks>For the list of possible exceptions, see documentation to
-        /// <see cref="Qwerk.Servos(Qwerk)"/>.</remarks>
+        /// <see cref="Servos(Qwerk)"/>.</remarks>
         /// 
-        public Qwerk.Servos GetServosService( )
+        public Servos GetServosService( )
         {
             if ( servos == null )
             {

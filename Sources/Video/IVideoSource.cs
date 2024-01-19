@@ -8,8 +8,6 @@
 
 namespace AForge.Video
 {
-    using System;
-
     /// <summary>
     /// Video source interface.
     /// </summary>

@@ -8,11 +8,8 @@
 
 namespace AForge.Genetic
 {
-	using System;
-	using System.Collections.Generic;
-
-	/// <summary>
-	/// Permutation chromosome.
+    /// <summary>
+    /// Permutation chromosome.
     /// </summary>
     /// 
     /// <remarks><para>Permutation chromosome is based on short array chromosome,
@@ -24,7 +21,7 @@ namespace AForge.Genetic
     /// </list>
     /// </remarks>
     /// 
-	public class PermutationChromosome : ShortArrayChromosome
+    public class PermutationChromosome : ShortArrayChromosome
 	{
 		/// <summary>
         /// Initializes a new instance of the <see cref="PermutationChromosome"/> class.

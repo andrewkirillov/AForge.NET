@@ -7,10 +7,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-
     /// <summary>
     /// Base class for error diffusion dithering, where error is diffused to 
     /// adjacent neighbor pixels.

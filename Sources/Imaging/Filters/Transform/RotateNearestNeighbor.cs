@@ -95,7 +95,7 @@ namespace AForge.Imaging.Filters
         /// 
         protected override void ProcessFilter( UnmanagedImage sourceData, UnmanagedImage destinationData )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( sourceData.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( sourceData.PixelFormat ) / 8;
 
             switch ( pixelSize )
             {

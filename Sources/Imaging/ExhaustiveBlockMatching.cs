@@ -384,7 +384,7 @@ namespace AForge.Imaging
         }
 
         // Sorter of found matchings
-        private class MatchingsSorter : System.Collections.Generic.IComparer<BlockMatch>
+        private class MatchingsSorter : IComparer<BlockMatch>
         {
             public int Compare( BlockMatch x, BlockMatch y )
             {

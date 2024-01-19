@@ -8,8 +8,6 @@
 
 namespace AForge.Math.Metrics
 {
-    using System;
-
     /// <summary>
     /// Interface for similarity algorithms.
     /// </summary>
@@ -36,6 +34,6 @@ namespace AForge.Math.Metrics
         /// 
         /// <returns>Returns similarity score determined by the given algorithm.</returns>
         /// 
-        double GetSimilarityScore( double[] p, double[] q );
+        double GetSimilarityScore(double[] p, double[] q);
     }
 }

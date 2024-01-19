@@ -69,7 +69,7 @@ namespace AForge.Imaging.Filters
     public class TexturedMerge : BaseInPlaceFilter2
     {
         // texture generator
-        private AForge.Imaging.Textures.ITextureGenerator textureGenerator;
+        private Textures.ITextureGenerator textureGenerator;
         // generated texture
         private float[,] texture = null;
 
@@ -116,7 +116,7 @@ namespace AForge.Imaging.Filters
         /// <para><note>The property has priority over the <see cref="Texture"/> property.</note></para>
         /// </remarks>
         /// 
-        public AForge.Imaging.Textures.ITextureGenerator TextureGenerator
+        public Textures.ITextureGenerator TextureGenerator
         {
             get { return textureGenerator; }
             set { textureGenerator = value; }
@@ -146,7 +146,7 @@ namespace AForge.Imaging.Filters
         /// 
         /// <param name="generator">Texture generator.</param>
         /// 
-        public TexturedMerge( AForge.Imaging.Textures.ITextureGenerator generator ) : this( )
+        public TexturedMerge(Textures.ITextureGenerator generator ) : this( )
         {
             this.textureGenerator = generator;
         }

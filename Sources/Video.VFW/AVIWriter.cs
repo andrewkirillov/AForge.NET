@@ -8,15 +8,14 @@
 
 namespace AForge.Video.VFW
 {
-	using System;
-	using System.Drawing;
-	using System.Drawing.Imaging;
-	using System.Runtime.InteropServices;
-    using AForge;
+    using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.Runtime.InteropServices;
 
-	/// <summary>
+    /// <summary>
     /// AVI files writing using Video for Windows interface.
-	/// </summary>
+    /// </summary>
     /// 
     /// <remarks><para>The class allows to write AVI files using Video for Windows API.</para>
     /// 
@@ -40,7 +39,7 @@ namespace AForge.Video.VFW
     /// </code>
     /// </remarks>
     /// 
-	public class AVIWriter : IDisposable
+    public class AVIWriter : IDisposable
 	{
         // AVI file
         private IntPtr file;

@@ -8,7 +8,6 @@
 
 namespace AForge.Imaging
 {
-    using System;
     using System.Drawing;
 
     /// <summary>

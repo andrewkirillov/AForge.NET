@@ -199,7 +199,7 @@ namespace AForge.Imaging
             if ( ( mustBeDisposed ) && ( imageData != IntPtr.Zero ) )
             {
                 System.Runtime.InteropServices.Marshal.FreeHGlobal( imageData );
-                System.GC.RemoveMemoryPressure( stride * height );
+                GC.RemoveMemoryPressure( stride * height );
                 imageData = IntPtr.Zero;
             }
         }
@@ -216,12 +216,12 @@ namespace AForge.Imaging
         {
             // allocate memory for the image
             IntPtr newImageData = System.Runtime.InteropServices.Marshal.AllocHGlobal( stride * height );
-            System.GC.AddMemoryPressure( stride * height );
+            GC.AddMemoryPressure( stride * height );
 
             UnmanagedImage newImage = new UnmanagedImage( newImageData, width, height, stride, pixelFormat );
             newImage.mustBeDisposed = true;
 
-            AForge.SystemTools.CopyUnmanagedMemory( newImageData, imageData, stride * height );
+            SystemTools.CopyUnmanagedMemory( newImageData, imageData, stride * height );
 
             return newImage;
         }
@@ -249,7 +249,7 @@ namespace AForge.Imaging
             if ( stride == destImage.stride )
             {
                 // copy entire image
-                AForge.SystemTools.CopyUnmanagedMemory( destImage.imageData, imageData, stride * height );
+                SystemTools.CopyUnmanagedMemory( destImage.imageData, imageData, stride * height );
             }
             else
             {
@@ -264,7 +264,7 @@ namespace AForge.Imaging
                     // copy line by line
                     for ( int i = 0; i < height; i++ )
                     {
-                        AForge.SystemTools.CopyUnmanagedMemory( dst, src, copyLength );
+                        SystemTools.CopyUnmanagedMemory( dst, src, copyLength );
 
                         dst += dstStride;
                         src += stride;
@@ -352,8 +352,8 @@ namespace AForge.Imaging
 
             // allocate memory for the image
             IntPtr imageData = System.Runtime.InteropServices.Marshal.AllocHGlobal( stride * height );
-            AForge.SystemTools.SetUnmanagedMemory( imageData, 0, stride * height );
-            System.GC.AddMemoryPressure( stride * height );
+            SystemTools.SetUnmanagedMemory( imageData, 0, stride * height );
+            GC.AddMemoryPressure( stride * height );
 
             UnmanagedImage image = new UnmanagedImage( imageData, width, height, stride, pixelFormat );
             image.mustBeDisposed = true;
@@ -413,7 +413,7 @@ namespace AForge.Imaging
                 {
                     // create new image of required format
                     dstImage = ( pixelFormat == PixelFormat.Format8bppIndexed ) ?
-                        AForge.Imaging.Image.CreateGrayscaleImage( width, height ) :
+                        Image.CreateGrayscaleImage( width, height ) :
                         new Bitmap( width, height, pixelFormat );
 
                     // lock destination bitmap data
@@ -434,14 +434,14 @@ namespace AForge.Imaging
                             // copy image
                             for ( int y = 0; y < height; y++ )
                             {
-                                AForge.SystemTools.CopyUnmanagedMemory( dst, src, lineSize );
+                                SystemTools.CopyUnmanagedMemory( dst, src, lineSize );
                                 dst += dstStride;
                                 src += stride;
                             }
                         }
                         else
                         {
-                            AForge.SystemTools.CopyUnmanagedMemory( dst, src, stride * height );
+                            SystemTools.CopyUnmanagedMemory( dst, src, stride * height );
                         }
                     }
 
@@ -529,10 +529,10 @@ namespace AForge.Imaging
 
             // allocate memory for the image
             IntPtr dstImageData = System.Runtime.InteropServices.Marshal.AllocHGlobal( imageData.Stride * imageData.Height );
-            System.GC.AddMemoryPressure( imageData.Stride * imageData.Height );
+            GC.AddMemoryPressure( imageData.Stride * imageData.Height );
 
             UnmanagedImage image = new UnmanagedImage( dstImageData, imageData.Width, imageData.Height, imageData.Stride, pixelFormat );
-            AForge.SystemTools.CopyUnmanagedMemory( dstImageData, imageData.Scan0, imageData.Stride * imageData.Height );
+            SystemTools.CopyUnmanagedMemory( dstImageData, imageData.Scan0, imageData.Stride * imageData.Height );
             image.mustBeDisposed = true;
 
             return image;
@@ -566,7 +566,7 @@ namespace AForge.Imaging
         /// 
         public byte[] Collect8bppPixelValues( List<IntPoint> points )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( pixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( pixelFormat ) / 8;
 
             if ( ( pixelFormat == PixelFormat.Format16bppGrayScale ) || ( pixelSize > 4 ) )
             {
@@ -630,7 +630,7 @@ namespace AForge.Imaging
         {
             List<IntPoint> pixels = new List<IntPoint>( );
 
-            int pixelSize = Bitmap.GetPixelFormatSize( pixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( pixelFormat ) / 8;
 
             // correct rectangle
             rect.Intersect( new Rectangle( 0, 0, width, height ) );
@@ -725,7 +725,7 @@ namespace AForge.Imaging
         {
             unsafe
             {
-                int pixelSize = Bitmap.GetPixelFormatSize( pixelFormat ) / 8;
+                int pixelSize = System.Drawing.Image.GetPixelFormatSize( pixelFormat ) / 8;
                 byte* basePtr = (byte*) imageData.ToPointer( );
 
                 byte red   = color.R;
@@ -910,7 +910,7 @@ namespace AForge.Imaging
             {
                 unsafe
                 {
-                    int pixelSize = Bitmap.GetPixelFormatSize( pixelFormat ) / 8;
+                    int pixelSize = System.Drawing.Image.GetPixelFormatSize( pixelFormat ) / 8;
                     byte* ptr = (byte*) imageData.ToPointer( ) + y * stride + x * pixelSize;
                     ushort* ptr2 = (ushort*) ptr;
 
@@ -1008,7 +1008,7 @@ namespace AForge.Imaging
 
             unsafe
             {
-                int pixelSize = Bitmap.GetPixelFormatSize( pixelFormat ) / 8;
+                int pixelSize = System.Drawing.Image.GetPixelFormatSize( pixelFormat ) / 8;
                 byte* ptr = (byte*) imageData.ToPointer( ) + y * stride + x * pixelSize;
 
                 switch ( pixelFormat )
@@ -1062,7 +1062,7 @@ namespace AForge.Imaging
         ///
         public ushort[] Collect16bppPixelValues( List<IntPoint> points )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( pixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( pixelFormat ) / 8;
 
             if ( ( pixelFormat == PixelFormat.Format8bppIndexed ) || ( pixelSize == 3 ) || ( pixelSize == 4 ) )
             {

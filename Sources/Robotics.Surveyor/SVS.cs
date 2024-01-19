@@ -9,11 +9,7 @@
 namespace AForge.Robotics.Surveyor
 {
     using System;
-    using System.Collections.Generic;
     using System.Drawing;
-    using System.IO;
-    using System.Net;
-    using System.Net.Sockets;
 
     /// <summary>
     /// Manipulation of Surveyor SVS (Stereo Vision System) board.

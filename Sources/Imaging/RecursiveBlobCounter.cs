@@ -193,7 +193,7 @@ namespace AForge.Imaging
                 }
                 else
                 {
-                    pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+                    pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
                     int offset = stride - imageWidth * pixelSize;
 
                     // for each line

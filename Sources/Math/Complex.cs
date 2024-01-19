@@ -54,17 +54,17 @@ namespace AForge.Math
         /// <summary>
         ///  A double-precision complex number that represents zero.
         /// </summary>
-        public static readonly Complex Zero = new Complex( 0, 0 );
+        public static readonly Complex Zero = new Complex(0, 0);
 
         /// <summary>
         ///  A double-precision complex number that represents one.
         /// </summary>
-        public static readonly Complex One = new Complex( 1, 0 );
+        public static readonly Complex One = new Complex(1, 0);
 
         /// <summary>
         ///  A double-precision complex number that represents the squere root of (-1).
         /// </summary>
-        public static readonly Complex I = new Complex( 0, 1 );
+        public static readonly Complex I = new Complex(0, 1);
 
         /// <summary>
         /// Magnitude value of the complex number.
@@ -74,7 +74,7 @@ namespace AForge.Math
         /// 
         public double Magnitude
         {
-            get { return System.Math.Sqrt( Re * Re + Im * Im ); }
+            get { return Math.Sqrt(Re * Re + Im * Im); }
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace AForge.Math
         /// 
         public double Phase
         {
-            get { return System.Math.Atan2( Im, Re ); }
+            get { return Math.Atan2(Im, Re); }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace AForge.Math
         /// </summary>
         public double SquaredMagnitude
         {
-            get { return ( Re * Re + Im * Im ); }
+            get { return (Re * Re + Im * Im); }
         }
 
 
@@ -104,7 +104,7 @@ namespace AForge.Math
         /// <param name="re">Real part.</param>
         /// <param name="im">Imaginary part.</param>
         /// 
-        public Complex( double re, double im )
+        public Complex(double re, double im)
         {
             this.Re = re;
             this.Im = im;
@@ -116,7 +116,7 @@ namespace AForge.Math
         /// 
         /// <param name="c">Source complex number.</param>
         /// 
-        public Complex( Complex c )
+        public Complex(Complex c)
         {
             this.Re = c.Re;
             this.Im = c.Im;
@@ -132,9 +132,9 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the sum of specified
         /// complex numbers.</returns>
         /// 
-        public static Complex Add( Complex a, Complex b )
+        public static Complex Add(Complex a, Complex b)
         {
-            return new Complex( a.Re + b.Re, a.Im + b.Im );
+            return new Complex(a.Re + b.Re, a.Im + b.Im);
         }
 
         /// <summary>
@@ -147,9 +147,9 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the sum of specified
         /// complex number and scalar value.</returns>
         /// 
-        public static Complex Add( Complex a, double s )
+        public static Complex Add(Complex a, double s)
         {
-            return new Complex( a.Re + s, a.Im );
+            return new Complex(a.Re + s, a.Im);
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace AForge.Math
         /// <param name="b">A <see cref="Complex"/> instance.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Add( Complex a, Complex b, ref Complex result )
+        public static void Add(Complex a, Complex b, ref Complex result)
         {
             result.Re = a.Re + b.Re;
             result.Im = a.Im + b.Im;
@@ -174,7 +174,7 @@ namespace AForge.Math
         /// <param name="s">A scalar value.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Add( Complex a, double s, ref Complex result )
+        public static void Add(Complex a, double s, ref Complex result)
         {
             result.Re = a.Re + s;
             result.Im = a.Im;
@@ -189,9 +189,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the subtraction result (<b>a - b</b>).</returns>
         /// 
-        public static Complex Subtract( Complex a, Complex b )
+        public static Complex Subtract(Complex a, Complex b)
         {
-            return new Complex( a.Re - b.Re, a.Im - b.Im );
+            return new Complex(a.Re - b.Re, a.Im - b.Im);
         }
 
         /// <summary>
@@ -203,9 +203,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the subtraction result (<b>a - s</b>).</returns>
         /// 
-        public static Complex Subtract( Complex a, double s )
+        public static Complex Subtract(Complex a, double s)
         {
-            return new Complex( a.Re - s, a.Im );
+            return new Complex(a.Re - s, a.Im);
         }
 
         /// <summary>
@@ -217,9 +217,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the subtraction result (<b>s - a</b>).</returns>
         /// 
-        public static Complex Subtract( double s, Complex a )
+        public static Complex Subtract(double s, Complex a)
         {
-            return new Complex( s - a.Re, a.Im );
+            return new Complex(s - a.Re, a.Im);
         }
 
         /// <summary>
@@ -230,7 +230,7 @@ namespace AForge.Math
         /// <param name="b">A <see cref="Complex"/> instance to be subtracted.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Subtract( Complex a, Complex b, ref Complex result )
+        public static void Subtract(Complex a, Complex b, ref Complex result)
         {
             result.Re = a.Re - b.Re;
             result.Im = a.Im - b.Im;
@@ -244,7 +244,7 @@ namespace AForge.Math
         /// <param name="s">A scalar value to be subtracted.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Subtract( Complex a, double s, ref Complex result )
+        public static void Subtract(Complex a, double s, ref Complex result)
         {
             result.Re = a.Re - s;
             result.Im = a.Im;
@@ -258,7 +258,7 @@ namespace AForge.Math
         /// <param name="a">A <see cref="Complex"/> instance to be subtracted.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Subtract( double s, Complex a, ref Complex result )
+        public static void Subtract(double s, Complex a, ref Complex result)
         {
             result.Re = s - a.Re;
             result.Im = a.Im;
@@ -273,13 +273,13 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of multiplication.</returns>
         /// 
-        public static Complex Multiply( Complex a, Complex b )
+        public static Complex Multiply(Complex a, Complex b)
         {
             // (x + yi)(u + vi) = (xu – yv) + (xv + yu)i. 
             double aRe = a.Re, aIm = a.Im;
             double bRe = b.Re, bIm = b.Im;
 
-            return new Complex( aRe * bRe - aIm * bIm, aRe * bIm + aIm * bRe );
+            return new Complex(aRe * bRe - aIm * bIm, aRe * bIm + aIm * bRe);
         }
 
         /// <summary>
@@ -291,9 +291,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of multiplication.</returns>
         /// 
-        public static Complex Multiply( Complex a, double s )
+        public static Complex Multiply(Complex a, double s)
         {
-            return new Complex( a.Re * s, a.Im * s );
+            return new Complex(a.Re * s, a.Im * s);
         }
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace AForge.Math
         /// <param name="b">A <see cref="Complex"/> instance.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Multiply( Complex a, Complex b, ref Complex result )
+        public static void Multiply(Complex a, Complex b, ref Complex result)
         {
             // (x + yi)(u + vi) = (xu – yv) + (xv + yu)i. 
             double aRe = a.Re, aIm = a.Im;
@@ -322,7 +322,7 @@ namespace AForge.Math
         /// <param name="s">A scalar value.</param>
         /// <param name="result">A <see cref="Complex"/> instance to hold the result.</param>
         /// 
-        public static void Multiply( Complex a, double s, ref Complex result )
+        public static void Multiply(Complex a, double s, ref Complex result)
         {
             result.Re = a.Re * s;
             result.Im = a.Im * s;
@@ -339,22 +339,22 @@ namespace AForge.Math
         /// 
         /// <exception cref="DivideByZeroException">Can not divide by zero.</exception>
         /// 
-        public static Complex Divide( Complex a, Complex b )
+        public static Complex Divide(Complex a, Complex b)
         {
             double aRe = a.Re, aIm = a.Im;
             double bRe = b.Re, bIm = b.Im;
             double modulusSquared = bRe * bRe + bIm * bIm;
 
-            if ( modulusSquared == 0 )
+            if (modulusSquared == 0)
             {
-                throw new DivideByZeroException( "Can not divide by zero." );
+                throw new DivideByZeroException("Can not divide by zero.");
             }
 
             double invModulusSquared = 1 / modulusSquared;
 
             return new Complex(
-                ( aRe * bRe + aIm * bIm ) * invModulusSquared,
-                ( aIm * bRe - aRe * bIm ) * invModulusSquared );
+                (aRe * bRe + aIm * bIm) * invModulusSquared,
+                (aIm * bRe - aRe * bIm) * invModulusSquared);
         }
 
         /// <summary>
@@ -368,14 +368,14 @@ namespace AForge.Math
         /// 
         /// <exception cref="DivideByZeroException">Can not divide by zero.</exception>
         /// 
-        public static Complex Divide( Complex a, double s )
+        public static Complex Divide(Complex a, double s)
         {
-            if ( s == 0 )
+            if (s == 0)
             {
-                throw new DivideByZeroException( "Can not divide by zero." );
+                throw new DivideByZeroException("Can not divide by zero.");
             }
 
-            return new Complex( a.Re / s, a.Im / s );
+            return new Complex(a.Re / s, a.Im / s);
         }
 
         /// <summary>
@@ -389,13 +389,13 @@ namespace AForge.Math
         /// 
         /// <exception cref="DivideByZeroException">Can not divide by zero.</exception>
         /// 
-        public static Complex Divide( double s, Complex a )
+        public static Complex Divide(double s, Complex a)
         {
-            if ( ( a.Re == 0 ) || ( a.Im == 0 ) )
+            if ((a.Re == 0) || (a.Im == 0))
             {
-                throw new DivideByZeroException( "Can not divide by zero." );
+                throw new DivideByZeroException("Can not divide by zero.");
             }
-            return new Complex( s / a.Re, s / a.Im );
+            return new Complex(s / a.Re, s / a.Im);
         }
 
         /// <summary>
@@ -408,21 +408,21 @@ namespace AForge.Math
         /// 
         /// <exception cref="DivideByZeroException">Can not divide by zero.</exception>
         /// 
-        public static void Divide( Complex a, Complex b, ref Complex result )
+        public static void Divide(Complex a, Complex b, ref Complex result)
         {
             double aRe = a.Re, aIm = a.Im;
             double bRe = b.Re, bIm = b.Im;
             double modulusSquared = bRe * bRe + bIm * bIm;
 
-            if ( modulusSquared == 0 )
+            if (modulusSquared == 0)
             {
-                throw new DivideByZeroException( "Can not divide by zero." );
+                throw new DivideByZeroException("Can not divide by zero.");
             }
 
             double invModulusSquared = 1 / modulusSquared;
 
-            result.Re = ( aRe * bRe + aIm * bIm ) * invModulusSquared;
-            result.Im = ( aIm * bRe - aRe * bIm ) * invModulusSquared;
+            result.Re = (aRe * bRe + aIm * bIm) * invModulusSquared;
+            result.Im = (aIm * bRe - aRe * bIm) * invModulusSquared;
         }
 
         /// <summary>
@@ -435,11 +435,11 @@ namespace AForge.Math
         /// 
         /// <exception cref="DivideByZeroException">Can not divide by zero.</exception>
         /// 
-        public static void Divide( Complex a, double s, ref Complex result )
+        public static void Divide(Complex a, double s, ref Complex result)
         {
-            if ( s == 0 )
+            if (s == 0)
             {
-                throw new DivideByZeroException( "Can not divide by zero." );
+                throw new DivideByZeroException("Can not divide by zero.");
             }
 
             result.Re = a.Re / s;
@@ -456,11 +456,11 @@ namespace AForge.Math
         /// 
         /// <exception cref="DivideByZeroException">Can not divide by zero.</exception>
         /// 
-        public static void Divide( double s, Complex a, ref Complex result )
+        public static void Divide(double s, Complex a, ref Complex result)
         {
-            if ( ( a.Re == 0 ) || ( a.Im == 0 ) )
+            if ((a.Re == 0) || (a.Im == 0))
             {
-                throw new DivideByZeroException( "Can not divide by zero." );
+                throw new DivideByZeroException("Can not divide by zero.");
             }
 
             result.Re = s / a.Re;
@@ -475,9 +475,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the negated values.</returns>
         /// 
-        public static Complex Negate( Complex a )
+        public static Complex Negate(Complex a)
         {
-            return new Complex( -a.Re, -a.Im );
+            return new Complex(-a.Re, -a.Im);
         }
 
         /// <summary>
@@ -491,9 +491,9 @@ namespace AForge.Math
         /// 
         /// <remarks><para>The default tolerance value, which is used for the test, equals to 8.8817841970012523233891E-16.</para></remarks>
         /// 
-        public static bool ApproxEqual( Complex a, Complex b )
+        public static bool ApproxEqual(Complex a, Complex b)
         {
-            return ApproxEqual( a, b, 8.8817841970012523233891E-16 );
+            return ApproxEqual(a, b, 8.8817841970012523233891E-16);
         }
 
 
@@ -507,12 +507,12 @@ namespace AForge.Math
         /// 
         /// <remarks><para>The default tolerance value, which is used for the test, equals to 8.8817841970012523233891E-16.</para></remarks>
         /// 
-        public static bool ApproxEqual( Complex a, Complex b, double tolerance )
+        public static bool ApproxEqual(Complex a, Complex b, double tolerance)
         {
             return
                 (
-                ( System.Math.Abs( a.Re - b.Re ) <= tolerance ) &&
-                ( System.Math.Abs( a.Im - b.Im ) <= tolerance )
+                (Math.Abs(a.Re - b.Re) <= tolerance) &&
+                (Math.Abs(a.Im - b.Im) <= tolerance)
                 );
         }
 
@@ -528,21 +528,21 @@ namespace AForge.Math
         /// 
         /// <exception cref="FormatException">String representation of the complex number is not correctly formatted.</exception>
         /// 
-        public static Complex Parse( string s )
+        public static Complex Parse(string s)
         {
-            Regex r = new Regex( @"\((?<real>.*),(?<imaginary>.*)\)", RegexOptions.None );
-            Match m = r.Match( s );
+            Regex r = new Regex(@"\((?<real>.*),(?<imaginary>.*)\)", RegexOptions.None);
+            Match m = r.Match(s);
 
-            if ( m.Success )
+            if (m.Success)
             {
                 return new Complex(
-                    double.Parse( m.Result( "${real}" ) ),
-                    double.Parse( m.Result( "${imaginary}" ) )
+                    double.Parse(m.Result("${real}")),
+                    double.Parse(m.Result("${imaginary}"))
                     );
             }
             else
             {
-                throw new FormatException( "String representation of the complex number is not correctly formatted." );
+                throw new FormatException("String representation of the complex number is not correctly formatted.");
             }
         }
 
@@ -556,19 +556,19 @@ namespace AForge.Math
         /// 
         /// <returns>Returns boolean value that indicates if the parse was successful or not.</returns>
         /// 
-        public static bool TryParse( string s, out Complex result )
+        public static bool TryParse(string s, out Complex result)
         {
             try
             {
-                Complex newComplex = Complex.Parse( s );
+                Complex newComplex = Parse(s);
                 result = newComplex;
                 return true;
 
             }
-            catch ( FormatException )
+            catch (FormatException)
             {
 
-                result = new Complex( );
+                result = new Complex();
                 return false;
             }
         }
@@ -586,26 +586,26 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the square root of the specified
         /// complex number.</returns>
         /// 
-        public static Complex Sqrt( Complex a )
+        public static Complex Sqrt(Complex a)
         {
-            Complex result = Complex.Zero;
+            Complex result = Zero;
 
-            if ( ( a.Re == 0.0 ) && ( a.Im == 0.0 ) )
+            if ((a.Re == 0.0) && (a.Im == 0.0))
             {
                 return result;
             }
-            else if ( a.Im == 0.0 )
+            else if (a.Im == 0.0)
             {
-                result.Re = ( a.Re > 0 ) ? System.Math.Sqrt( a.Re ) : System.Math.Sqrt( -a.Re );
+                result.Re = (a.Re > 0) ? Math.Sqrt(a.Re) : Math.Sqrt(-a.Re);
                 result.Im = 0.0;
             }
             else
             {
                 double modulus = a.Magnitude;
 
-                result.Re = System.Math.Sqrt( 0.5 * ( modulus + a.Re ) );
-                result.Im = System.Math.Sqrt( 0.5 * ( modulus - a.Re ) );
-                if ( a.Im < 0.0 )
+                result.Re = Math.Sqrt(0.5 * (modulus + a.Re));
+                result.Im = Math.Sqrt(0.5 * (modulus - a.Re));
+                if (a.Im < 0.0)
                     result.Im = -result.Im;
             }
 
@@ -621,32 +621,32 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the natural logarithm of the specified
         /// complex number.</returns>
         /// 
-        public static Complex Log( Complex a )
+        public static Complex Log(Complex a)
         {
-            Complex result = Complex.Zero;
+            Complex result = Zero;
 
-            if ( ( a.Re > 0.0 ) && ( a.Im == 0.0 ) )
+            if ((a.Re > 0.0) && (a.Im == 0.0))
             {
-                result.Re = System.Math.Log( a.Re );
+                result.Re = Math.Log(a.Re);
                 result.Im = 0.0;
             }
-            else if ( a.Re == 0.0 )
+            else if (a.Re == 0.0)
             {
-                if ( a.Im > 0.0 )
+                if (a.Im > 0.0)
                 {
-                    result.Re = System.Math.Log( a.Im );
-                    result.Im = System.Math.PI / 2.0;
+                    result.Re = Math.Log(a.Im);
+                    result.Im = Math.PI / 2.0;
                 }
                 else
                 {
-                    result.Re = System.Math.Log( -( a.Im ) );
-                    result.Im = -System.Math.PI / 2.0;
+                    result.Re = Math.Log(-(a.Im));
+                    result.Im = -Math.PI / 2.0;
                 }
             }
             else
             {
-                result.Re = System.Math.Log( a.Magnitude );
-                result.Im = System.Math.Atan2( a.Im, a.Re );
+                result.Re = Math.Log(a.Magnitude);
+                result.Im = Math.Atan2(a.Im, a.Re);
             }
 
             return result;
@@ -661,12 +661,12 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the exponent of the specified
         /// complex number.</returns>
         /// 
-        public static Complex Exp( Complex a )
+        public static Complex Exp(Complex a)
         {
-            Complex result = Complex.Zero;
-            double r = System.Math.Exp( a.Re );
-            result.Re = r * System.Math.Cos( a.Im );
-            result.Im = r * System.Math.Sin( a.Im );
+            Complex result = Zero;
+            double r = Math.Exp(a.Re);
+            result.Re = r * Math.Cos(a.Im);
+            result.Im = r * Math.Sin(a.Im);
 
             return result;
         }
@@ -683,19 +683,19 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the Sine value of the specified
         /// complex number.</returns>
         /// 
-        public static Complex Sin( Complex a )
+        public static Complex Sin(Complex a)
         {
-            Complex result = Complex.Zero;
+            Complex result = Zero;
 
-            if ( a.Im == 0.0 )
+            if (a.Im == 0.0)
             {
-                result.Re = System.Math.Sin( a.Re );
+                result.Re = Math.Sin(a.Re);
                 result.Im = 0.0;
             }
             else
             {
-                result.Re = System.Math.Sin( a.Re ) * System.Math.Cosh( a.Im );
-                result.Im = System.Math.Cos( a.Re ) * System.Math.Sinh( a.Im );
+                result.Re = Math.Sin(a.Re) * Math.Cosh(a.Im);
+                result.Im = Math.Cos(a.Re) * Math.Sinh(a.Im);
             }
 
             return result;
@@ -710,19 +710,19 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the Cosine value of the specified
         /// complex number.</returns>
         /// 
-        public static Complex Cos( Complex a )
+        public static Complex Cos(Complex a)
         {
-            Complex result = Complex.Zero;
+            Complex result = Zero;
 
-            if ( a.Im == 0.0 )
+            if (a.Im == 0.0)
             {
-                result.Re = System.Math.Cos( a.Re );
+                result.Re = Math.Cos(a.Re);
                 result.Im = 0.0;
             }
             else
             {
-                result.Re = System.Math.Cos( a.Re ) * System.Math.Cosh( a.Im );
-                result.Im = -System.Math.Sin( a.Re ) * System.Math.Sinh( a.Im );
+                result.Re = Math.Cos(a.Re) * Math.Cosh(a.Im);
+                result.Im = -Math.Sin(a.Re) * Math.Sinh(a.Im);
             }
 
             return result;
@@ -737,23 +737,23 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing the Tangent value of the specified
         /// complex number.</returns>
         /// 
-        public static Complex Tan( Complex a )
+        public static Complex Tan(Complex a)
         {
-            Complex result = Complex.Zero;
+            Complex result = Zero;
 
-            if ( a.Im == 0.0 )
+            if (a.Im == 0.0)
             {
-                result.Re = System.Math.Tan( a.Re );
+                result.Re = Math.Tan(a.Re);
                 result.Im = 0.0;
             }
             else
             {
                 double real2 = 2 * a.Re;
                 double imag2 = 2 * a.Im;
-                double denom = System.Math.Cos( real2 ) + System.Math.Cosh( real2 );
+                double denom = Math.Cos(real2) + Math.Cosh(real2);
 
-                result.Re = System.Math.Sin( real2 ) / denom;
-                result.Im = System.Math.Sinh( imag2 ) / denom;
+                result.Re = Math.Sin(real2) / denom;
+                result.Im = Math.Sinh(imag2) / denom;
             }
 
             return result;
@@ -766,9 +766,9 @@ namespace AForge.Math
         /// </summary>
         /// 
         /// <returns>A 32-bit signed integer hash code.</returns>
-        public override int GetHashCode( )
+        public override int GetHashCode()
         {
-            return Re.GetHashCode( ) ^ Im.GetHashCode( );
+            return Re.GetHashCode() ^ Im.GetHashCode();
         }
 
         /// <summary>
@@ -779,9 +779,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if <paramref name="obj"/> is a <see cref="Complex"/> and has the same values as this instance or <see langword="false"/> otherwise.</returns>
         /// 
-        public override bool Equals( object obj )
+        public override bool Equals(object obj)
         {
-            return ( obj is Complex ) ? ( this == (Complex) obj ) : false;
+            return (obj is Complex) ? (this == (Complex)obj) : false;
         }
 
         /// <summary>
@@ -790,9 +790,9 @@ namespace AForge.Math
         /// 
         /// <returns>A string representation of this object.</returns>
         /// 
-        public override string ToString( )
+        public override string ToString()
         {
-            return string.Format( "({0}, {1})", Re, Im );
+            return string.Format("({0}, {1})", Re, Im);
         }
         #endregion
 
@@ -806,9 +806,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if the two complex numbers are equal or <see langword="false"/> otherwise.</returns>
         /// 
-        public static bool operator ==( Complex u, Complex v )
+        public static bool operator ==(Complex u, Complex v)
         {
-            return ( ( u.Re == v.Re ) && ( u.Im == v.Im ) );
+            return ((u.Re == v.Re) && (u.Im == v.Im));
         }
 
         /// <summary>
@@ -820,9 +820,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if the two complex numbers are not equal or <see langword="false"/> otherwise.</returns>
         /// 
-        public static bool operator !=( Complex u, Complex v )
+        public static bool operator !=(Complex u, Complex v)
         {
-            return !( u == v );
+            return !(u == v);
         }
         #endregion
 
@@ -835,9 +835,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the negated values.</returns>
         /// 
-        public static Complex operator -( Complex a )
+        public static Complex operator -(Complex a)
         {
-            return Complex.Negate( a );
+            return Negate(a);
         }
         #endregion
 
@@ -851,9 +851,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the sum.</returns>
         /// 
-        public static Complex operator +( Complex a, Complex b )
+        public static Complex operator +(Complex a, Complex b)
         {
-            return Complex.Add( a, b );
+            return Add(a, b);
         }
 
         /// <summary>
@@ -865,9 +865,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the sum.</returns>
         /// 
-        public static Complex operator +( Complex a, double s )
+        public static Complex operator +(Complex a, double s)
         {
-            return Complex.Add( a, s );
+            return Add(a, s);
         }
 
         /// <summary>
@@ -879,9 +879,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the sum.</returns>
         /// 
-        public static Complex operator +( double s, Complex a )
+        public static Complex operator +(double s, Complex a)
         {
-            return Complex.Add( a, s );
+            return Add(a, s);
         }
 
         /// <summary>
@@ -893,9 +893,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the difference.</returns>
         /// 
-        public static Complex operator -( Complex a, Complex b )
+        public static Complex operator -(Complex a, Complex b)
         {
-            return Complex.Subtract( a, b );
+            return Subtract(a, b);
         }
 
         /// <summary>
@@ -907,9 +907,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the difference.</returns>
         /// 
-        public static Complex operator -( Complex a, double s )
+        public static Complex operator -(Complex a, double s)
         {
-            return Complex.Subtract( a, s );
+            return Subtract(a, s);
         }
 
         /// <summary>
@@ -921,9 +921,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the difference.</returns>
         /// 
-        public static Complex operator -( double s, Complex a )
+        public static Complex operator -(double s, Complex a)
         {
-            return Complex.Subtract( s, a );
+            return Subtract(s, a);
         }
 
         /// <summary>
@@ -935,9 +935,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of multiplication.</returns>
         /// 
-        public static Complex operator *( Complex a, Complex b )
+        public static Complex operator *(Complex a, Complex b)
         {
-            return Complex.Multiply( a, b );
+            return Multiply(a, b);
         }
 
         /// <summary>
@@ -949,9 +949,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of multiplication.</returns>
         /// 
-        public static Complex operator *( double s, Complex a )
+        public static Complex operator *(double s, Complex a)
         {
-            return Complex.Multiply( a, s );
+            return Multiply(a, s);
         }
 
         /// <summary>
@@ -963,9 +963,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of multiplication.</returns>
         /// 
-        public static Complex operator *( Complex a, double s )
+        public static Complex operator *(Complex a, double s)
         {
-            return Complex.Multiply( a, s );
+            return Multiply(a, s);
         }
 
         /// <summary>
@@ -978,9 +978,9 @@ namespace AForge.Math
         /// <returns>A new Complex instance containing the result.</returns>
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of division.</returns>
         /// 
-        public static Complex operator /( Complex a, Complex b )
+        public static Complex operator /(Complex a, Complex b)
         {
-            return Complex.Divide( a, b );
+            return Divide(a, b);
         }
 
         /// <summary>
@@ -992,9 +992,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of division.</returns>
         /// 
-        public static Complex operator /( Complex a, double s )
+        public static Complex operator /(Complex a, double s)
         {
-            return Complex.Divide( a, s );
+            return Divide(a, s);
         }
 
         /// <summary>
@@ -1006,9 +1006,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new <see cref="Complex"/> instance containing the result of division.</returns>
         /// 
-        public static Complex operator /( double s, Complex a )
+        public static Complex operator /(double s, Complex a)
         {
-            return Complex.Divide( s, a );
+            return Divide(s, a);
         }
         #endregion
 
@@ -1022,9 +1022,9 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing complex number with
         /// real part initialized to the specified value.</returns>
         /// 
-        public static explicit operator Complex( float value )
+        public static explicit operator Complex(float value)
         {
-            return new Complex( (double) value, 0 );
+            return new Complex((double)value, 0);
         }
 
         /// <summary>
@@ -1036,9 +1036,9 @@ namespace AForge.Math
         /// <returns>Returns new <see cref="Complex"/> instance containing complex number with
         /// real part initialized to the specified value.</returns>
         /// 
-        public static explicit operator Complex( double value )
+        public static explicit operator Complex(double value)
         {
-            return new Complex( value, 0 );
+            return new Complex(value, 0);
         }
         #endregion
 
@@ -1049,9 +1049,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns clone of the complex number.</returns>
         /// 
-        object ICloneable.Clone( )
+        object ICloneable.Clone()
         {
-            return new Complex( this );
+            return new Complex(this);
         }
 
         /// <summary>
@@ -1060,9 +1060,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns clone of the complex number.</returns>
         /// 
-        public Complex Clone( )
+        public Complex Clone()
         {
-            return new Complex( this );
+            return new Complex(this);
         }
         #endregion
 
@@ -1074,10 +1074,10 @@ namespace AForge.Math
         /// <param name="info">The <see cref="SerializationInfo"/> to populate with data. </param>
         /// <param name="context">The destination (see <see cref="StreamingContext"/>) for this serialization.</param>
         /// 
-        public void GetObjectData( SerializationInfo info, StreamingContext context )
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue( "Real", this.Re );
-            info.AddValue( "Imaginary", this.Im );
+            info.AddValue("Real", this.Re);
+            info.AddValue("Imaginary", this.Im);
         }
         #endregion
     }

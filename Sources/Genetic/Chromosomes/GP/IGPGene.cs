@@ -8,8 +8,6 @@
 
 namespace AForge.Genetic
 {
-    using System;
-
     /// <summary>
     /// Types of genes in Genetic Programming.
     /// </summary>

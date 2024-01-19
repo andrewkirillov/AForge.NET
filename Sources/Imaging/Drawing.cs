@@ -96,7 +96,7 @@ namespace AForge.Imaging
 
                 for ( int y = startY; y <= stopY; y++ )
                 {
-                    AForge.SystemTools.SetUnmanagedMemory( ptr, gray, fillWidth );
+                    SystemTools.SetUnmanagedMemory( ptr, gray, fillWidth );
                     ptr += stride;
                 }
             }

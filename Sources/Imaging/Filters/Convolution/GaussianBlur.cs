@@ -9,8 +9,6 @@
 namespace AForge.Imaging.Filters
 {
     using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
 
     /// <summary>
     /// Gaussian blur filter.
@@ -101,7 +99,7 @@ namespace AForge.Imaging.Filters
         public GaussianBlur( )
         {
             CreateFilter( );
-            base.ProcessAlpha = true;
+            ProcessAlpha = true;
         }
 
         /// <summary>
@@ -113,7 +111,7 @@ namespace AForge.Imaging.Filters
         public GaussianBlur( double sigma )
         {
             Sigma = sigma;
-            base.ProcessAlpha = true;
+            ProcessAlpha = true;
         }
 
         /// <summary>
@@ -127,7 +125,7 @@ namespace AForge.Imaging.Filters
         {
             Sigma = sigma;
             Size = size;
-            base.ProcessAlpha = true;
+            ProcessAlpha = true;
         }
 
         // Private members

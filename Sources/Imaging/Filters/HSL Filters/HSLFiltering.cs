@@ -7,7 +7,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -262,7 +261,7 @@ namespace AForge.Imaging.Filters
                     rgb.Blue  = ptr[RGB.B];
 
                     // convert to HSL
-                    AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                    HSL.FromRGB( rgb, hsl );
 
                     // check HSL values
                     if (
@@ -298,7 +297,7 @@ namespace AForge.Imaging.Filters
                     if ( updated )
                     {
                         // convert back to RGB
-                        AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                        HSL.ToRGB( hsl, rgb );
 
                         ptr[RGB.R] = rgb.Red;
                         ptr[RGB.G] = rgb.Green;

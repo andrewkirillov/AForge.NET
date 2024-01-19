@@ -6,19 +6,15 @@
 // contacts@aforgenet.com
 //
 
-using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
-using System.Data;
 using System.Windows.Forms;
-using System.Resources;
 using System.Reflection;
 
 namespace AForge.Controls
 {
+    using System;
     using Point = System.Drawing.Point;
 
     /// <summary>
@@ -35,7 +31,7 @@ namespace AForge.Controls
     /// about available type and possible control's looks.</para>
     /// </remarks>
     /// 
-    public class ColorSlider : System.Windows.Forms.Control
+    public class ColorSlider : Control
     {
         private Pen blackPen = new Pen( Color.Black, 1 );
         private Color startColor = Color.Black;
@@ -64,7 +60,7 @@ namespace AForge.Controls
         /// </summary>
         /// 
         /// <remarks>
-        /// <para>The <see cref="ColorSliderType.Gradient"/> slider's type supposes the control's
+        /// <para>The <see cref="Gradient"/> slider's type supposes the control's
         /// background filled with gradient startting from <see cref="StartColor"/> color and ending
         /// with <see cref="EndColor"/> color. The <see cref="FillColor"/> color does not have
         /// impact on control's look.</para>
@@ -74,7 +70,7 @@ namespace AForge.Controls
         /// <para><b>Sample control's look:</b></para>
         /// <img src="img/controls/slider_gradient.png" width="258" height="17" />    
         /// 
-        /// <para>The <see cref="ColorSliderType.InnerGradient"/> slider's type supposes the control's
+        /// <para>The <see cref="InnerGradient"/> slider's type supposes the control's
         /// background filled with gradient startting from <see cref="StartColor"/> color and ending
         /// with <see cref="EndColor"/> color. In addition the areas, which are outside of
         /// [<see cref="Min"/>, <see cref="Max"/>] range, are filled with <see cref="FillColor"/> color.</para>
@@ -84,7 +80,7 @@ namespace AForge.Controls
         /// <para><b>Sample control's look:</b></para>
         /// <img src="img/controls/slider_inner_gradient.png" width="258" height="17" />
         /// 
-        /// <para>The <see cref="ColorSliderType.OuterGradient"/> slider's type supposes the
+        /// <para>The <see cref="OuterGradient"/> slider's type supposes the
         /// control's background filled with gradient startting from <see cref="StartColor"/> color
         /// and ending with <see cref="EndColor"/> color. In addition the area, which is inside of
         /// [<see cref="Min"/>, <see cref="Max"/>] range, is filled with <see cref="FillColor"/> color.</para>
@@ -94,7 +90,7 @@ namespace AForge.Controls
         /// <para><b>Sample control's look:</b></para>
         /// <img src="img/controls/slider_outer_gradient.png" width="258" height="17" />
         /// 
-        /// <para>The <see cref="ColorSliderType.Threshold"/> slider's type supposes filling areas
+        /// <para>The <see cref="Threshold"/> slider's type supposes filling areas
         /// outside of [<see cref="Min"/>, <see cref="Max"/>] range with <see cref="StartColor"/> and
         /// inside the range with <see cref="EndColor"/>. The <see cref="FillColor"/> color does not
         /// have impact on control's look.</para>
@@ -303,10 +299,10 @@ namespace AForge.Controls
             // 
             // ColorSlider
             // 
-            this.Paint += new System.Windows.Forms.PaintEventHandler( this.ColorSlider_Paint );
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler( this.ColorSlider_MouseMove );
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler( this.ColorSlider_MouseDown );
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler( this.ColorSlider_MouseUp );
+            this.Paint += new PaintEventHandler( this.ColorSlider_Paint );
+            this.MouseMove += new MouseEventHandler( this.ColorSlider_MouseMove );
+            this.MouseDown += new MouseEventHandler( this.ColorSlider_MouseDown );
+            this.MouseUp += new MouseEventHandler( this.ColorSlider_MouseUp );
             this.ResumeLayout( false );
 
         }
@@ -382,7 +378,7 @@ namespace AForge.Controls
         }
 
         // On mouse down
-        private void ColorSlider_MouseDown( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void ColorSlider_MouseDown( object sender, MouseEventArgs e )
         {
             int x = ( ClientRectangle.Right - width ) / 2 - 4;
             int y = 3 + height;
@@ -410,7 +406,7 @@ namespace AForge.Controls
         }
 
         // On mouse up
-        private void ColorSlider_MouseUp( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void ColorSlider_MouseUp( object sender, MouseEventArgs e )
         {
             if ( trackMode != 0 )
             {
@@ -425,7 +421,7 @@ namespace AForge.Controls
         }
 
         // On mouse move
-        private void ColorSlider_MouseMove( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void ColorSlider_MouseMove( object sender, MouseEventArgs e )
         {
             if ( trackMode != 0 )
             {

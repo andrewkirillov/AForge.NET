@@ -11,7 +11,6 @@ namespace AForge.Imaging
     using System;
     using System.Drawing;
     using System.Drawing.Imaging;
-    using AForge;
     using AForge.Math;
 
     /// <summary>
@@ -37,7 +36,7 @@ namespace AForge.Imaging
     /// </code>
     /// </remarks>
     /// 
-    /// <seealso cref="AForge.Math.ContinuousHistogram"/>
+    /// <seealso cref="ContinuousHistogram"/>
     /// 
     public class ImageStatisticsHSL
     {
@@ -343,7 +342,7 @@ namespace AForge.Imaging
                         rgb.Blue  = p[RGB.B];
 
                         // convert to HSL color space
-                        AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                        HSL.FromRGB( rgb, hsl );
 
                         s[(int) ( hsl.Saturation * 255 )]++;
                         l[(int) ( hsl.Luminance  * 255 )]++;
@@ -375,7 +374,7 @@ namespace AForge.Imaging
                         rgb.Blue  = p[RGB.B];
 
                         // convert to HSL color space
-                        AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                        HSL.FromRGB( rgb, hsl );
 
                         s[(int) ( hsl.Saturation * 255 )]++;
                         l[(int) ( hsl.Luminance  * 255 )]++;
@@ -394,11 +393,11 @@ namespace AForge.Imaging
             }
 
             // create histograms
-            saturation = new ContinuousHistogram( s, new Range( 0, 1 ) );
-            luminance  = new ContinuousHistogram( l, new Range( 0, 1 ) );
+            saturation = new ContinuousHistogram( s, new AForge.Range( 0, 1 ) );
+            luminance  = new ContinuousHistogram( l, new AForge.Range( 0, 1 ) );
 
-            saturationWithoutBlack = new ContinuousHistogram( swb, new Range( 0, 1 ) );
-            luminanceWithoutBlack  = new ContinuousHistogram( lwb, new Range( 0, 1 ) );
+            saturationWithoutBlack = new ContinuousHistogram( swb, new AForge.Range( 0, 1 ) );
+            luminanceWithoutBlack  = new ContinuousHistogram( lwb, new AForge.Range( 0, 1 ) );
         }
 
         // Check pixel format of the source image

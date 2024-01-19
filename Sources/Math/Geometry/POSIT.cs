@@ -82,7 +82,7 @@ namespace AForge.Math.Geometry
         /// </summary>
         public Vector3[] Model
         {
-            get { return (Vector3[]) modelPoints.Clone( ); }
+            get { return (Vector3[])modelPoints.Clone(); }
         }
 
         /// <summary>
@@ -104,24 +104,24 @@ namespace AForge.Math.Geometry
         /// 
         /// <exception cref="ArgumentException">The model must have 4 points.</exception>
         /// 
-        public Posit( Vector3[] model, float focalLength )
+        public Posit(Vector3[] model, float focalLength)
         {
-            if ( model.Length != 4 )
+            if (model.Length != 4)
             {
-                throw new ArgumentException( "The model must have 4 points." );
+                throw new ArgumentException("The model must have 4 points.");
             }
 
             this.focalLength = focalLength;
-            modelPoints = (Vector3[]) model.Clone( );
+            modelPoints = (Vector3[])model.Clone();
 
             // compute model vectors
             modelVectors = Matrix3x3.CreateFromRows(
                 model[1] - model[0],
                 model[2] - model[0],
-                model[3] - model[0] );
+                model[3] - model[0]);
 
             // compute pseudo inverse matrix
-            modelPseudoInverse = modelVectors.PseudoInverse( );
+            modelPseudoInverse = modelVectors.PseudoInverse();
         }
 
         private const float stop_epsilon = 1.0e-4f;
@@ -136,32 +136,32 @@ namespace AForge.Math.Geometry
         /// 
         /// <exception cref="ArgumentException">4 points must be be given for pose estimation.</exception>
         /// 
-        public void EstimatePose( Point[] points, out Matrix3x3 rotation, out Vector3 translation )
+        public void EstimatePose(Point[] points, out Matrix3x3 rotation, out Vector3 translation)
         {
-            if ( points.Length != 4 )
+            if (points.Length != 4)
             {
-                throw new ArgumentException( "4 points must be be given for pose estimation." );
+                throw new ArgumentException("4 points must be be given for pose estimation.");
             }
 
             float Z0 = 0, scale = 1;
 
-            Vector3 X0 = new Vector3( points[0].X );
-            Vector3 Y0 = new Vector3( points[0].Y );
+            Vector3 X0 = new Vector3(points[0].X);
+            Vector3 Y0 = new Vector3(points[0].Y);
 
-            Vector3 XI = new Vector3( points[1].X, points[2].X, points[3].X );
-            Vector3 YI = new Vector3( points[1].Y, points[2].Y, points[3].Y );
+            Vector3 XI = new Vector3(points[1].X, points[2].X, points[3].X);
+            Vector3 YI = new Vector3(points[1].Y, points[2].Y, points[3].Y);
 
             int count = 0;
 
-            Vector3 iVector = new Vector3( );
-            Vector3 jVector = new Vector3( );
-            Vector3 kVector = new Vector3( );
-            Vector3 imageXs = new Vector3( );
-            Vector3 imageYs = new Vector3( );
+            Vector3 iVector = new Vector3();
+            Vector3 jVector = new Vector3();
+            Vector3 kVector = new Vector3();
+            Vector3 imageXs = new Vector3();
+            Vector3 imageYs = new Vector3();
 
-            Vector3 eps = new Vector3( 1 );
+            Vector3 eps = new Vector3(1);
 
-            for ( ; count < 100; count++ )
+            for (; count < 100; count++)
             {
                 // calculate new scale orthographic projection (SOP)
                 imageXs = XI * eps - X0;
@@ -171,33 +171,33 @@ namespace AForge.Math.Geometry
                 iVector = modelPseudoInverse * imageXs;
                 jVector = modelPseudoInverse * imageYs;
                 // convert them to unit vectors i and j
-                float iNorm = iVector.Normalize( );
-                float jNorm = jVector.Normalize( );
+                float iNorm = iVector.Normalize();
+                float jNorm = jVector.Normalize();
                 // scale of projection
-                scale = ( iNorm + jNorm ) / 2;
+                scale = (iNorm + jNorm) / 2;
                 // calculate n vector k
-                kVector = Vector3.Cross( iVector, jVector );
+                kVector = Vector3.Cross(iVector, jVector);
                 // z-coordinate Z0 of the translation vector
                 Z0 = focalLength / scale;
 
                 // calculate new epsilon values
                 Vector3 oldEps = eps;
-                eps = ( modelVectors * kVector ) / Z0 + 1;
+                eps = (modelVectors * kVector) / Z0 + 1;
 
                 // check if it is time to stop
-                if ( ( eps - oldEps ).Abs( ).Max < stop_epsilon )
+                if ((eps - oldEps).Abs().Max < stop_epsilon)
                     break;
             }
 
             // create rotation matrix
-            rotation = Matrix3x3.CreateFromRows( iVector, jVector, kVector );
+            rotation = Matrix3x3.CreateFromRows(iVector, jVector, kVector);
 
             // create translation vector
             Vector3 temp = rotation * modelPoints[0];
             translation = new Vector3(
                 points[0].X / scale - temp.X,
                 points[0].Y / scale - temp.Y,
-                focalLength / scale );
+                focalLength / scale);
         }
     }
 }

@@ -8,7 +8,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -145,7 +144,7 @@ namespace AForge.Imaging.Filters
             for ( int y = startY; y < stopY; y++ )
             {
                 // make destination image filled with background color
-                AForge.SystemTools.SetUnmanagedMemory( dst + startX, bg, stopX - startX );
+                SystemTools.SetUnmanagedMemory( dst + startX, bg, stopX - startX );
                 
                 start = -1;
                 // for each pixel

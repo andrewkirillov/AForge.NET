@@ -217,7 +217,7 @@ namespace AForge.Imaging.Filters
 
                 for ( int y = startY; y < stopY; y++ )
                 {
-                    AForge.SystemTools.SetUnmanagedMemory( ptr, fillGray, fillWidth );
+                    SystemTools.SetUnmanagedMemory( ptr, fillGray, fillWidth );
                     ptr += stride;
                 }
             }

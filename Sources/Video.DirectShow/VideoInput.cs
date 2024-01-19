@@ -8,8 +8,6 @@
 
 namespace AForge.Video.DirectShow
 {
-    using System;
-
     /// <summary>
     /// Video input of a capture board.
     /// </summary>

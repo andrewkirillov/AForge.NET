@@ -43,21 +43,21 @@ namespace AForge.Math.Metrics
         /// <exception cref="ArgumentException">Thrown if the two vectors are of different dimensions (if specified
         /// array have different length).</exception>
         /// 
-        public double GetDistance( double[] p, double[] q )
+        public double GetDistance(double[] p, double[] q)
         {
             double distance = 0;
             double diff = 0;
 
-            if ( p.Length != q.Length )
-                throw new ArgumentException( "Input vectors must be of the same dimension." );
+            if (p.Length != q.Length)
+                throw new ArgumentException("Input vectors must be of the same dimension.");
 
-            for ( int x = 0, len = p.Length; x < len; x++ )
+            for (int x = 0, len = p.Length; x < len; x++)
             {
                 diff = p[x] - q[x];
                 distance += diff * diff;
             }
 
-            return Math.Sqrt( distance );
+            return Math.Sqrt(distance);
         }
     }
 }

@@ -11,7 +11,6 @@ using TeRKIceLib = TeRK;
 namespace AForge.Robotics.TeRK
 {
     using System;
-    using AForge;
 
     public partial class Qwerk
     {
@@ -20,7 +19,7 @@ namespace AForge.Robotics.TeRK
         /// </summary>
         /// 
         /// <remarks><para>The class allows to manipulate Qwerk's motors. The total number
-        /// of available motors equals to <see cref="Motors.Count"/>.</para>
+        /// of available motors equals to <see cref="Count"/>.</para>
         /// 
         /// <para><note>The class is deprecated.</note></para>
         /// 
@@ -50,7 +49,7 @@ namespace AForge.Robotics.TeRK
             private const int DefaultAcceleration = 16000;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Qwerk.Motors"/> class.
+            /// Initializes a new instance of the <see cref="Motors"/> class.
             /// </summary>
             /// 
             /// <param name="qwerk">Reference to <see cref="Qwerk"/> object, which is connected to Qwerk board.</param>
@@ -98,7 +97,7 @@ namespace AForge.Robotics.TeRK
             /// Stop specified motor.
             /// </summary>
             /// 
-            /// <param name="motor">Motor to stop, [0, <see cref="Motors.Count"/>).</param>
+            /// <param name="motor">Motor to stop, [0, <see cref="Count"/>).</param>
             /// 
             /// <exception cref="ArgumentOutOfRangeException">Invalid motor is specified.</exception>
             /// <exception cref="NotConnectedException">No connection to Qwerk or its service.</exception>
@@ -146,7 +145,7 @@ namespace AForge.Robotics.TeRK
             /// Set velocity of specified motor.
             /// </summary>
             /// 
-            /// <param name="motor">Motor to set velocity for, [0, <see cref="Motors.Count"/>).</param>
+            /// <param name="motor">Motor to set velocity for, [0, <see cref="Count"/>).</param>
             /// <param name="velocity">Velocity to set.</param>
             /// 
             /// <remarks><para>The method sets specified motor's velocity, which is measured in

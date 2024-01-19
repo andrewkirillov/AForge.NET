@@ -8,8 +8,6 @@
 
 namespace AForge.Neuro.Learning
 {
-    using System;
-
     /// <summary>
     /// Supervised learning interface.
     /// </summary>

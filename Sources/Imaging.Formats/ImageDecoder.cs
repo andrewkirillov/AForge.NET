@@ -7,10 +7,8 @@
 
 namespace AForge.Imaging.Formats
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Drawing.Imaging;
     using System.IO;
 
     /// <summary>
@@ -92,7 +90,7 @@ namespace AForge.Imaging.Formats
         /// <remarks><para>The method uses table of registered image decoders to find the one,
         /// which should be used for the specified file. If there is not appropriate decoder
         /// found, the method uses default .NET's image decoding routine (see
-        /// <see cref="System.Drawing.Image.FromFile( string )"/>).</para></remarks>
+        /// <see cref="Image.FromFile( string )"/>).</para></remarks>
         /// 
         public static Bitmap DecodeFromFile( string fileName )
         {
@@ -114,7 +112,7 @@ namespace AForge.Imaging.Formats
         /// <remarks><para>The method uses table of registered image decoders to find the one,
         /// which should be used for the specified file. If there is not appropriate decoder
         /// found, the method uses default .NET's image decoding routine (see
-        /// <see cref="System.Drawing.Image.FromFile( string )"/>).</para></remarks>
+        /// <see cref="Image.FromFile( string )"/>).</para></remarks>
         /// 
         public static Bitmap DecodeFromFile( string fileName, out ImageInfo imageInfo )
         {
@@ -154,7 +152,7 @@ namespace AForge.Imaging.Formats
             return bitmap;
         }
 
-        private static System.Drawing.Bitmap FromFile( string fileName )
+        private static Bitmap FromFile( string fileName )
         {
             Bitmap loadedImage = null;
             FileStream stream = null;

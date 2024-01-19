@@ -243,7 +243,7 @@ namespace AForge.Imaging.Filters
 
         private unsafe void ProcessImage( UnmanagedImage image, Rectangle rect, byte* mask, int maskLineSize )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             int startY  = rect.Top;
             int stopY   = startY + rect.Height;

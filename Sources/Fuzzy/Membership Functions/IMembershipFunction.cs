@@ -8,8 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-
     /// <summary>
     /// Interface which specifies set of methods required to be implemented by all membership
     /// functions.

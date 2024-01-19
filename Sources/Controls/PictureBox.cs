@@ -6,7 +6,6 @@
 // contacts@aforgenet.com
 //
 
-using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 

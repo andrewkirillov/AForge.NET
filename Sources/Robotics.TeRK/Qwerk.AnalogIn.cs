@@ -11,7 +11,6 @@ using TeRKIceLib = TeRK;
 namespace AForge.Robotics.TeRK
 {
     using System;
-    using AForge;
 
     public partial class Qwerk
     {
@@ -20,7 +19,7 @@ namespace AForge.Robotics.TeRK
         /// </summary>
         /// 
         /// <remarks><para>The class allows to retrieve state of Qwerk's analog inputs. The total
-        /// number of available analog inputs equals to <see cref="AnalogIn.Count"/>.</para>
+        /// number of available analog inputs equals to <see cref="Count"/>.</para>
         /// 
         /// <para><note>The class is deprecated.</note></para>
         /// 
@@ -47,7 +46,7 @@ namespace AForge.Robotics.TeRK
             public const int Count = 8;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Qwerk.AnalogIn"/> class.
+            /// Initializes a new instance of the <see cref="AnalogIn"/> class.
             /// </summary>
             /// 
             /// <param name="qwerk">Reference to <see cref="Qwerk"/> object, which is connected to Qwerk board.</param>
@@ -95,7 +94,7 @@ namespace AForge.Robotics.TeRK
             /// Get state of the specified analog input.
             /// </summary>
             /// 
-            /// <param name="input">Analog input to get state of, [0, <see cref="AnalogIn.Count"/>).</param>
+            /// <param name="input">Analog input to get state of, [0, <see cref="Count"/>).</param>
             /// 
             /// <returns>Returns state of the requested input measured in milli volts.</returns>
             /// 

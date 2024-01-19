@@ -7,8 +7,6 @@
 
 namespace AForge.Robotics.Lego.Internals
 {
-    using System;
-
     /// <summary>
     /// Enumeration of command types supported by Lego Mindstorms NXT brick.
     /// </summary>

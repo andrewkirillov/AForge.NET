@@ -58,7 +58,7 @@ namespace AForge.Imaging.Filters
 								{ 2, 4, 5, 4, 2 },
 								{ 1, 2, 3, 2, 1 } } )
 		{
-            base.ProcessAlpha = true;
+            ProcessAlpha = true;
 		}
 	}
 }

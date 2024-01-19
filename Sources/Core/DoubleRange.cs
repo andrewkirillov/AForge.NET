@@ -90,7 +90,7 @@ namespace AForge
         /// <param name="min">Minimum value of the range.</param>
         /// <param name="max">Maximum value of the range.</param>
         /// 
-        public DoubleRange( double min, double max )
+        public DoubleRange(double min, double max)
         {
             this.min = min;
             this.max = max;
@@ -105,9 +105,9 @@ namespace AForge
         /// <returns><b>True</b> if the specified value is inside of the range or
         /// <b>false</b> otherwise.</returns>
         /// 
-        public bool IsInside( double x )
+        public bool IsInside(double x)
         {
-            return ( ( x >= min ) && ( x <= max ) );
+            return ((x >= min) && (x <= max));
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace AForge
         /// <returns><b>True</b> if the specified range is inside of the range or
         /// <b>false</b> otherwise.</returns>
         /// 
-        public bool IsInside( DoubleRange range )
+        public bool IsInside(DoubleRange range)
         {
-            return ( ( IsInside( range.min ) ) && ( IsInside( range.max ) ) );
+            return ((IsInside(range.min)) && (IsInside(range.max)));
         }
 
         /// <summary>
@@ -133,10 +133,10 @@ namespace AForge
         /// <returns><b>True</b> if the specified range overlaps with the range or
         /// <b>false</b> otherwise.</returns>
         /// 
-        public bool IsOverlapping( DoubleRange range )
+        public bool IsOverlapping(DoubleRange range)
         {
-            return ( ( IsInside( range.min ) ) || ( IsInside( range.max ) ) ||
-                     ( range.IsInside( min ) ) || ( range.IsInside( max ) ) );
+            return ((IsInside(range.min)) || (IsInside(range.max)) ||
+                     (range.IsInside(min)) || (range.IsInside(max)));
         }
 
         /// <summary>
@@ -152,22 +152,22 @@ namespace AForge
         /// If it is set to <see langword="false"/>, then current single precision range will always
         /// fit into the returned integer range.</remarks>
         ///
-        public IntRange ToIntRange( bool provideInnerRange )
+        public IntRange ToIntRange(bool provideInnerRange)
         {
             int iMin, iMax;
 
-            if ( provideInnerRange )
+            if (provideInnerRange)
             {
-                iMin = (int) Math.Ceiling( min );
-                iMax = (int) Math.Floor( max );
+                iMin = (int)Math.Ceiling(min);
+                iMax = (int)Math.Floor(max);
             }
             else
             {
-                iMin = (int) Math.Floor( min );
-                iMax = (int) Math.Ceiling( max );
+                iMin = (int)Math.Floor(min);
+                iMax = (int)Math.Ceiling(max);
             }
 
-            return new IntRange( iMin, iMax );
+            return new IntRange(iMin, iMax);
         }
 
         /// <summary>
@@ -180,9 +180,9 @@ namespace AForge
         /// <returns>Returns <see langword="true"/> if min/max values of specified
         /// ranges are equal.</returns>
         ///
-        public static bool operator ==( DoubleRange range1, DoubleRange range2 )
+        public static bool operator ==(DoubleRange range1, DoubleRange range2)
         {
-            return ( ( range1.min == range2.min ) && ( range1.max == range2.max ) );
+            return ((range1.min == range2.min) && (range1.max == range2.max));
         }
 
         /// <summary>
@@ -195,9 +195,9 @@ namespace AForge
         /// <returns>Returns <see langword="true"/> if min/max values of specified
         /// ranges are not equal.</returns>
         ///
-        public static bool operator !=( DoubleRange range1, DoubleRange range2 )
+        public static bool operator !=(DoubleRange range1, DoubleRange range2)
         {
-            return ( ( range1.min != range2.min ) || ( range1.max != range2.max ) );
+            return ((range1.min != range2.min) || (range1.max != range2.max));
 
         }
 
@@ -209,9 +209,9 @@ namespace AForge
         /// 
         /// <returns>Return <see langword="true"/> if objects are equal.</returns>
         /// 
-        public override bool Equals( object obj )
+        public override bool Equals(object obj)
         {
-            return ( obj is Range ) ? ( this == (DoubleRange) obj ) : false;
+            return (obj is Range) ? (this == (DoubleRange)obj) : false;
         }
 
         /// <summary>
@@ -220,9 +220,9 @@ namespace AForge
         /// 
         /// <returns>Returns the hash code for this instance.</returns>
         /// 
-        public override int GetHashCode( )
+        public override int GetHashCode()
         {
-            return min.GetHashCode( ) + max.GetHashCode( );
+            return min.GetHashCode() + max.GetHashCode();
         }
 
         /// <summary>
@@ -231,9 +231,9 @@ namespace AForge
         /// 
         /// <returns>Returns string, which contains min/max values of the range in readable form.</returns>
         ///
-        public override string ToString( )
+        public override string ToString()
         {
-            return string.Format( System.Globalization.CultureInfo.InvariantCulture, "{0}, {1}", min, max );
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}, {1}", min, max);
         }
     }
 }

@@ -8,15 +8,14 @@
 
 namespace AForge.Imaging.Filters
 {
-	using System;
     using System.Collections.Generic;
     using System.Drawing;
-	using System.Drawing.Imaging;
+    using System.Drawing.Imaging;
 
-	/// <summary>
-	/// Merge filter - get MAX of pixels in two images.
-	/// </summary>
-	/// 
+    /// <summary>
+    /// Merge filter - get MAX of pixels in two images.
+    /// </summary>
+    /// 
     /// <remarks><para>The merge filter takes two images (source and overlay images)
     /// of the same size and pixel format and produces an image, where each pixel equals
     /// to the maximum value of corresponding pixels from provided images.</para>
@@ -39,7 +38,7 @@ namespace AForge.Imaging.Filters
     /// <para><b>Result image:</b></para>
     /// <img src="img/imaging/merge.png" width="320" height="240" />
     /// </remarks>
-	/// 
+    /// 
     /// <seealso cref="Intersect"/>
     /// <seealso cref="Difference"/>
     /// <seealso cref="Add"/>

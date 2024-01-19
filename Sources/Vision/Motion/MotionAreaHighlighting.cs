@@ -8,7 +8,6 @@
 
 namespace AForge.Vision.Motion
 {
-    using System;
     using System.Drawing;
     using System.Drawing.Imaging;
 

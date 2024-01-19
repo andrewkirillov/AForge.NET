@@ -96,7 +96,7 @@ namespace AForge.Imaging.Filters
         ///
         protected override unsafe void ProcessFilter( UnmanagedImage image, Rectangle rect )
         {
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( image.PixelFormat ) / 8;
 
             int startX  = rect.Left;
             int startY  = rect.Top;
@@ -124,13 +124,13 @@ namespace AForge.Imaging.Filters
                     rgb.Blue    = ptr[RGB.B];
 
                     // convert to HSL
-                    AForge.Imaging.HSL.FromRGB( rgb, hsl );
+                    HSL.FromRGB( rgb, hsl );
 
                     // modify hue value
                     hsl.Hue = hue;
 
                     // convert back to RGB
-                    AForge.Imaging.HSL.ToRGB( hsl, rgb );
+                    HSL.ToRGB( hsl, rgb );
 
                     ptr[RGB.R] = rgb.Red;
                     ptr[RGB.G] = rgb.Green;

@@ -8,7 +8,6 @@
 
 namespace AForge.Vision.Motion
 {
-    using System;
     using System.Drawing;
     using System.Drawing.Imaging;
 
@@ -23,7 +22,7 @@ namespace AForge.Vision.Motion
     /// <see cref="IMotionProcessing">motion processing</see> algorithms, allowing to call them with
     /// single call. Unlike motion detection and motion processing interfaces, the class also
     /// provides additional methods for convenience, so the algorithms could be applied not
-    /// only to <see cref="AForge.Imaging.UnmanagedImage"/>, but to .NET's <see cref="Bitmap"/> class
+    /// only to <see cref="UnmanagedImage"/>, but to .NET's <see cref="Bitmap"/> class
     /// as well.</para>
     /// 
     /// <para>In addition to wrapping of motion detection and processing algorthms, the class provides

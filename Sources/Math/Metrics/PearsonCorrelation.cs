@@ -43,16 +43,16 @@ namespace AForge.Math.Metrics
         /// <exception cref="ArgumentException">Thrown if the two vectors are of different dimensions (if specified
         /// array have different length).</exception>
         /// 
-        public double GetSimilarityScore( double[] p, double[] q )
+        public double GetSimilarityScore(double[] p, double[] q)
         {
             double pSum = 0, qSum = 0, pSumSq = 0, qSumSq = 0, productSum = 0;
             double pValue, qValue;
             int n = p.Length;
 
-            if ( n != q.Length )
-                throw new ArgumentException( "Input vectors must be of the same dimension." );
+            if (n != q.Length)
+                throw new ArgumentException("Input vectors must be of the same dimension.");
 
-            for ( int x = 0; x < n; x++ )
+            for (int x = 0; x < n; x++)
             {
                 pValue = p[x];
                 qValue = q[x];
@@ -64,10 +64,10 @@ namespace AForge.Math.Metrics
                 productSum += pValue * qValue;
             }
 
-            double numerator = productSum - ( ( pSum * qSum ) / (double) n );
-            double denominator = Math.Sqrt( ( pSumSq - ( pSum * pSum ) / (double) n ) * ( qSumSq - ( qSum * qSum ) / (double) n ) );
+            double numerator = productSum - ((pSum * qSum) / (double)n);
+            double denominator = Math.Sqrt((pSumSq - (pSum * pSum) / (double)n) * (qSumSq - (qSum * qSum) / (double)n));
 
-            return ( denominator == 0 ) ? 0 : numerator / denominator;
+            return (denominator == 0) ? 0 : numerator / denominator;
         }
     }
 }

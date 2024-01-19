@@ -8,7 +8,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -114,7 +113,7 @@ namespace AForge.Imaging.Filters
 
             // create new image of required format
             Bitmap dstImage = ( dstPixelFormat == PixelFormat.Format8bppIndexed ) ?
-                AForge.Imaging.Image.CreateGrayscaleImage( width, height ) :
+                Imaging.Image.CreateGrayscaleImage( width, height ) :
                 new Bitmap( width, height, dstPixelFormat );
 
             // lock destination bitmap data

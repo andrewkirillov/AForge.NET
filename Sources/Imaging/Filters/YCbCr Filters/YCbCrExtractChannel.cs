@@ -131,8 +131,8 @@ namespace AForge.Imaging.Filters
 					rgb.Green	= src[RGB.G];
 					rgb.Blue	= src[RGB.B];
 
-					// convert to YCbCr
-                    AForge.Imaging.YCbCr.FromRGB( rgb, ycbcr );
+                    // convert to YCbCr
+                    YCbCr.FromRGB( rgb, ycbcr );
 
 					switch ( channel )
 					{

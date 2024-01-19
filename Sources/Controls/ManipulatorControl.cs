@@ -6,13 +6,14 @@
 // andrew.kirillov@aforgenet.com
 //
 
-using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace AForge.Controls
 {
+    using System;
+
     /// <summary>
     /// Manipulator control.
     /// </summary>
@@ -345,7 +346,7 @@ namespace AForge.Controls
             /// </summary>
             public float R
             {
-                get { return (float) Math.Sqrt( x * x + y * y ); }
+                get { return (float)Math.Sqrt(x * x + y * y); }
             }
 
             /// <summary>

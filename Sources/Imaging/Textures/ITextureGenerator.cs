@@ -8,8 +8,6 @@
 
 namespace AForge.Imaging.Textures
 {
-    using System;
-
     /// <summary>
     /// Texture generator interface.
     /// </summary>

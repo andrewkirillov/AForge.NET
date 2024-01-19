@@ -134,7 +134,7 @@ namespace AForge.Imaging.Filters
             // copy source to destination before
             if ( srcStride == dstStride )
             {
-                AForge.SystemTools.CopyUnmanagedMemory( dst, src, srcStride * source.Height );
+                SystemTools.CopyUnmanagedMemory( dst, src, srcStride * source.Height );
             }
             else
             {
@@ -142,7 +142,7 @@ namespace AForge.Imaging.Filters
 
                 for ( int y = 0, heigh = source.Height; y < heigh; y++ )
                 {
-                    AForge.SystemTools.CopyUnmanagedMemory(
+                    SystemTools.CopyUnmanagedMemory(
                         dst + dstStride * y, src + srcStride * y, len );
                 }
             }

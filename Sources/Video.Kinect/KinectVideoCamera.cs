@@ -15,7 +15,6 @@ namespace AForge.Video.Kinect
     using System.Runtime.InteropServices;
 
     using AForge;
-    using AForge.Imaging;
     using AForge.Video;
 
     /// <summary>

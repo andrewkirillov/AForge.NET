@@ -9,10 +9,6 @@
 //
 namespace AForge.Imaging.Filters
 {
-    using System;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-
     /// <summary>
     /// Dithering using Jarvis, Judice and Ninke error diffusion.
     /// </summary>

@@ -7,9 +7,7 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
-    using System.Drawing;
     using System.Drawing.Imaging;
 
     /// <summary>
@@ -32,9 +30,9 @@ namespace AForge.Imaging.Filters
         /// 
         /// <para>Keys of this dictionary defines all pixel formats which are supported for source
         /// images, but corresponding values define what will be resulting pixel format. For
-        /// example, if value <see cref="System.Drawing.Imaging.PixelFormat">Format16bppGrayScale</see>
+        /// example, if value <see cref="PixelFormat">Format16bppGrayScale</see>
         /// is put into the dictionary with the
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format48bppRgb</see> key, then it means
+        /// <see cref="PixelFormat">Format48bppRgb</see> key, then it means
         /// that the filter accepts color 48 bpp image and produces 16 bpp grayscale image as a result
         /// of image processing.</para>
         /// 

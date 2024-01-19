@@ -11,7 +11,6 @@ using TeRKIceLib = TeRK;
 namespace AForge.Robotics.TeRK
 {
     using System;
-    using AForge;
 
     public partial class Qwerk
     {
@@ -20,7 +19,7 @@ namespace AForge.Robotics.TeRK
         /// </summary>
         /// 
         /// <remarks><para>The class allows to manipulate Qwerk's digital outputs. The total number
-        /// of available digital outputs equals to <see cref="DigitalOut.Count"/>.</para>
+        /// of available digital outputs equals to <see cref="Count"/>.</para>
         /// 
         /// <para><note>The class is deprecated.</note></para>
         /// 
@@ -51,7 +50,7 @@ namespace AForge.Robotics.TeRK
             public const int Count = 4;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Qwerk.DigitalOut"/> class.
+            /// Initializes a new instance of the <see cref="DigitalOut"/> class.
             /// </summary>
             /// 
             /// <param name="qwerk">Reference to <see cref="Qwerk"/> object, which is connected to Qwerk board.</param>
@@ -99,7 +98,7 @@ namespace AForge.Robotics.TeRK
             /// Set state of specified digital output.
             /// </summary>
             /// 
-            /// <param name="output">Digital output to state for, [0, <see cref="DigitalOut.Count"/>).</param>
+            /// <param name="output">Digital output to state for, [0, <see cref="Count"/>).</param>
             /// <param name="state">Digital output's state to set.</param>
             /// 
             /// <remarks><para>The method sets state of one of Qwerk's digital outputs, which index is

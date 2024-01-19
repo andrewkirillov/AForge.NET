@@ -8,10 +8,8 @@
 namespace AForge.Controls
 {
     using System;
-    using System.Collections;
     using System.ComponentModel;
     using System.Drawing;
-    using System.Data;
     using System.Windows.Forms;
 
     /// <summary>
@@ -100,7 +98,7 @@ namespace AForge.Controls
     /// <img src="img/controls/histogram.jpg" width="324" height="77" />
     /// </remarks>
     /// 
-    public class Histogram : System.Windows.Forms.Control
+    public class Histogram : Control
     {
         // color used to paing histogram
         private Color color = Color.Black;
@@ -300,10 +298,10 @@ namespace AForge.Controls
             // 
             // Histogram
             // 
-            this.MouseUp    += new System.Windows.Forms.MouseEventHandler( this.Histogram_MouseUp );
-            this.MouseMove  += new System.Windows.Forms.MouseEventHandler( this.Histogram_MouseMove );
-            this.MouseLeave += new System.EventHandler( this.Histogram_MouseLeave );
-            this.MouseDown  += new System.Windows.Forms.MouseEventHandler( this.Histogram_MouseDown );
+            this.MouseUp    += new MouseEventHandler( this.Histogram_MouseUp );
+            this.MouseMove  += new MouseEventHandler( this.Histogram_MouseMove );
+            this.MouseLeave += new EventHandler( this.Histogram_MouseLeave );
+            this.MouseDown  += new MouseEventHandler( this.Histogram_MouseDown );
         }
 
         /// <summary>
@@ -396,7 +394,7 @@ namespace AForge.Controls
         }
 
         // On mouse down
-        private void Histogram_MouseDown( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void Histogram_MouseDown( object sender, MouseEventArgs e )
         {
             if ( ( allowSelection ) && ( values != null ) )
             {
@@ -414,7 +412,7 @@ namespace AForge.Controls
         }
 
         // On mouse up
-        private void Histogram_MouseUp( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void Histogram_MouseUp( object sender, MouseEventArgs e )
         {
             if ( tracking )
             {
@@ -426,7 +424,7 @@ namespace AForge.Controls
         }
 
         // On mouse move
-        private void Histogram_MouseMove( object sender, System.Windows.Forms.MouseEventArgs e )
+        private void Histogram_MouseMove( object sender, MouseEventArgs e )
         {
             if ( ( allowSelection ) && ( values != null ) )
             {
@@ -481,7 +479,7 @@ namespace AForge.Controls
         }
 
         // On mouse leave
-        private void Histogram_MouseLeave( object sender, System.EventArgs e )
+        private void Histogram_MouseLeave( object sender, EventArgs e )
         {
             if ( ( allowSelection ) && ( values != null ) && ( !tracking ) )
             {

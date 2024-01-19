@@ -275,7 +275,7 @@ namespace AForge.Imaging.Filters
                     rgb.Blue    = dst[RGB.B];
 
                     // convert to YCbCr
-                    AForge.Imaging.YCbCr.FromRGB( rgb, ycbcr );
+                    YCbCr.FromRGB( rgb, ycbcr );
 
                     switch ( channel )
                     {
@@ -293,7 +293,7 @@ namespace AForge.Imaging.Filters
                     }
 
                     // convert back to RGB
-                    AForge.Imaging.YCbCr.ToRGB( ycbcr, rgb );
+                    YCbCr.ToRGB( ycbcr, rgb );
 
                     dst[RGB.R] = rgb.Red;
                     dst[RGB.G] = rgb.Green;

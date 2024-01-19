@@ -7,8 +7,6 @@
 
 namespace AForge.Neuro
 {
-    using System;
-
     /// <summary>
     /// Activation function interface.
     /// </summary>

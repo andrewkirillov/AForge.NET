@@ -8,26 +8,24 @@
 
 namespace AForge.Genetic
 {
-	using System;
-	using System.Collections;
     using System.Collections.Generic;
     using AForge;
 
-	/// <summary>
-	/// Roulette wheel selection method.
-	/// </summary>
-	/// 
-	/// <remarks><para>The algorithm selects chromosomes to the new generation according to
-	/// their fitness values - the more fitness value chromosome has, the more chances
-	/// it has to become member of new generation. Each chromosome can be selected
+    /// <summary>
+    /// Roulette wheel selection method.
+    /// </summary>
+    /// 
+    /// <remarks><para>The algorithm selects chromosomes to the new generation according to
+    /// their fitness values - the more fitness value chromosome has, the more chances
+    /// it has to become member of new generation. Each chromosome can be selected
     /// several times to the new generation.</para>
     /// 
     /// <para>The "roulette's wheel" is divided into sectors, which size is proportional to
     /// the fitness values of chromosomes - the  size of the wheel is the sum of all fitness
     /// values, size of each sector equals to fitness value of chromosome.</para>
     /// </remarks>
-	/// 
-	public class RouletteWheelSelection : ISelectionMethod
+    /// 
+    public class RouletteWheelSelection : ISelectionMethod
 	{
 		// random number generator
         private static ThreadSafeRandom rand = new ThreadSafeRandom( );

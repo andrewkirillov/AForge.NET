@@ -30,12 +30,12 @@ namespace AForge
         /// 
         /// <param name="index">Loop's index.</param>
         /// 
-        public delegate void ForLoopBody( int index );
+        public delegate void ForLoopBody(int index);
 
         // number of threads for parallel computations
         private static int threadsCount = System.Environment.ProcessorCount;
         // object used for synchronization
-        private static object sync = new Object( );
+        private static object sync = new Object();
 
         // single instance of the class to implement singleton pattern
         private static volatile Parallel instance = null;
@@ -59,7 +59,7 @@ namespace AForge
         /// loops' computations.</para>
         /// 
         /// <para>By default the property is set to number of CPU's in the system
-        /// (see <see cref="System.Environment.ProcessorCount"/>).</para>
+        /// (see <see cref="Environment.ProcessorCount"/>).</para>
         /// </remarks>
         /// 
         public static int ThreadsCount
@@ -67,9 +67,9 @@ namespace AForge
             get { return threadsCount; }
             set
             {
-                lock ( sync )
+                lock (sync)
                 {
-                    threadsCount = Math.Max( 1, value );
+                    threadsCount = Math.Max(1, value);
                 }
             }
         }
@@ -99,28 +99,28 @@ namespace AForge
         /// </code>
         /// </remarks>
         /// 
-        public static void For( int start, int stop, ForLoopBody loopBody  )
+        public static void For(int start, int stop, ForLoopBody loopBody)
         {
-            lock ( sync )
+            lock (sync)
             {
                 // get instance of parallel computation manager
                 Parallel instance = Instance;
 
-                instance.currentIndex   = start - 1;
-                instance.stopIndex      = stop;
-                instance.loopBody       = loopBody;
+                instance.currentIndex = start - 1;
+                instance.stopIndex = stop;
+                instance.loopBody = loopBody;
 
                 // signal about available job for all threads and mark them busy
-                for ( int i = 0; i < threadsCount; i++ )
+                for (int i = 0; i < threadsCount; i++)
                 {
-                    instance.threadIdle[i].Reset( );
-                    instance.jobAvailable[i].Set( );
+                    instance.threadIdle[i].Reset();
+                    instance.jobAvailable[i].Set();
                 }
 
                 // wait until all threads become idle
-                for ( int i = 0; i < threadsCount; i++ )
+                for (int i = 0; i < threadsCount; i++)
                 {
-                    instance.threadIdle[i].WaitOne( );
+                    instance.threadIdle[i].WaitOne();
                 }
 
                 instance.loopBody = null;
@@ -128,26 +128,26 @@ namespace AForge
         }
 
         // Private constructor to avoid class instantiation
-        private Parallel( ) { }
+        private Parallel() { }
 
         // Get instace of the Parallel class
         private static Parallel Instance
         {
             get
             {
-                if ( instance == null )
+                if (instance == null)
                 {
-                    instance = new Parallel( );
-                    instance.Initialize( );
+                    instance = new Parallel();
+                    instance.Initialize();
                 }
                 else
                 {
-                    if ( instance.threads.Length != threadsCount )
+                    if (instance.threads.Length != threadsCount)
                     {
                         // terminate old threads
-                        instance.Terminate( );
+                        instance.Terminate();
                         // reinitialize
-                        instance.Initialize( );
+                        instance.Initialize();
 
                         // TODO: change reinitialization to reuse already created objects
                     }
@@ -158,7 +158,7 @@ namespace AForge
 
         // Initialize Parallel class's instance creating required number of threads
         // and synchronization objects
-        private void Initialize( )
+        private void Initialize()
         {
             // array of events, which signal about available job
             jobAvailable = new AutoResetEvent[threadsCount];
@@ -167,70 +167,70 @@ namespace AForge
             // array of threads
             threads = new Thread[threadsCount];
 
-            for ( int i = 0; i < threadsCount; i++ )
+            for (int i = 0; i < threadsCount; i++)
             {
-                jobAvailable[i] = new AutoResetEvent( false );
-                threadIdle[i]   = new ManualResetEvent( true );
+                jobAvailable[i] = new AutoResetEvent(false);
+                threadIdle[i] = new ManualResetEvent(true);
 
-                threads[i] = new Thread( new ParameterizedThreadStart( WorkerThread ) );
+                threads[i] = new Thread(new ParameterizedThreadStart(WorkerThread));
                 threads[i].Name = "AForge.Parallel";
                 threads[i].IsBackground = true;
-                threads[i].Start( i );
+                threads[i].Start(i);
             }
         }
 
         // Terminate all worker threads used for parallel computations and close all
         // synchronization objects
-        private void Terminate( )
+        private void Terminate()
         {
             // finish thread by setting null loop body and signaling about available work
             loopBody = null;
-            for ( int i = 0, threadsCount = threads.Length ; i < threadsCount; i++ )
+            for (int i = 0, threadsCount = threads.Length; i < threadsCount; i++)
             {
-                jobAvailable[i].Set( );
+                jobAvailable[i].Set();
                 // wait for thread termination
-                threads[i].Join( );
+                threads[i].Join();
 
                 // close events
-                jobAvailable[i].Close( );
-                threadIdle[i].Close( );
+                jobAvailable[i].Close();
+                threadIdle[i].Close();
             }
 
             // clean all array references
-            jobAvailable    = null;
-            threadIdle      = null;
-            threads         = null;
+            jobAvailable = null;
+            threadIdle = null;
+            threads = null;
         }
 
         // Worker thread performing parallel computations in loop
-        private void WorkerThread( object index )
+        private void WorkerThread(object index)
         {
-            int threadIndex = (int) index;
+            int threadIndex = (int)index;
             int localIndex = 0;
 
-            while ( true )
+            while (true)
             {
                 // wait until there is job to do
-                jobAvailable[threadIndex].WaitOne( );
+                jobAvailable[threadIndex].WaitOne();
 
                 // exit on null body
-                if ( loopBody == null )
+                if (loopBody == null)
                     break;
 
-                while ( true )
+                while (true)
                 {
                     // get local index incrementing global loop's current index
-                    localIndex = Interlocked.Increment( ref currentIndex );
+                    localIndex = Interlocked.Increment(ref currentIndex);
 
-                    if ( localIndex >= stopIndex )
+                    if (localIndex >= stopIndex)
                         break;
 
                     // run loop's body
-                    loopBody( localIndex );
+                    loopBody(localIndex);
                 }
 
                 // signal about thread availability
-                threadIdle[threadIndex].Set( );
+                threadIdle[threadIndex].Set();
             }
         }
     }

@@ -11,7 +11,6 @@ using TeRKIceLib = TeRK;
 namespace AForge.Robotics.TeRK
 {
     using System;
-    using AForge;
 
     public partial class Qwerk
     {
@@ -39,7 +38,7 @@ namespace AForge.Robotics.TeRK
         /// </summary>
         /// 
         /// <remarks><para>The class allows to manipulate Qwerk's on-boar LED's. The total number
-        /// of available on-board LEDs equals to <see cref="Leds.Count"/>.</para>
+        /// of available on-board LEDs equals to <see cref="Count"/>.</para>
         /// 
         /// <para><note>The class is deprecated.</note></para>
         /// 
@@ -79,7 +78,7 @@ namespace AForge.Robotics.TeRK
             public const int Count = 10;
 
             /// <summary>
-            /// Initializes a new instance of the <see cref="Qwerk.Leds"/> class.
+            /// Initializes a new instance of the <see cref="Leds"/> class.
             /// </summary>
             /// 
             /// <param name="qwerk">Reference to <see cref="Qwerk"/> object, which is connected to Qwerk board.</param>
@@ -127,7 +126,7 @@ namespace AForge.Robotics.TeRK
             /// Set state of specified LED.
             /// </summary>
             /// 
-            /// <param name="led">LED to set state for, [0, <see cref="Leds.Count"/>).</param>
+            /// <param name="led">LED to set state for, [0, <see cref="Count"/>).</param>
             /// <param name="state">LED's state to set.</param>
             /// 
             /// <remarks><para>The method sets state of one of Qwerk's LEDs, which index is specified.</para></remarks>

@@ -23,7 +23,7 @@ namespace AForge.Robotics.Lego
     /// <para><img src="img/robotics/rcx.jpg" width="312" height="251" /></para>
     /// 
     /// <para><note>The class supports both types of IR towers - USB and serial (see
-    /// <see cref="RCXBrick.IRTowerType"/>).</note></para>
+    /// <see cref="IRTowerType"/>).</note></para>
     /// 
     /// <para><note>The class uses GhostAPI to communicate with Lego RCX device, so its
     /// libraries (GhostAPI.dll, PbkComm32.dll and PbkUsbPort.dll) should be placed into applications folder.</note></para>

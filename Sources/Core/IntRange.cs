@@ -89,7 +89,7 @@ namespace AForge
         /// <param name="min">Minimum value of the range.</param>
         /// <param name="max">Maximum value of the range.</param>
         /// 
-        public IntRange( int min, int max )
+        public IntRange(int min, int max)
         {
             this.min = min;
             this.max = max;
@@ -104,9 +104,9 @@ namespace AForge
         /// <returns><b>True</b> if the specified value is inside of the range or
         /// <b>false</b> otherwise.</returns>
         /// 
-        public bool IsInside( int x )
+        public bool IsInside(int x)
         {
-            return ( ( x >= min ) && ( x <= max ) );
+            return ((x >= min) && (x <= max));
         }
 
         /// <summary>
@@ -118,9 +118,9 @@ namespace AForge
         /// <returns><b>True</b> if the specified range is inside of the range or
         /// <b>false</b> otherwise.</returns>
         /// 
-        public bool IsInside( IntRange range )
+        public bool IsInside(IntRange range)
         {
-            return ( ( IsInside( range.min ) ) && ( IsInside( range.max ) ) );
+            return ((IsInside(range.min)) && (IsInside(range.max)));
         }
 
         /// <summary>
@@ -132,10 +132,10 @@ namespace AForge
         /// <returns><b>True</b> if the specified range overlaps with the range or
         /// <b>false</b> otherwise.</returns>
         /// 
-        public bool IsOverlapping( IntRange range )
+        public bool IsOverlapping(IntRange range)
         {
-            return ( ( IsInside( range.min ) ) || ( IsInside( range.max ) ) ||
-                     ( range.IsInside( min ) ) || ( range.IsInside( max ) ) );
+            return ((IsInside(range.min)) || (IsInside(range.max)) ||
+                     (range.IsInside(min)) || (range.IsInside(max)));
         }
 
         /// <summary>
@@ -147,9 +147,9 @@ namespace AForge
         /// <returns>Returns new single precision range which min/max values are implicitly converted
         /// to floats from min/max values of the specified integer range.</returns>
         /// 
-        public static implicit operator Range( IntRange range )
+        public static implicit operator Range(IntRange range)
         {
-            return new Range( range.Min, range.Max );
+            return new Range(range.Min, range.Max);
         }
 
         /// <summary>
@@ -162,9 +162,9 @@ namespace AForge
         /// <returns>Returns <see langword="true"/> if min/max values of specified
         /// ranges are equal.</returns>
         ///
-        public static bool operator ==( IntRange range1, IntRange range2 )
+        public static bool operator ==(IntRange range1, IntRange range2)
         {
-            return ( ( range1.min == range2.min ) && ( range1.max == range2.max ) );
+            return ((range1.min == range2.min) && (range1.max == range2.max));
         }
 
         /// <summary>
@@ -177,9 +177,9 @@ namespace AForge
         /// <returns>Returns <see langword="true"/> if min/max values of specified
         /// ranges are not equal.</returns>
         ///
-        public static bool operator !=( IntRange range1, IntRange range2 )
+        public static bool operator !=(IntRange range1, IntRange range2)
         {
-            return ( ( range1.min != range2.min ) || ( range1.max != range2.max ) );
+            return ((range1.min != range2.min) || (range1.max != range2.max));
 
         }
 
@@ -191,9 +191,9 @@ namespace AForge
         /// 
         /// <returns>Return <see langword="true"/> if objects are equal.</returns>
         /// 
-        public override bool Equals( object obj )
+        public override bool Equals(object obj)
         {
-            return ( obj is IntRange ) ? ( this == (IntRange) obj ) : false;
+            return (obj is IntRange) ? (this == (IntRange)obj) : false;
         }
 
         /// <summary>
@@ -202,9 +202,9 @@ namespace AForge
         /// 
         /// <returns>Returns the hash code for this instance.</returns>
         /// 
-        public override int GetHashCode( )
+        public override int GetHashCode()
         {
-            return min.GetHashCode( ) + max.GetHashCode( );
+            return min.GetHashCode() + max.GetHashCode();
         }
 
         /// <summary>
@@ -213,9 +213,9 @@ namespace AForge
         /// 
         /// <returns>Returns string, which contains min/max values of the range in readable form.</returns>
         ///
-        public override string ToString( )
+        public override string ToString()
         {
-            return string.Format( System.Globalization.CultureInfo.InvariantCulture, "{0}, {1}", min, max );
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}, {1}", min, max);
         }
     }
 }

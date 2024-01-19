@@ -579,7 +579,7 @@ namespace AForge.Video.DirectShow
                 if ( parent.NewFrame != null )
                 {
                     // create new image
-                    System.Drawing.Bitmap image = new Bitmap( width, height, PixelFormat.Format24bppRgb );
+                    Bitmap image = new Bitmap( width, height, PixelFormat.Format24bppRgb );
 
                     // lock bitmap data
                     BitmapData imageData = image.LockBits(

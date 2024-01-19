@@ -8,9 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-    using System.Collections.Generic;
-
     /// <summary>
     /// Interface which specifies set of methods required to be implemented by all defuzzification methods 
     /// that can be used in Fuzzy Inference Systems. 

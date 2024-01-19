@@ -7,9 +7,6 @@
 //
 namespace AForge.Fuzzy
 {
-    using System;
-    using AForge;
-
     /// <summary>
     /// Product Norm, used to calculate the linguistic value of a AND operation. 
     /// </summary>

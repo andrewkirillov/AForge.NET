@@ -7,8 +7,6 @@
 
 namespace AForge.MachineLearning
 {
-    using System;
-
     /// <summary>
     /// Exploration policy interface.
     /// </summary>

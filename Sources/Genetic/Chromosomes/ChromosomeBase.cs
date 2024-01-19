@@ -8,8 +8,6 @@
 
 namespace AForge.Genetic
 {
-    using System;
-
     /// <summary>
     /// Chromosomes' base class.
     /// </summary>

@@ -7,7 +7,6 @@
 
 namespace AForge.Imaging.Filters
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Drawing.Imaging;
@@ -88,7 +87,7 @@ namespace AForge.Imaging.Filters
         /// 
         /// <returns>New image size - size of the destination image.</returns>
         /// 
-        protected override System.Drawing.Size CalculateNewImageSize( UnmanagedImage sourceData )
+        protected override Size CalculateNewImageSize( UnmanagedImage sourceData )
         {
             return new Size( rect.Width, rect.Height );
         }
@@ -132,7 +131,7 @@ namespace AForge.Imaging.Filters
             // for each line
             for ( int y = ymin; y <= ymax; y++ )
             {
-                AForge.SystemTools.CopyUnmanagedMemory( dst, src, copySize );
+                SystemTools.CopyUnmanagedMemory( dst, src, copySize );
                 src += srcStride;
                 dst += dstStride;
             }

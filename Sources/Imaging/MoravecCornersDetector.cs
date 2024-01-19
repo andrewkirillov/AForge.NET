@@ -207,7 +207,7 @@ namespace AForge.Imaging
             int width  = image.Width;
             int height = image.Height;
             int stride = image.Stride;
-            int pixelSize = Bitmap.GetPixelFormatSize( image.PixelFormat ) / 8;
+            int pixelSize = System.Drawing.Image.GetPixelFormatSize( image.PixelFormat ) / 8;
             // window radius
             int windowRadius = windowSize / 2;
 

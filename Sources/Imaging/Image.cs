@@ -33,7 +33,7 @@ namespace AForge.Imaging
         /// 
         /// <remarks>The methods checks if the image is a grayscale image of 256 gradients.
         /// The method first examines if the image's pixel format is
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format8bppIndexed</see>
+        /// <see cref="PixelFormat">Format8bppIndexed</see>
         /// and then it examines its palette to check if the image is grayscale or not.</remarks>
         /// 
         public static bool IsGrayscale( Bitmap image )
@@ -72,7 +72,7 @@ namespace AForge.Imaging
         /// 
         /// <remarks>The method creates new 8 bpp grayscale image and initializes its palette.
         /// Grayscale image is represented as
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format8bppIndexed</see>
+        /// <see cref="PixelFormat">Format8bppIndexed</see>
         /// image with palette initialized to 256 gradients of gray color.</remarks>
         /// 
         public static Bitmap CreateGrayscaleImage( int width, int height )
@@ -92,7 +92,7 @@ namespace AForge.Imaging
         /// <param name="image">Image to initialize.</param>
         /// 
         /// <remarks>The method initializes palette of
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format8bppIndexed</see>
+        /// <see cref="PixelFormat">Format8bppIndexed</see>
         /// image with 256 gradients of gray color.</remarks>
         /// 
         /// <exception cref="UnsupportedImageFormatException">Provided image is not 8 bpp indexed image.</exception>
@@ -123,7 +123,7 @@ namespace AForge.Imaging
         /// 
         /// <returns>Returns clone of the source image with specified pixel format.</returns>
         ///
-        /// <remarks>The original <see cref="System.Drawing.Bitmap.Clone(System.Drawing.Rectangle, System.Drawing.Imaging.PixelFormat)">Bitmap.Clone()</see>
+        /// <remarks>The original <see cref="Bitmap.Clone(Rectangle, PixelFormat)">Bitmap.Clone()</see>
         /// does not produce the desired result - it does not create a clone with specified pixel format.
         /// More of it, the original method does not create an actual clone - it does not create a copy
         /// of the image. That is why this method was implemented to provide the functionality.</remarks> 
@@ -156,7 +156,7 @@ namespace AForge.Imaging
         /// 
         /// <returns>Return clone of the source image.</returns>
         /// 
-        /// <remarks>The original <see cref="System.Drawing.Bitmap.Clone(System.Drawing.Rectangle, System.Drawing.Imaging.PixelFormat)">Bitmap.Clone()</see>
+        /// <remarks>The original <see cref="Bitmap.Clone(Rectangle, PixelFormat)">Bitmap.Clone()</see>
         /// does not produce the desired result - it does not create an actual clone (it does not create a copy
         /// of the image). That is why this method was implemented to provide the functionality.</remarks> 
         /// 
@@ -220,7 +220,7 @@ namespace AForge.Imaging
                 new Rectangle( 0, 0, width, height ),
                 ImageLockMode.ReadWrite, destination.PixelFormat );
 
-            AForge.SystemTools.CopyUnmanagedMemory( destinationData.Scan0, sourceData.Scan0, height * sourceData.Stride );
+            SystemTools.CopyUnmanagedMemory( destinationData.Scan0, sourceData.Scan0, height * sourceData.Stride );
 
             // unlock destination image
             destination.UnlockBits( destinationData );
@@ -237,13 +237,13 @@ namespace AForge.Imaging
         /// <remarks><para>Formats the image to one of the formats, which are supported
         /// by the <b>AForge.Imaging</b> library. The image is left untouched in the
         /// case if it is already of
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format24bppRgb</see> or
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format32bppRgb</see> or
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format32bppArgb</see> or
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format48bppRgb</see> or
-        /// <see cref="System.Drawing.Imaging.PixelFormat">Format64bppArgb</see>
+        /// <see cref="PixelFormat">Format24bppRgb</see> or
+        /// <see cref="PixelFormat">Format32bppRgb</see> or
+        /// <see cref="PixelFormat">Format32bppArgb</see> or
+        /// <see cref="PixelFormat">Format48bppRgb</see> or
+        /// <see cref="PixelFormat">Format64bppArgb</see>
         /// format or it is <see cref="IsGrayscale">grayscale</see>, otherwise the image
-        /// is converted to <see cref="System.Drawing.Imaging.PixelFormat">Format24bppRgb</see>
+        /// is converted to <see cref="PixelFormat">Format24bppRgb</see>
         /// format.</para>
         /// 
         /// <para><note>The method is deprecated and <see cref="Clone(Bitmap, PixelFormat)"/> method should
@@ -290,7 +290,7 @@ namespace AForge.Imaging
         /// </code>
         /// </remarks>
         /// 
-        public static System.Drawing.Bitmap FromFile( string fileName )
+        public static Bitmap FromFile( string fileName )
         {
             Bitmap loadedImage = null;
             FileStream stream = null;
@@ -312,7 +312,7 @@ namespace AForge.Imaging
                     memoryStream.Write( buffer, 0, read );
                 }
 
-                loadedImage = (Bitmap) Bitmap.FromStream( memoryStream );
+                loadedImage = (Bitmap)System.Drawing.Image.FromStream( memoryStream );
             }
             finally
             {

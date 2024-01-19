@@ -43,7 +43,7 @@ namespace AForge.Math
         {
             get
             {
-                return ( X > Y ) ? ( ( X > Z ) ? X : Z ) : ( ( Y > Z ) ? Y : Z );
+                return (X > Y) ? ((X > Z) ? X : Z) : ((Y > Z) ? Y : Z);
             }
         }
 
@@ -57,7 +57,7 @@ namespace AForge.Math
         {
             get
             {
-                return ( X < Y ) ? ( ( X < Z ) ? X : Z ) : ( ( Y < Z ) ? Y : Z );
+                return (X < Y) ? ((X < Z) ? X : Z) : ((Y < Z) ? Y : Z);
             }
         }
 
@@ -76,7 +76,7 @@ namespace AForge.Math
         {
             get
             {
-                return ( X >= Y ) ? ( ( X >= Z ) ? 0 : 2 ) : ( ( Y >= Z ) ? 1 : 2 );
+                return (X >= Y) ? ((X >= Z) ? 0 : 2) : ((Y >= Z) ? 1 : 2);
             }
         }
 
@@ -95,7 +95,7 @@ namespace AForge.Math
         {
             get
             {
-                return ( X <= Y ) ? ( ( X <= Z ) ? 0 : 2 ) : ( ( Y <= Z ) ? 1 : 2 );
+                return (X <= Y) ? ((X <= Z) ? 0 : 2) : ((Y <= Z) ? 1 : 2);
             }
         }
 
@@ -109,7 +109,7 @@ namespace AForge.Math
         /// 
         public float Norm
         {
-            get { return (float) System.Math.Sqrt( X * X + Y * Y + Z * Z ); }
+            get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z); }
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace AForge.Math
         /// <param name="y">Y coordinate of the vector.</param>
         /// <param name="z">Z coordinate of the vector.</param>
         /// 
-        public Vector3( float x, float y, float z )
+        public Vector3(float x, float y, float z)
         {
             X = x;
             Y = y;
@@ -146,7 +146,7 @@ namespace AForge.Math
         /// 
         /// <param name="value">Value, which is set to all 3 coordinates of the vector.</param>
         /// 
-        public Vector3( float value )
+        public Vector3(float value)
         {
             X = Y = Z = value;
         }
@@ -157,10 +157,10 @@ namespace AForge.Math
         /// 
         /// <returns>A string representation of this object.</returns>
         /// 
-        public override string ToString( )
+        public override string ToString()
         {
-            return string.Format( System.Globalization.CultureInfo.InvariantCulture,
-                "{0}, {1}, {2}", X, Y, Z );
+            return string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                "{0}, {1}, {2}", X, Y, Z);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace AForge.Math
         /// 
         /// <returns>Array with 3 values containing X/Y/Z coordinates.</returns>
         /// 
-        public float[] ToArray( )
+        public float[] ToArray()
         {
             return new float[3] { X, Y, Z };
         }
@@ -184,9 +184,9 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to sum of corresponding
         /// coordinates of the two specified vectors.</returns>
         ///
-        public static Vector3 operator +( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 operator +(Vector3 vector1, Vector3 vector2)
         {
-            return new Vector3( vector1.X + vector2.X, vector1.Y + vector2.Y, vector1.Z + vector2.Z );
+            return new Vector3(vector1.X + vector2.X, vector1.Y + vector2.Y, vector1.Z + vector2.Z);
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to sum of corresponding
         /// coordinates of the two specified vectors.</returns>
         ///
-        public static Vector3 Add( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 Add(Vector3 vector1, Vector3 vector2)
         {
             return vector1 + vector2;
         }
@@ -213,9 +213,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates increased by the specified value.</returns>
         /// 
-        public static Vector3 operator +( Vector3 vector, float value )
+        public static Vector3 operator +(Vector3 vector, float value)
         {
-            return new Vector3( vector.X + value, vector.Y + value, vector.Z + value );
+            return new Vector3(vector.X + value, vector.Y + value, vector.Z + value);
         }
 
         /// <summary>
@@ -227,24 +227,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates increased by the specified value.</returns>
         /// 
-        public static Vector3 Add( Vector3 vector, float value )
+        public static Vector3 Add(Vector3 vector, float value)
         {
             return vector + value;
-        }
-       
-        /// <summary>
-        /// Subtracts corresponding coordinates of two vectors.
-        /// </summary>
-        /// 
-        /// <param name="vector1">The vector to subtract from.</param>
-        /// <param name="vector2">The vector to subtract from the first vector.</param>
-        /// 
-        /// <returns>Returns a vector which coordinates are equal to difference of corresponding
-        /// coordinates of the two specified vectors.</returns>
-        ///
-        public static Vector3 operator -( Vector3 vector1, Vector3 vector2 )
-        {
-            return new Vector3( vector1.X - vector2.X, vector1.Y - vector2.Y, vector1.Z - vector2.Z );
         }
 
         /// <summary>
@@ -257,7 +242,22 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to difference of corresponding
         /// coordinates of the two specified vectors.</returns>
         ///
-        public static Vector3 Subtract( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 operator -(Vector3 vector1, Vector3 vector2)
+        {
+            return new Vector3(vector1.X - vector2.X, vector1.Y - vector2.Y, vector1.Z - vector2.Z);
+        }
+
+        /// <summary>
+        /// Subtracts corresponding coordinates of two vectors.
+        /// </summary>
+        /// 
+        /// <param name="vector1">The vector to subtract from.</param>
+        /// <param name="vector2">The vector to subtract from the first vector.</param>
+        /// 
+        /// <returns>Returns a vector which coordinates are equal to difference of corresponding
+        /// coordinates of the two specified vectors.</returns>
+        ///
+        public static Vector3 Subtract(Vector3 vector1, Vector3 vector2)
         {
             return vector1 - vector2;
         }
@@ -271,9 +271,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates decreased by the specified value.</returns>
         /// 
-        public static Vector3 operator -( Vector3 vector, float value )
+        public static Vector3 operator -(Vector3 vector, float value)
         {
-            return new Vector3( vector.X - value, vector.Y - value, vector.Z - value );
+            return new Vector3(vector.X - value, vector.Y - value, vector.Z - value);
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates decreased by the specified value.</returns>
         /// 
-        public static Vector3 Subtract( Vector3 vector, float value )
+        public static Vector3 Subtract(Vector3 vector, float value)
         {
             return vector - value;
         }
@@ -300,9 +300,9 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to multiplication of corresponding
         /// coordinates of the two specified vectors.</returns>
         ///
-        public static Vector3 operator *( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 operator *(Vector3 vector1, Vector3 vector2)
         {
-            return new Vector3( vector1.X * vector2.X, vector1.Y * vector2.Y, vector1.Z * vector2.Z );
+            return new Vector3(vector1.X * vector2.X, vector1.Y * vector2.Y, vector1.Z * vector2.Z);
         }
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to multiplication of corresponding
         /// coordinates of the two specified vectors.</returns>
         ///
-        public static Vector3 Multiply( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 Multiply(Vector3 vector1, Vector3 vector2)
         {
             return vector1 * vector2;
         }
@@ -329,9 +329,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates multiplied by the specified factor.</returns>
         ///
-        public static Vector3 operator *( Vector3 vector, float factor )
+        public static Vector3 operator *(Vector3 vector, float factor)
         {
-            return new Vector3( vector.X * factor, vector.Y * factor, vector.Z * factor );
+            return new Vector3(vector.X * factor, vector.Y * factor, vector.Z * factor);
         }
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates multiplied by the specified factor.</returns>
         ///
-        public static Vector3 Multiply( Vector3 vector, float factor )
+        public static Vector3 Multiply(Vector3 vector, float factor)
         {
             return vector * factor;
         }
@@ -358,9 +358,9 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to coordinates of the first vector divided by
         /// corresponding coordinates of the second vector.</returns>
         ///
-        public static Vector3 operator /( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 operator /(Vector3 vector1, Vector3 vector2)
         {
-            return new Vector3( vector1.X / vector2.X, vector1.Y / vector2.Y, vector1.Z / vector2.Z );
+            return new Vector3(vector1.X / vector2.X, vector1.Y / vector2.Y, vector1.Z / vector2.Z);
         }
 
         /// <summary>
@@ -373,7 +373,7 @@ namespace AForge.Math
         /// <returns>Returns a vector which coordinates are equal to coordinates of the first vector divided by
         /// corresponding coordinates of the second vector.</returns>
         ///
-        public static Vector3 Divide( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 Divide(Vector3 vector1, Vector3 vector2)
         {
             return vector1 / vector2;
         }
@@ -387,9 +387,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates divided by the specified factor.</returns>
         ///
-        public static Vector3 operator /( Vector3 vector, float factor )
+        public static Vector3 operator /(Vector3 vector, float factor)
         {
-            return new Vector3( vector.X / factor, vector.Y / factor, vector.Z / factor );
+            return new Vector3(vector.X / factor, vector.Y / factor, vector.Z / factor);
         }
 
         /// <summary>
@@ -401,7 +401,7 @@ namespace AForge.Math
         /// 
         /// <returns>Returns new vector with all coordinates divided by the specified factor.</returns>
         ///
-        public static Vector3 Divide( Vector3 vector, float factor )
+        public static Vector3 Divide(Vector3 vector, float factor)
         {
             return vector / factor;
         }
@@ -415,9 +415,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if the two vectors are equal or <see langword="false"/> otherwise.</returns>
         /// 
-        public static bool operator ==( Vector3 vector1, Vector3 vector2 )
+        public static bool operator ==(Vector3 vector1, Vector3 vector2)
         {
-            return ( ( vector1.X == vector2.X ) && ( vector1.Y == vector2.Y ) && ( vector1.Z == vector2.Z ) );
+            return ((vector1.X == vector2.X) && (vector1.Y == vector2.Y) && (vector1.Z == vector2.Z));
         }
 
         /// <summary>
@@ -429,9 +429,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if the two vectors are not equal or <see langword="false"/> otherwise.</returns>
         /// 
-        public static bool operator !=( Vector3 vector1, Vector3 vector2 )
+        public static bool operator !=(Vector3 vector1, Vector3 vector2)
         {
-            return ( ( vector1.X != vector2.X ) || ( vector1.Y != vector2.Y ) || ( vector1.Z != vector2.Z ) );
+            return ((vector1.X != vector2.X) || (vector1.Y != vector2.Y) || (vector1.Z != vector2.Z));
         }
 
         /// <summary>
@@ -442,9 +442,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if the two vectors are equal or <see langword="false"/> otherwise.</returns>
         /// 
-        public bool Equals( Vector3 vector )
+        public bool Equals(Vector3 vector)
         {
-            return ( ( vector.X == X ) && ( vector.Y == Y ) && ( vector.Z == Z ) );
+            return ((vector.X == X) && (vector.Y == Y) && (vector.Z == Z));
         }
 
         /// <summary>
@@ -455,11 +455,11 @@ namespace AForge.Math
         /// 
         /// <returns>Returns <see langword="true"/> if the vector equals to the specified object or <see langword="false"/> otherwise.</returns>
         /// 
-        public override bool Equals( Object obj )
+        public override bool Equals(Object obj)
         {
-            if ( obj is Vector3 )
+            if (obj is Vector3)
             {
-                return Equals( (Vector3) obj );
+                return Equals((Vector3)obj);
             }
             return false;
         }
@@ -470,9 +470,9 @@ namespace AForge.Math
         /// 
         /// <returns>A 32-bit signed integer hash code.</returns>
         /// 
-        public override int GetHashCode( )
+        public override int GetHashCode()
         {
-            return X.GetHashCode( ) + Y.GetHashCode( ) + Z.GetHashCode( );
+            return X.GetHashCode() + Y.GetHashCode() + Z.GetHashCode();
         }
 
         /// <summary>
@@ -481,9 +481,9 @@ namespace AForge.Math
         /// 
         /// <returns>Returns the value of vectors’ norm before normalization.</returns>
         ///
-        public float Normalize( )
+        public float Normalize()
         {
-            float norm = (float) System.Math.Sqrt( X * X + Y * Y + Z * Z );
+            float norm = (float)Math.Sqrt(X * X + Y * Y + Z * Z);
             float invNorm = 1.0f / norm;
 
             X *= invNorm;
@@ -500,12 +500,12 @@ namespace AForge.Math
         /// <returns>Returns a vector with all coordinates equal to 1.0 divided by the value of corresponding coordinate
         /// in this vector (or equal to 0.0 if this vector has corresponding coordinate also set to 0.0).</returns>
         ///
-        public Vector3 Inverse( )
+        public Vector3 Inverse()
         {
             return new Vector3(
-                ( X == 0 ) ? 0 : 1.0f / X,
-                ( Y == 0 ) ? 0 : 1.0f / Y,
-                ( Z == 0 ) ? 0 : 1.0f / Z );
+                (X == 0) ? 0 : 1.0f / X,
+                (Y == 0) ? 0 : 1.0f / Y,
+                (Z == 0) ? 0 : 1.0f / Z);
         }
 
         /// <summary>
@@ -514,11 +514,11 @@ namespace AForge.Math
         /// 
         /// <returns>Returns a vector with all coordinates equal to absolute values of this vector's coordinates.</returns>
         /// 
-        public Vector3 Abs( )
+        public Vector3 Abs()
         {
-            return new Vector3( System.Math.Abs( X ), System.Math.Abs( Y ), System.Math.Abs( Z ) );
+            return new Vector3(Math.Abs(X), Math.Abs(Y), Math.Abs(Z));
         }
-        
+
         /// <summary>
         /// Calculates cross product of two vectors.
         /// </summary>
@@ -528,12 +528,12 @@ namespace AForge.Math
         /// 
         /// <returns>Returns cross product of the two specified vectors.</returns>
         /// 
-        public static Vector3 Cross( Vector3 vector1, Vector3 vector2 )
+        public static Vector3 Cross(Vector3 vector1, Vector3 vector2)
         {
             return new Vector3(
                 vector1.Y * vector2.Z - vector1.Z * vector2.Y,
                 vector1.Z * vector2.X - vector1.X * vector2.Z,
-                vector1.X * vector2.Y - vector1.Y * vector2.X );
+                vector1.X * vector2.Y - vector1.Y * vector2.X);
         }
 
         /// <summary>
@@ -545,7 +545,7 @@ namespace AForge.Math
         /// 
         /// <returns>Returns dot product of the two specified vectors.</returns>
         /// 
-        public static float Dot( Vector3 vector1, Vector3 vector2 )
+        public static float Dot(Vector3 vector1, Vector3 vector2)
         {
             return vector1.X * vector2.X + vector1.Y * vector2.Y + vector1.Z * vector2.Z;
         }
@@ -560,9 +560,9 @@ namespace AForge.Math
         /// coordinates of this 3D vector and <see cref="Vector4.W">W</see> coordinate set to 1.0.</para>
         /// </remarks>
         /// 
-        public Vector4 ToVector4( )
+        public Vector4 ToVector4()
         {
-            return new Vector4( X, Y, Z, 1 );
+            return new Vector4(X, Y, Z, 1);
         }
     }
 }

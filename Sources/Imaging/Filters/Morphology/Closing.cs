@@ -8,15 +8,14 @@
 
 namespace AForge.Imaging.Filters
 {
-	using System;
     using System.Collections.Generic;
     using System.Drawing;
-	using System.Drawing.Imaging;
+    using System.Drawing.Imaging;
 
-	/// <summary>
-	/// Closing operator from Mathematical Morphology.
-	/// </summary>
-	/// 
+    /// <summary>
+    /// Closing operator from Mathematical Morphology.
+    /// </summary>
+    /// 
     /// <remarks><para>Closing morphology operator equals to <see cref="Dilatation">dilatation</see> followed
     /// by <see cref="Erosion">erosion</see>.</para>
     /// 

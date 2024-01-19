@@ -10,10 +10,8 @@ namespace AForge.Video.Ximea
 {
     using System;
     using System.Drawing;
-    using System.Drawing.Imaging;
     using System.Threading;
     using AForge.Video;
-    using AForge.Video.Ximea.Internal;
 
     /// <summary>
     /// The class provides continues access to XIMEA cameras.

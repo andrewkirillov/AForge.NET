@@ -96,7 +96,7 @@ namespace AForge.Imaging.Filters
         /// </summary>
         /// 
         /// <remarks><para>If the property is set to <see langword="true"/>, then this image processing
-        /// routine will run in parallel on the systems with multiple core/CPUs. The <see cref="AForge.Parallel.For"/>
+        /// routine will run in parallel on the systems with multiple core/CPUs. The <see cref="Parallel.For"/>
         /// is used to make it parallel.</para>
         /// 
         /// <para>Default value is set to <see langword="false"/>.</para>
@@ -172,7 +172,7 @@ namespace AForge.Imaging.Filters
             }
             set
             {
-                spatialFactor = Math.Max( 1, value );
+                spatialFactor = M.Max( 1, value );
                 spatialPropertiesChanged = true;
             }
         }
@@ -193,7 +193,7 @@ namespace AForge.Imaging.Filters
             }
             set
             {
-                spatialPower = Math.Max( 1, value );
+                spatialPower = M.Max( 1, value );
                 spatialPropertiesChanged = true;
             }
         }
@@ -214,7 +214,7 @@ namespace AForge.Imaging.Filters
             }
             set
             {
-                colorFactor = Math.Max( 1, value );
+                colorFactor = M.Max( 1, value );
                 colorPropertiesChanged = true;
             }
         }
@@ -235,7 +235,7 @@ namespace AForge.Imaging.Filters
             }
             set
             {
-                colorPower = Math.Max( 1, value );
+                colorPower = M.Max( 1, value );
                 colorPropertiesChanged = true;
             }
         }
@@ -381,7 +381,7 @@ namespace AForge.Imaging.Filters
             int stopX  = rect.Right;
             int stopY  = rect.Bottom;
 
-            int pixelSize = System.Drawing.Image.GetPixelFormatSize( source.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( source.PixelFormat ) / 8;
             int kernelHalf = kernelSize / 2;
             int bytesInKernelRow = kernelSize * pixelSize;
 
@@ -535,7 +535,7 @@ namespace AForge.Imaging.Filters
             int stopX  = rect.Right;
             int stopY  = rect.Bottom;
 
-            int pixelSize = System.Drawing.Image.GetPixelFormatSize( source.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( source.PixelFormat ) / 8;
             int kernelHalf = kernelSize / 2;
             int bytesInKernelRow = kernelSize * pixelSize;
 
@@ -688,7 +688,7 @@ namespace AForge.Imaging.Filters
             int stopX  = rect.Right;
             int stopY  = rect.Bottom;
 
-            int pixelSize = System.Drawing.Image.GetPixelFormatSize( source.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( source.PixelFormat ) / 8;
             int kernelHalf = kernelSize / 2;
             int bytesInKernelRow = kernelSize * pixelSize;
 

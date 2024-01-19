@@ -7,13 +7,9 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Data;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 using AForge.Video;
@@ -27,7 +23,7 @@ namespace AForge.Controls
     /// </summary>
     /// 
     /// <remarks><para>The control is aimed to play video sources, which implement
-    /// <see cref="AForge.Video.IVideoSource"/> interface. To start playing a video
+    /// <see cref="IVideoSource"/> interface. To start playing a video
     /// the <see cref="VideoSource"/> property should be initialized first and then
     /// <see cref="Start"/> method should be called. In the case if user needs to
     /// perform some sort of image processing with video frames before they are displayed,
@@ -306,7 +302,7 @@ namespace AForge.Controls
         /// Stop video source.
         /// </summary>
         /// 
-        /// <remarks><para>The method stops video source by calling its <see cref="AForge.Video.IVideoSource.Stop"/>
+        /// <remarks><para>The method stops video source by calling its <see cref="IVideoSource.Stop"/>
         /// method, which abourts internal video source's thread. Use <see cref="SignalToStop"/> and
         /// <see cref="WaitForStop"/> for more polite video source stopping, which gives a chance for
         /// video source to perform proper shut down and clean up.

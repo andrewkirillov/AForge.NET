@@ -12,9 +12,7 @@ namespace AForge.Controls
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
-    using System.Data;
     using System.Windows.Forms;
-    using AForge;
 
     /// <summary>
     /// Chart control.
@@ -42,7 +40,7 @@ namespace AForge.Controls
     /// </code>
     /// </remarks>
     /// 
-    public class Chart : System.Windows.Forms.Control
+    public class Chart : Control
     {
         /// <summary>
         /// Chart series type enumeration.
@@ -78,8 +76,8 @@ namespace AForge.Controls
 
         private Pen		blackPen = new Pen( Color.Black );
 
-        private Range	rangeX = new Range( 0, 1 );
-        private Range	rangeY = new Range( 0, 1 );
+        private AForge.Range	rangeX = new AForge.Range( 0, 1 );
+        private AForge.Range	rangeY = new AForge.Range( 0, 1 );
 
         /// <summary>
         /// Chart's X range.
@@ -88,7 +86,7 @@ namespace AForge.Controls
         /// <remarks><para>The value sets the X range of data to be displayed on the chart.</para></remarks>
         /// 
         [Browsable( false )]
-        public Range RangeX
+        public AForge.Range RangeX
         {
             get { return rangeX; }
             set
@@ -106,7 +104,7 @@ namespace AForge.Controls
         /// <remarks>The value sets the Y range of data to be displayed on the chart.</remarks>
         ///
         [Browsable( false )]
-        public Range RangeY
+        public AForge.Range RangeY
         {
             get { return rangeY; }
             set
@@ -119,7 +117,7 @@ namespace AForge.Controls
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private Container components = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Chart"/> class.
@@ -162,7 +160,7 @@ namespace AForge.Controls
             // 
             // Chart
             // 
-            this.Paint += new System.Windows.Forms.PaintEventHandler( this.Chart_Paint );
+            this.Paint += new PaintEventHandler( this.Chart_Paint );
             this.ResumeLayout( false );
 
         }
@@ -433,7 +431,7 @@ namespace AForge.Controls
             // update Y range, if there are any data
             if ( ( minY != double.MaxValue ) || ( maxY != double.MinValue ) )
             {
-                rangeY = new Range( minY, maxY );
+                rangeY = new AForge.Range( minY, maxY );
             }
         }
     }

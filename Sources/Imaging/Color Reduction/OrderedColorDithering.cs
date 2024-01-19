@@ -229,7 +229,7 @@ namespace AForge.Imaging.ColorReduction
             int width  = sourceImage.Width;
             int height = sourceImage.Height;
             int stride = sourceImage.Stride;
-            int pixelSize = Bitmap.GetPixelFormatSize( sourceImage.PixelFormat ) / 8;
+            int pixelSize = Image.GetPixelFormatSize( sourceImage.PixelFormat ) / 8;
 
             int offset = stride - width * pixelSize;
 

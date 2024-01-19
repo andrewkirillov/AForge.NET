@@ -8,8 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-
     /// <summary>
     /// Interface with the common methods of Fuzzy Unary Operator.
     /// </summary>

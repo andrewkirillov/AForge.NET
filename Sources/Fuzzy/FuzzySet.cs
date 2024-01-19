@@ -8,8 +8,6 @@
 
 namespace AForge.Fuzzy
 {
-    using System;
-
     /// <summary>
     /// The class represents a fuzzy set.
     /// </summary>

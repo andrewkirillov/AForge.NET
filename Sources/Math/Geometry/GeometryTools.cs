@@ -26,7 +26,7 @@ namespace AForge.Math.Geometry
         /// 
         /// <returns>Returns angle between specified vectors measured in degrees.</returns>
         /// 
-        public static float GetAngleBetweenVectors( Point startPoint, Point vector1end, Point vector2end )
+        public static float GetAngleBetweenVectors(Point startPoint, Point vector1end, Point vector2end)
         {
             float x1 = vector1end.X - startPoint.X;
             float y1 = vector1end.Y - startPoint.Y;
@@ -34,7 +34,7 @@ namespace AForge.Math.Geometry
             float x2 = vector2end.X - startPoint.X;
             float y2 = vector2end.Y - startPoint.Y;
 
-            return (float) ( Math.Acos( ( x1 * x2 + y1 * y2 ) / ( Math.Sqrt( x1 * x1 + y1 * y1 ) * Math.Sqrt( x2 * x2 + y2 * y2 ) ) ) * 180.0 / Math.PI );
+            return (float)(Math.Acos((x1 * x2 + y1 * y2) / (Math.Sqrt(x1 * x1 + y1 * y1) * Math.Sqrt(x2 * x2 + y2 * y2))) * 180.0 / Math.PI);
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace AForge.Math.Geometry
         /// <exception cref="ArgumentException"><paramref name="a1"/> and <paramref name="a2"/> are the same,
         /// -OR- <paramref name="b1"/> and <paramref name="b2"/> are the same.</exception>
         /// 
-        public static float GetAngleBetweenLines( Point a1, Point a2, Point b1, Point b2 )
+        public static float GetAngleBetweenLines(Point a1, Point a2, Point b1, Point b2)
         {
-            Line line1 = Line.FromPoints( a1, a2 );
-            return line1.GetAngleBetweenLines( Line.FromPoints( b1, b2 ) );
+            Line line1 = Line.FromPoints(a1, a2);
+            return line1.GetAngleBetweenLines(Line.FromPoints(b1, b2));
         }
     }
 }
